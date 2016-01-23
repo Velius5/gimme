@@ -1,6 +1,6 @@
 velius\controller\api\UserApiController.class
 velius\utils\HashGeneratorUtils.class
-velius\repository\AuthUserDetailsService.class
+velius\service\AuthUserDetailsService.class
 velius\controller\PanelController.class
 velius\WebSecurityConfig.class
 velius\model\User.class
