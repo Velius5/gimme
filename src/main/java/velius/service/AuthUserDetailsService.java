@@ -3,7 +3,7 @@
  * Author URL: http://patrykdobrzynski.eu
  * Author Email: kontakt@patrykdobrzynski.eu
  */
-package velius.repository;
+package velius.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import velius.model.User;
+import velius.repository.UserRepository;
 
 @Repository
 public class AuthUserDetailsService implements UserDetailsService {
