@@ -5,6 +5,7 @@ velius\controller\PanelController.class
 velius\WebSecurityConfig.class
 velius\model\User.class
 velius\Application.class
+velius\ProdDatabaseConfig.class
 velius\repository\UserRepository.class
 velius\controller\api\ApiTestController.class
 velius\controller\HomeController.class
