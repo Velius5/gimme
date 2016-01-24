@@ -20,13 +20,13 @@ public class UserApiController {
         this.userService = userService;
     }
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public User loginUser(@RequestParam(value = "email", required = false) String email, @RequestParam(value = "haslo", required = false) String password) {
         User user = userService.getUserByEmailAndPassword(email, password);
         return user;
     }
     
-    @RequestMapping(value = "/getall")
+    @RequestMapping(value = "/users/getall")
     public List<User> listUsers() {
         List<User> users = userService.getList();
         return users;

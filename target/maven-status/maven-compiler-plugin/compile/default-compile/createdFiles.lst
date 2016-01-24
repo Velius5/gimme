@@ -1,4 +1,5 @@
 velius\controller\api\UserApiController.class
+velius\controller\api\ApiPageController.class
 velius\utils\HashGeneratorUtils.class
 velius\service\AuthUserDetailsService.class
 velius\controller\PanelController.class
