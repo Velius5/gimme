@@ -12,4 +12,5 @@ velius\controller\api\ApiTestController.class
 velius\controller\HomeController.class
 velius\service\UserServiceImpl.class
 velius\service\UserService.class
+.netbeans_automatic_build
 velius\controller\LoginController.class
