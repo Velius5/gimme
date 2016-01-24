@@ -22,6 +22,9 @@ public class ProdDatabaseConfig {
     public ProdDatabaseConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    public ProdDatabaseConfig() {
+    }
     
     @PostConstruct
     public void populateDatabase() {
