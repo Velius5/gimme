@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar target/programowanie-zespolowe-2016-1.0-SNAPSHOT.jar --port $PORT target/*.war --spring.profiles.active=prod
+web:    java $JAVA_OPTS -jar target/programowanie-zespolowe-2016-1.0-SNAPSHOT.jar --server.port=$PORT target/*.war --spring.profiles.active=prod
