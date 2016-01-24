@@ -45,12 +45,11 @@ public class User {
     
     User(){}
 
-    public User(String name, String surname, String email, String password, byte[] image, boolean active, int role) {
+    public User(String name, String surname, String email, String password, boolean active, int role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.image = image;
         this.active = active;
         this.role = role;
     }
