@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.content.ContentResolver;
@@ -56,95 +57,143 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+/*import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;*/
 
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
 
+    /*HttpParams myHttpParams=new BasicHttpParams();
+    myHttpParams.setParameter("id", "173217639");
+    HttpClient client = HttpClientBuilder.create().build();
+    HttpGet request = new HttpGet("foo.com/iot/developers/apps.json");
+    request.setParams(myHttpParams);
+    request.addHeader("Authorization", "Basic myToken=");
+    HttpResponse response = client.execute(request);*/
+
     private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri fileUri;
     private static final String TAG = "MyActivity";
-
- /*   private ListView mDrawerList;
-    private DrawerLayout mDrawerLayout;
-    private ArrayAdapter<String> mAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private String mActivityTitle;*/
+    Button zaloguj_sie;
+    Button zarejestuj_sie;
+    Button logowanie;
+    Button rejestracja;
+    ImageButton ikona_manu1;
+    ImageButton ikona_manu2;
+    ImageButton ikona_manu3;
+    ImageButton ikona_manu4;
+    ImageButton ikona_manu5;
+    ImageButton ikona_manu6;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = getApplicationContext();
 
-   /*     mDrawerList = (ListView)findViewById(R.id.navigationList);
-          mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-          mActivityTitle = getTitle().toString();
-        addDrawerItems();
-        setupDrawer();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);*/
+        zaloguj_sie = (Button) findViewById(R.id.button3);
+        zarejestuj_sie = (Button) findViewById(R.id.button4);
 
+        rejestracja = (Button) findViewById(R.id.button);
+        logowanie = (Button) findViewById(R.id.button2);
 
-        Log.d("zespolowe.pl.aplikacja", "uruchomiono onCreate()");
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ikona_manu1 = (ImageButton) findViewById(R.id.imageButton);
+       /* ikona_manu2 = (ImageButton) findViewById(R.id.imageButton2);
+        ikona_manu3 = (ImageButton) findViewById(R.id.imageButton3);
+        ikona_manu4 = (ImageButton) findViewById(R.id.imageButton4);
+        ikona_manu5 = (ImageButton) findViewById(R.id.imageButton5);
+        ikona_manu6 = (ImageButton) findViewById(R.id.imageButton6);*/
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(cameraListener);
-    }
-
-  /*  private void addDrawerItems() {
-        String[] osArray = { "aa", "dd", "ff", "gg", "hh" };
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-//        mDrawerList.setAdapter(mAdapter);
-
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+        zaloguj_sie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.login);
             }
         });
-    }
-    private void setupDrawer() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
-
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
-                invalidateOptionsMenu();
+        zarejestuj_sie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.register);
             }
-
-
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getSupportActionBar().setTitle(mActivityTitle);
-                invalidateOptionsMenu();
-            }
-        };
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
-//        mDrawerLayout.setDrawerListener(mDrawerToggle);
-    }*/
+        });
 /*
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-//        mDrawerToggle.syncState();
+        rejestracja.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_karta);
+            }
+        });
+
+       logowanie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_karta);
+            }
+        });
+
+        ikona_manu1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_karta);
+            }
+        });
+
+        ikona_manu2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.galeria_menu);
+            }
+        });
+
+        ikona_manu3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_ustawienia);
+            }
+        });
+
+        ikona_manu4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_karta);
+            }
+        });
+
+        ikona_manu5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_karta);
+            }
+        });
+
+        ikona_manu6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setContentView(R.layout.menu_karta);
+            }
+        });*/
+
+
+
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(cameraListener);*/
+
+
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-*/
 
+/*
     private View.OnClickListener cameraListener = new View.OnClickListener() {
         public void onClick(View view) {
             takePhoto(view);
 
         }
     };
+*/
+
+
 
     private void takePhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -192,71 +241,66 @@ public class MainActivity extends AppCompatActivity {
         back_pressed_time = System.currentTimeMillis();
     }
 
-   @Override
-        protected void onPause() {
-            super.onPause();
-            Log.d("zespolowe.pl.aplikacja", "uruchomiono onPause()");
-   }
-
-   @Override
-        protected void onStart() {
-            super.onStart();
-            Log.d("zespolowe.pl.aplikacja", "uruchomiono onStart()");
-        }
-
-   @Override
-        protected void onRestart() {
-            super.onRestart();
-            Log.d("zespolowe.pl.aplikacja", "uruchomiono onRestart()");
-   }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("zespolowe.pl.aplikacja", "uruchomiono onPause()");
+    }
 
     @Override
-        protected void onResume() {
-            super.onResume();
-            Log.d("zespolowe.pl.aplikacja", "uruchomiono onResume()");
-        }
+    protected void onStart() {
+        super.onStart();
+        Log.d("zespolowe.pl.aplikacja", "uruchomiono onStart()");
+    }
 
-   @Override
-        protected void onStop() {
-            super.onStop();
-            Log.d("zespolowe.pl.aplikacja", "uruchomiono onStop()");
-        }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("zespolowe.pl.aplikacja", "uruchomiono onRestart()");
+    }
 
-   @Override
-        protected void onDestroy() {
-            android.os.Process.killProcess(android.os.Process.myPid());
-            super.onDestroy();
-            Log.d("zespolowe.pl.aplikacja", "uruchomiono onDestroy()");
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("zespolowe.pl.aplikacja", "uruchomiono onResume()");
+    }
 
-   @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-          getMenuInflater().inflate(R.menu.menu_main, menu);
-          return true;
-        }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("zespolowe.pl.aplikacja", "uruchomiono onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        super.onDestroy();
+        Log.d("zespolowe.pl.aplikacja", "uruchomiono onDestroy()");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
 
     //menu w gornym rogu ekranu
-   @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            // zareaguj na podstawie ID itemu
-            int id = item.getItemId();
-            if (id == R.id.action_settings) {
-              //  return true;
-                Toast.makeText(this, "wybrano: Ustawienia", Toast.LENGTH_SHORT).show();
-            }else
-            if (id == R.id.action_add){
-                Toast.makeText(this, "wybrano: Dodaj coś", Toast.LENGTH_SHORT).show();
-            }else
-            if (id == R.id.about){
-                Toast.makeText(this, "wybrano: info", Toast.LENGTH_SHORT).show();
-            }
-            /*else
-            if (mDrawerToggle.onOptionsItemSelected(item)) {
-                Toast.makeText(this, "testtest", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-*/
-       return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // zareaguj na podstawie ID itemu
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            //  return true;
+            Toast.makeText(this, "wybrano: Ustawienia", Toast.LENGTH_SHORT).show();
+        }else
+        if (id == R.id.action_add){
+            Toast.makeText(this, "wybrano: Dodaj coś", Toast.LENGTH_SHORT).show();
+        }else
+        if (id == R.id.about){
+            Toast.makeText(this, "wybrano: info", Toast.LENGTH_SHORT).show();
         }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

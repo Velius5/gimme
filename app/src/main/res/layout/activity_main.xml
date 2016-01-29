@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimaryDark"
+    android:id="@+id/activity_main"
+    tools:ignore="ContentDescription">
+    <include layout="@layout/log_rej" />
+</RelativeLayout>
+
+
+<!--
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +25,7 @@
     tools:context="zespolowe.pl.aplikacja.MainActivity">
 
 
-    <!--gorny bar /-->
+    &lt;!&ndash;gorny bar /&ndash;&gt;
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -29,3 +42,4 @@
     <include layout="@layout/content_main" />
 </android.support.design.widget.CoordinatorLayout>
 
+-->

@@ -67,7 +67,8 @@
                 android:textColor="#ffffff"
                 android:layout_weight="1.5"
                 android:background="@color/material_blue_grey_900"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:clickable="true" />
 
 
 
@@ -100,7 +101,8 @@
                     android:paddingLeft="2dp" />
 
             </LinearLayout>
-
         </LinearLayout>
+
+
     </LinearLayout>
 </RelativeLayout>
