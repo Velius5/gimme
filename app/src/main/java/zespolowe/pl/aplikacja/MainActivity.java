@@ -1,62 +1,13 @@
 package zespolowe.pl.aplikacja;
 
-import android.os.Vibrator;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.test.IsolatedContext;
-import android.util.EventLogTags;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-//import android.app.Activity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.AdapterView;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+//import android.app.Activity;
 /*import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -81,19 +32,19 @@ public class MainActivity extends AppCompatActivity {
     request.addHeader("Authorization", "Basic myToken=");
     HttpResponse response = client.execute(request);*/
 
-    private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+   /* private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri fileUri;
-    private static final String TAG = "MyActivity";
+    private static final String TAG = "MyActivity";*/
     Button zaloguj_sie;
     Button zarejestuj_sie;
-    Button logowanie;
-    Button rejestracja;
-    ImageButton ikona_manu1;
+  /*  Button logowanie;
+    Button rejestracja;*/
+    /*ImageButton ikona_manu1;
     ImageButton ikona_manu2;
     ImageButton ikona_manu3;
     ImageButton ikona_manu4;
     ImageButton ikona_manu5;
-    ImageButton ikona_manu6;
+    ImageButton ikona_manu6;*/
     Context context;
 
     @Override
@@ -105,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         zaloguj_sie = (Button) findViewById(R.id.button3);
         zarejestuj_sie = (Button) findViewById(R.id.button4);
 
-        rejestracja = (Button) findViewById(R.id.button);
-        logowanie = (Button) findViewById(R.id.button2);
-
-        ikona_manu1 = (ImageButton) findViewById(R.id.imageButton);
+       /* rejestracja = (Button) findViewById(R.id.button);
+        logowanie = (Button) findViewById(R.id.button2);*/
+/*
+        ikona_manu1 = (ImageButton) findViewById(R.id.imageButton);*/
        /* ikona_manu2 = (ImageButton) findViewById(R.id.imageButton2);
         ikona_manu3 = (ImageButton) findViewById(R.id.imageButton3);
         ikona_manu4 = (ImageButton) findViewById(R.id.imageButton4);
@@ -117,9 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
         zaloguj_sie.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+               // setContentView(R.layout.logintest);
                 setContentView(R.layout.login);
+
+
+
+
             }
         });
+
 
         zarejestuj_sie.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -193,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     };
 */
 
-
+/*
 
     private void takePhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -204,10 +161,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
-    }
+    }*/
 
 
-    @Override
+/*    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
         super.onActivityResult(requestCode, resultCode, intent);
 
@@ -226,19 +183,23 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, e.toString());
             }
         }
-    }
+    }*/
 
 
-    private static long back_pressed_time;
+ /*   private static long back_pressed_time;
     private static long PERIOD = 2000;
 
-    @Override
+   @Override
     public void onBackPressed()
     {
         if (back_pressed_time + PERIOD > System.currentTimeMillis())
             super.onBackPressed();
         else Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
         back_pressed_time = System.currentTimeMillis();
+    }*/
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
@@ -270,13 +231,14 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         Log.d("zespolowe.pl.aplikacja", "uruchomiono onStop()");
     }
-
+/*
     @Override
     protected void onDestroy() {
         android.os.Process.killProcess(android.os.Process.myPid());
         super.onDestroy();
         Log.d("zespolowe.pl.aplikacja", "uruchomiono onDestroy()");
-    }
+    }*/
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -284,8 +246,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+*/
 
-    //menu w gornym rogu ekranu
+  /*  //menu w gornym rogu ekranu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // zareaguj na podstawie ID itemu
@@ -302,5 +265,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

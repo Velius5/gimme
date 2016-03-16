@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context=".MainActivity"
     android:background="@color/colorPrimaryDark"
-    android:id="@+id/activity_main"
-    tools:ignore="ContentDescription">
+    android:id="@+id/activity_main">
     <include layout="@layout/log_rej" />
 </RelativeLayout>
 

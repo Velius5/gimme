@@ -5,6 +5,16 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-
+    <string name="title_activity_main">nazwa apki </string>
+    <string name="Button_Zarejestruj">Zarejestruj</string>
+    <string name="Lub">Lub</string>
+    <string name="Button_Zaloguj_sie">Zaloguj się</string>
+    <string name="Hint_Rejestruj">Rejestruj</string>
+    <string name="Hint_Nr_Telefonu">Nr. Telefonu</string>
+    <string name="Hint_Hasło">Hasło</string>
+    <string name="Hint_Adres_Email">Adres Email</string>
+    <string name="Hint_Nazwisko">Nazwisko</string>
+    <string name="Hint_Imie">Imię</string>
+    <string name="regulamin">Akceptuje Regulamin oraz politykę prywatności</string>
+    <string name="Hint_zaloguj">Zaloguj</string>
 </resources>

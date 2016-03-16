@@ -3,11 +3,14 @@
 
 
     <color name="colorPrimaryLight">#CFD8DC</color>
-    <color name="colorPrimaryText">#212121</color>
+    <color name="colorTextDark">#212121</color>
+    <color name="colorBackDark">#ff263238</color>
     <color name="colorSecondaryText">#727272</color>
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#FF5252</color>
     <color name="colorPrimaryIcon">#FFFFFF</color>
+    <color name="colorTextLight">#FFFFFF</color>
     <color name="colorDivider">#B6B6B6</color>
+    <color name="colorPrimaryText">#FFFFFF</color>
 </resources>
