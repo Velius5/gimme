@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" 
-      layout:decorator="layout">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Logowanie</title>
+        <title>Strona główna</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin-ext,latin" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/style.css" th:href="@{css/style.css}" rel="stylesheet" media="screen"/>
+        <script src="/static/js/jquery-1.12.1.min.js" th:src="@{js/jquery-1.12.1.min.js}"></script>
+        <script src="/static/js/jquery.parallax.min.js" th:src="@{js/jquery.parallax.min.js}"></script>
+        <script src="/static/js/jquery.waypoints.min.js" th:src="@{js/jquery.waypoints.min.js}"></script>
+        <script src="/static/js/main.js" th:src="@{js/main.js}"></script>
     </head>
-    <body>
-        <div class="index_page" th:fragment="content">
-            <h1>Witamy!</h1>
+    <body class="homepage">
+        <div class="all" style="height: 2000px;">
+            <header class="main_header">
+                <div class="top" id="topmenu">
+                    <div class="container">
+                        <div class="left">
+                            <ul class="main_menu">
+                                <li>Top</li>
+                                <li>O aplikacji</li>
+                                <li>Jak to działa?</li>
+                                <li>Dołącz do nas</li>
+                                <li>Kontakt</li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <a href="#">Zaloguj się</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" id="logo"></a>
+            </header>
         </div>
     </body>
 </html>

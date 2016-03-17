@@ -5,13 +5,18 @@
  */
 package velius.model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "uzytkownicy")
@@ -29,12 +34,14 @@ public class User {
     
     @Column
     @Email
+    @NotEmpty
     private String email;
     
     @Column(name = "haslo")
+    @NotEmpty
     private String password;
     
-    @Column(name = "zdjecie")
+    @Column(name = "zdjecie", nullable = true)
     private byte[] image;
     
     @Column(name = "aktywny")
@@ -42,6 +49,11 @@ public class User {
     
     @Column(name = "uprawnienia")
     private int role;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_uzytkownika")
+    private List<Friend> friends;
+    
     
     User(){}
 
@@ -53,7 +65,14 @@ public class User {
         this.active = active;
         this.role = role;
     }
-    
+
+    public User(String email, String password, boolean active, int role) {
+        this.email = email;
+        this.password = password;
+        this.active = active;
+        this.role = role;
+    }
+        
     public long getId() {
         return id;
     }
@@ -113,6 +132,18 @@ public class User {
     public void setRole(int role) {
         this.role = role;
     }
+
+    public void setFriends(List<Friend> friends) {
+        this.friends = friends;
+    }
+
+    public List<Friend> getFriends() {
+        return friends;
+    }
+    
+    
+    
+    
     
     
 }

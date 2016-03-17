@@ -5,6 +5,7 @@
  */
 package velius.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import velius.model.Friend;
 import velius.model.User;
 import velius.repository.UserRepository;
 
@@ -54,4 +56,16 @@ public class UserServiceImpl implements UserService {
         LOGGER.debug("Login user with email " + email);
         return repository.findByEmailAndPassword(email, password);
     }
+
+    @Override
+    public List<User> getUserFriends(long id) {
+        List<Friend> friends = repository.findById(id).getFriends();
+        List<User> users = new ArrayList<>();
+        for(Friend friend : friends) {
+            User user = repository.findById(friend.getFriendId());
+            users.add(user);
+        }
+        return users;
+    }
+
 }
