@@ -2,6 +2,10 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="eu.patrykdobrzynski_programowanie-zespolowe-2016_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>velius.model.Receipt</class>
+    <class>velius.model.Product</class>
+    <class>velius.model.Friend</class>
+    <class>velius.model.User</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mn08.webd.pl:3306/velius_zespolowka?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="velius_zespo"/>
