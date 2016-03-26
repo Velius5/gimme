@@ -5,6 +5,7 @@
  */
 package velius.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,6 +40,7 @@ public class User {
     
     @Column(name = "haslo")
     @NotEmpty
+    @JsonIgnore
     private String password;
     
     @Column(name = "zdjecie", nullable = true)
@@ -52,6 +54,7 @@ public class User {
     
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="id_uzytkownika")
+    @JsonIgnore
     private List<Friend> friends;
     
     
