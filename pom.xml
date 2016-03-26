@@ -80,13 +80,7 @@
             <version>2.3.3</version>
             <scope>runtime</scope>
         </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-        
+
         <!-- Tesseract Dependencies -->
         <dependency>
             <groupId>org.ghost4j</groupId>

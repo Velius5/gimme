@@ -1,4 +1,5 @@
 velius\utils\HashGeneratorUtils.class
+pl\piotr\Product.class
 velius\model\User.class
 velius\repository\UserRepository.class
 velius\controller\api\ApiTestController.class
@@ -9,8 +10,17 @@ velius\controller\api\ApiPageController.class
 velius\service\AuthUserDetailsService.class
 velius\controller\PanelController.class
 velius\WebSecurityConfig.class
+velius\model\Receipt.class
 velius\Application.class
+pl\piotr\Torimpex.class
 velius\ProdDatabaseConfig.class
+pl\piotr\Tesco.class
+pl\piotr\Zabka.class
+pl\piotr\Biedronka.class
+pl\piotr\TessOCR.class
+pl\piotr\Lidl.class
+pl\piotr\Receipt.class
 velius\model\Friend.class
 velius\service\UserServiceImpl.class
 velius\service\UserService.class
+velius\model\Product.class

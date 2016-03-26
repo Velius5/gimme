@@ -35,14 +35,10 @@ public class Product implements Serializable {
     @Column(name="ilosc")
     private double count;
     
-    @Column(name="userID")
     @ManyToOne
+    @JoinColumn(name="ownerId")
     private User ownerId;
     
-    @Column(name="paragonID")
-    @ManyToOne
-    @JoinColumn(name = "paragonID")
-    private Receipt recId;
 
     public Long getId() {
         return id;
