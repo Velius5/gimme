@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Aplikacja</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_main">nazwa apki </string>
+    <string name="Button_Zarejestruj">Zarejestruj</string>
+    <string name="Lub">Lub</string>
+    <string name="Button_Zaloguj_sie">Zaloguj się</string>
+    <string name="Hint_Rejestruj">Rejestruj</string>
+    <string name="Hint_Nr_Telefonu">Nr. Telefonu</string>
+    <string name="Hint_Hasło">Hasło</string>
+    <string name="Hint_Adres_Email">Adres Email</string>
+    <string name="Hint_Nazwisko">Nazwisko</string>
+    <string name="Hint_Imie">Imię</string>
+    <string name="regulamin">Akceptuje Regulamin oraz politykę prywatności</string>
+    <string name="Hint_zaloguj">Zaloguj</string>
+    <string name="action_sign_in">Zaloguj się lub zarejestruj</string>
+    <string name="action_sign_in_short">Zaloguj</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Hasło</string>
+    <string name="error_invalid_email">Podany adres jest błędny</string>
+    <string name="error_invalid_password">Podane hasło jest za krótkie</string>
+    <string name="error_incorrect_password">Podano błędne hasło</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="invalid_email">Podany adres jest błędny</string>
+    <string name="invalid_password">Podane hasło jest za krótkie </string>
+    <string name="incorrect_password">Podano błędne hasło</string>
+    <string name="field_required">This field is required</string>
+    <string name="lost_paswd">Nie pamiętasz hasła?</string>
+    <string name="correct_password">correct_password</string>
+</resources>

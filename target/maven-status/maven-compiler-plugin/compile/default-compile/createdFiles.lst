@@ -1,0 +1,16 @@
+velius\utils\HashGeneratorUtils.class
+velius\model\User.class
+velius\repository\UserRepository.class
+velius\controller\api\ApiTestController.class
+velius\controller\HomeController.class
+velius\controller\LoginController.class
+velius\controller\api\UserApiController.class
+velius\controller\api\ApiPageController.class
+velius\service\AuthUserDetailsService.class
+velius\controller\PanelController.class
+velius\WebSecurityConfig.class
+velius\Application.class
+velius\ProdDatabaseConfig.class
+velius\model\Friend.class
+velius\service\UserServiceImpl.class
+velius\service\UserService.class

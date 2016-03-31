@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title layout:title-pattern="Aplikacja - $CONTENT_TITLE">Task List</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/static/css/style.css" th:href="@{css/style.css}" rel="stylesheet" media="screen"/>
+    </head>
+    <body>
+        <div th:replace="header :: header">To jest header</div>
+        <div th:replace=":: content"><h1>Strona główna!</h1></div>
+        <div th:replace="footer :: footer">To jest stopka</div>
+    </body>
+</html>
