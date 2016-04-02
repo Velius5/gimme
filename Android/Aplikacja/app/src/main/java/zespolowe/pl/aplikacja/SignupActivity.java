@@ -1,6 +1,7 @@
 package zespolowe.pl.aplikacja;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,11 +16,15 @@ import butterknife.ButterKnife;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
+    private static final int REQUEST_SIGNUP = 0;
+
 
     @Bind(R.id.input_name)
     EditText _nameText;
-    @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_password) EditText _passwordText;
+    @Bind(R.id.input_email)
+    EditText _emailText;
+    @Bind(R.id.input_password)
+    EditText _passwordText;
     @Bind(R.id.btn_signup)
     Button _signupButton;
     @Bind(R.id.link_login)
@@ -30,6 +35,8 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+
+        System.out.println("SignupActivity");
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +49,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
-                finish();
+                //finish();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+
             }
         });
     }
@@ -127,6 +137,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
-        moveTaskToBack(true);
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }
