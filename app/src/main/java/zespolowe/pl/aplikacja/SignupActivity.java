@@ -124,9 +124,5 @@ public class SignupActivity extends AppCompatActivity {
 
         return valid;
     }
-    @Override
-    public void onBackPressed() {
-        // Disable going back to the MainActivity
-        moveTaskToBack(true);
-    }
+
 }

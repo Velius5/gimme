@@ -1,20 +1,18 @@
 package zespolowe.pl.aplikacja;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -69,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        //TUTAJ LOGOWANIE
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -131,11 +129,7 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
-    @Override
-    public void onBackPressed() {
-        // Disable going back to the MainActivity
-        moveTaskToBack(true);
-    }
+
 }
 
 

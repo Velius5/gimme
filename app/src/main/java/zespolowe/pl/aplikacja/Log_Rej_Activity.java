@@ -42,6 +42,7 @@ public class Log_Rej_Activity extends AppCompatActivity {
     Button zaloguj_sie;
     @Bind(R.id.button4)
     Button zarejestuj_sie;
+
     /*  Button logowanie;
       Button rejestracja;*/
     /*ImageButton ikona_manu1;
@@ -58,9 +59,6 @@ public class Log_Rej_Activity extends AppCompatActivity {
         setContentView(R.layout.log_rej);
         ButterKnife.bind(this);
        // context = getApplicationContext();
-
-//        zaloguj_sie = (Button) findViewById(R.id.button3);
-//        zarejestuj_sie = (Button) findViewById(R.id.button4);
 
         zaloguj_sie.setOnClickListener(new View.OnClickListener() {
             @Override

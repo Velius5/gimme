@@ -6,6 +6,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -16,6 +22,30 @@ public class MainActivity extends ActionBarActivity {
 
         Intent intent = new Intent(this, Log_Rej_Activity.class);
         startActivity(intent);
+
+        try {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://192.168.0.104:8080/api/users/getall")
+                    .build();
+
+            okhttp3.Response response = null;
+            try {
+                response = client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                System.out.println("TEST: " + response.body().string());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception ex) {
+            System.out.println("BLAD");
+        }
+
+
         /*Intent intent = new Intent(this, Log_Rej_Activity.class);
         startActivity(intent);*/
     }
