@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Aplikacja</string>
+    <string name="app_name"></string>
     <string name="action_settings">Ustawienia</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_main">nazwa apki </string>
+    <string name="title_activity_main">PayMe</string>
     <string name="Button_Zarejestruj">Zarejestruj</string>
     <string name="Lub">Lub</string>
     <string name="Button_Zaloguj_sie">Zaloguj się</string>

@@ -1,25 +1,90 @@
 package zespolowe.pl.aplikacja;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
-/**
- * Created by Rafał on 2016-03-15.
- */
-public class Menu_Activity extends ActionBarActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+
+public class Menu_Activity extends AppCompatActivity {
+    private static final String TAG = "Menu_Activity";
+
+    @Bind(R.id.imageButton)
+    ImageButton camera;
+
+    @Bind(R.id.imageButton2)
+    ImageButton gallery;
+
+    @Bind(R.id.imageButton3)
+    ImageButton znajomi;
+
+    @Bind(R.id.imageButton6)
+    ImageButton getapi;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
-    {
+    {         System.out.println("Menu_Activity");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_karta);
+        ButterKnife.bind(this);
 
-/*
-        Intent intent = new Intent(this, Menu_Activity.class);
-        startActivity(intent);*/
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                camera_();
+            }
+        });
+
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gallery_();
+            }
+        });
+
+        znajomi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                znajomi_();
+            }
+        });
+
+        getapi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getapi_();
+            }
+        });
     }
+
+    private void camera_() {
+        Intent intent = new Intent(this, Camera_Activity.class);
+        startActivity(intent);
+    }
+
+    private void gallery_() {
+        Intent intent = new Intent(this, Gallery_Activity.class);
+        startActivity(intent);
+    }
+
+    private void znajomi_() {
+        Intent intent = new Intent(this, Friend_Activity.class);
+        startActivity(intent);
+    }
+    private void getapi_() {
+        Intent intent = new Intent(this, HttpClientExample.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -41,9 +106,5 @@ public class Menu_Activity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public void onBackPressed() {
-        // Disable going back to the MainActivity
-        moveTaskToBack(true);
-    }
+
 }
