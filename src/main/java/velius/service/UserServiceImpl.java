@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    @Override
+    public Boolean exists(long id) {
+        return repository.exists(id);
+    }
+
 }

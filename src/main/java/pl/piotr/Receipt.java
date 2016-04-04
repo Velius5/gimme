@@ -16,6 +16,7 @@ public abstract class Receipt {
     protected Date date;
     protected ArrayList<Product> productList;
     protected float sum;
+    protected String shopName;
     
     public abstract void setDate(String txt);
     public abstract void setProductList(String txt);
@@ -40,6 +41,10 @@ public abstract class Receipt {
      */
     public float getSum() {
         return sum;
+    }
+
+    public String getShopName() {
+        return shopName;
     }
     
     

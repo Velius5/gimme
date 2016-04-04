@@ -6,6 +6,7 @@
 package velius.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import velius.model.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
@@ -14,6 +15,9 @@ public interface UserRepository extends JpaRepository<User, String> {
     User findByEmailAndPassword(String email, String password);
     
     User findByEmail(String email); 
+    
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM User u WHERE u.id = ?1")
+    Boolean exists(Long id);
     
 
 }

@@ -5,27 +5,36 @@
  */
 package velius.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
  * @author Piotr
  */
-@Entity(name = "paragony")
-public class Receipt implements Serializable {
+@Entity
+@Table(name = "paragony")
+public class Receipt {
 
-    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "paragonID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
@@ -36,18 +45,25 @@ public class Receipt implements Serializable {
     @Column(name="nazwa_sklepu")
     private String name;
     
-    @Column(name="zdjecie")
+    @Column(name="zdjecie", columnDefinition="longblob")
+    @JsonIgnore
     private byte[] image;
     
     @Column(name="opis")
     private String description;
     
-    @Column
-    @OneToMany(mappedBy = "id")
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="receipt_id")
     private List<Product> productList;
     
-    
+    @ManyToOne
+    @JoinColumn(name="owner_id")
+    private User owner;
 
+    public Receipt(byte[] image) throws IOException {
+        this.image = image;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -56,30 +72,6 @@ public class Receipt implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Receipt)) {
-            return false;
-        }
-        Receipt other = (Receipt) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "velius.model.Receipt[ id=" + id + " ]";
-    }
 
     /**
      * @return the date
@@ -136,5 +128,22 @@ public class Receipt implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+    
     
 }

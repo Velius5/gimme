@@ -54,6 +54,21 @@ public class UserApiController {
 
     }
     
+    @RequestMapping(value = "/user/{id}/addfriend/{friendId}", method = RequestMethod.GET)
+    public boolean addUserFriends(@PathVariable("id") Long id, @PathVariable("friendId") Long friendId) {
+        
+            User user = userService.getUser(id);
+            List<Friend> friends = user.getFriends();
+            if(userService.exists(id) && (!friends.contains(new Friend(friendId, 0)) || !friends.contains(new Friend(friendId, 1)))) {
+                    friends.add(new Friend(friendId, 0));
+                    userService.save(user);
+                    return true;
+            } else {
+                return false;
+            }
+       
+    }
+    
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public boolean registerUser(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "haslo", required = true) String password) {
         User user = new User(email, password, false, 0);

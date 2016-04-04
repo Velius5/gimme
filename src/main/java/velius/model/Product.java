@@ -5,7 +5,7 @@
  */
 package velius.model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,15 +13,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Piotr
  */
-@Entity(name="produkty")
-public class Product implements Serializable {
+@Entity
+@Table(name = "produkty")
+public class Product {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,42 +36,71 @@ public class Product implements Serializable {
     @Column(name="ilosc")
     private double count;
     
-    @ManyToOne
-    @JoinColumn(name="ownerId")
-    private User ownerId;
     
+    @ManyToOne
+    @JoinColumn(name="owner_id")
+    private User owner;
+    
+    
+    public Product() {
+    }
+    
+    public Product(String productName, double price, double count) {
+        this.productName = productName;
+        this.price = price;
+        this.count = count;
+    }
+        
+    public Product(String productName, double price, double count, User owner) {
+        this.productName = productName;
+        this.price = price;
+        this.count = count;
+        this.owner = owner;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getProductName() {
+        return productName;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
-            return false;
-        }
-        Product other = (Product) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getCount() {
+        return count;
+    }
+
+    public void setCount(double count) {
+        this.count = count;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     @Override
     public String toString() {
-        return "velius.model.Product[ id=" + id + " ]";
+        return "Product{" + "id=" + id + ", productName=" + productName + ", price=" + price + ", count=" + count + ", ownerId=" + owner + '}';
     }
+
+
+    
+   
     
 }

@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class Biedronka extends Receipt {
+    
+    private final String shopName = "Biedronka";
 
     @Override
     public void setDate(String txt) {
@@ -23,7 +25,7 @@ public class Biedronka extends Receipt {
         String date = null;
 
         while (scaner.hasNextLine() && !foundDate) {
-            date = scaner.findInLine(Pattern.compile("\\w{4}(-|~)\\w{2}(-|~)\\w{2}"));
+            date = scaner.findInLine(Pattern.compile("\\w{4}(-|~|—)\\w{2}(-|~|—)\\w{2}"));
             if (date != null) 
                 foundDate = true;
             scaner.nextLine();
@@ -50,6 +52,9 @@ public class Biedronka extends Receipt {
                         tab[i] = '5';
                         break;
                     case '~':
+                        tab[i] = '-';
+                        break;
+                    case '—':
                         tab[i] = '-';
                         break;
                 }
@@ -195,5 +200,11 @@ public class Biedronka extends Receipt {
             scaner.nextLine();
         }
     }
+
+    public String getShopName() {
+        return shopName;
+    }
+    
+    
 
 }

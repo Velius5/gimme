@@ -6,7 +6,6 @@
 package pl.piotr;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -34,15 +33,12 @@ public class TessOCR {
         shopHeaderList.add("SKLEP ZABKA");
     }
     
-    /**
-     *
-     * @param img
-     * @return
-     */
-    public static Receipt recognizeReceipt(File img){
+
+    public static Receipt recognizeReceipt(BufferedImage img){
         int minEditLength = 100;
         Receipt receipt = null;
         try {
+            ocr.setLanguage("pol");
             String text = ocr.doOCR(img).toUpperCase();
             System.out.println(text);
             Scanner scaner = new Scanner(text);
@@ -91,4 +87,5 @@ public class TessOCR {
         Receipt recognizeReceipt = TessOCR.recognizeReceipt(img);
     }
     */
+
 }
