@@ -6,12 +6,14 @@
 package velius.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PanelController {
     @RequestMapping("/panel")
-    public String panelPage() {
+    public String panelPage(Model model) {
+        model.addAttribute("pageMessage", "test");
         return "panel";
     }
 }

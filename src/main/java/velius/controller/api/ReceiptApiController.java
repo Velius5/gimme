@@ -25,7 +25,6 @@ import pl.piotr.TessOCR;
 import velius.model.Product;
 import velius.model.Receipt;
 import velius.model.User;
-import velius.service.ProductService;
 import velius.service.ReceiptService;
 import velius.service.UserService;
 
@@ -33,13 +32,11 @@ import velius.service.UserService;
 @RequestMapping(value = "/api/receipt")
 public class ReceiptApiController {
     private final ReceiptService receiptService;
-    private final ProductService productService;
     private final UserService userService;
 
     @Autowired
-    public ReceiptApiController(ReceiptService receiptService, ProductService productService, UserService userService) {
+    public ReceiptApiController(ReceiptService receiptService, UserService userService) {
         this.receiptService = receiptService;
-        this.productService = productService;
         this.userService = userService;
     }
     

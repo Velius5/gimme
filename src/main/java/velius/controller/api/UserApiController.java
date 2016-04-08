@@ -29,6 +29,12 @@ public class UserApiController {
         return user;
     }
     
+    @RequestMapping(value = "/user/{id}", method=RequestMethod.GET)
+    public User getUser(@PathVariable("id") Long id) {
+        User user = userService.getUser(id);
+        return user;
+    }
+    
     @RequestMapping(value = "/users/getall")
     public List<User> listUsers() {
         List<User> users = userService.getList();

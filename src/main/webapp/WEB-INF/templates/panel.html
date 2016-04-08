@@ -8,6 +8,7 @@
     <body>
         <div class="panel" th:fragment="content">
             <h1 th:inline="text">Witaj [[${#httpServletRequest.remoteUser}]]!</h1>
+            <h2 th:utext="${pageMessage}">123</h2>
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Sign Out"/>
             </form>

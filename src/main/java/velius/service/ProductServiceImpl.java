@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import velius.model.Product;
 import velius.repository.ProductRepository;
-
+/*
 @Service
 public class ProductServiceImpl implements ProductService{
     
@@ -33,3 +33,4 @@ public class ProductServiceImpl implements ProductService{
     }
     
 }
+*/

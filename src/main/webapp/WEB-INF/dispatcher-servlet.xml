@@ -10,11 +10,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
  
   <mvc:annotation-driven /> 
-  <websocket:message-broker application-destination-prefix="/app">
-       <websocket:stomp-endpoint path="/hello">
-            <websocket:sockjs/>
-       </websocket:stomp-endpoint>
-       <websocket:simple-broker prefix="/topic"/>
-</websocket:message-broker>
+
  
 </beans>
