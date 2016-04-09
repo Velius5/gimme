@@ -24,7 +24,6 @@ velius\model\Product.class
 velius\controller\api\ReceiptApiController.class
 velius\repository\ReceiptRepository.class
 velius\controller\LoginController.class
-velius\service\ProductServiceImpl.class
 velius\controller\api\ApiPageController.class
 velius\service\AuthUserDetailsService.class
 velius\model\Receipt.class

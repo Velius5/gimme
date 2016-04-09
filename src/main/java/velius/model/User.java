@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
@@ -57,6 +59,12 @@ public class User {
     @JsonIgnore
     private List<Friend> friends;
     
+ 
+    @ManyToMany
+    @JoinTable(name = "user_product", 
+            joinColumns = @JoinColumn(name = "userID"), 
+            inverseJoinColumns = @JoinColumn(name = "productID"))
+    private List<Product> products;
     
     User(){}
 
