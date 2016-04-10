@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
@@ -57,6 +59,12 @@ public class User {
     @JsonIgnore
     private List<Friend> friends;
     
+ 
+    @ManyToMany
+    @JoinTable(name = "user_product", 
+            joinColumns = @JoinColumn(name = "userID"), 
+            inverseJoinColumns = @JoinColumn(name = "productID"))
+    private List<Product> products;
     
     User(){}
 
@@ -142,6 +150,20 @@ public class User {
 
     public List<Friend> getFriends() {
         return friends;
+    }
+
+    /**
+     * @return the products
+     */
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    /**
+     * @param products the products to set
+     */
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
     
     
