@@ -58,7 +58,8 @@ public class ReceiptApiController {
         receiptService.save(receipt);
         
         for(pl.piotr.Product product : tempReceipt.getProductList()) {
-            Product prod = new Product(product.getName(), (double)product.getPrice(), (double)product.getCount());
+            Product prod = new Product(product.getName(), (double)product.getPrice(), (double)product.getCount(),
+            owner,receipt);
             productList.add(prod);
         }
         

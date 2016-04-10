@@ -6,6 +6,7 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,14 +53,16 @@ public class Receipt {
     @Column(name="opis")
     private String description;
     
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="receipt_id")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "receipt")
+    @JsonManagedReference
     private List<Product> productList;
     
     @ManyToOne
     @JoinColumn(name="owner_id")
     private User owner;
 
+    public Receipt(){};
+    
     public Receipt(byte[] image) throws IOException {
         this.image = image;
     }

@@ -25,7 +25,7 @@ public class Biedronka extends Receipt {
         String date = null;
 
         while (scaner.hasNextLine() && !foundDate) {
-            date = scaner.findInLine(Pattern.compile("\\w{4}(-|~|—)\\w{2}(-|~|—)\\w{2}"));
+            date = scaner.findInLine(Pattern.compile("\\w{4}(-|~|—|_|„)\\w{2}(-|~|—|_|„)\\w{2}"));
             if (date != null) 
                 foundDate = true;
             scaner.nextLine();
@@ -55,6 +55,12 @@ public class Biedronka extends Receipt {
                         tab[i] = '-';
                         break;
                     case '—':
+                        tab[i] = '-';
+                        break;
+                    case '„':
+                        tab[i] = '-';
+                        break;
+                    case '_':
                         tab[i] = '-';
                         break;
                 }

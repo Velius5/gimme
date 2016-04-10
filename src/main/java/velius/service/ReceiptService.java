@@ -5,7 +5,9 @@
  */
 package velius.service;
 
+import java.util.List;
 import velius.model.Receipt;
+import velius.model.User;
 
 /**
  *
@@ -13,4 +15,5 @@ import velius.model.Receipt;
  */
 public interface ReceiptService {
     Receipt save(Receipt receipt);
+    List<Receipt> findAllByOwner(User user);
 }

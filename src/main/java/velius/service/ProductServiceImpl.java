@@ -5,6 +5,7 @@
  */
 package velius.service;
 
+import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -13,8 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import velius.model.Product;
+import velius.model.User;
 import velius.repository.ProductRepository;
-/*
+
 @Service
 public class ProductServiceImpl implements ProductService{
     
@@ -31,6 +33,15 @@ public class ProductServiceImpl implements ProductService{
         LOGGER.debug("Creating {}", product);
         return repository.save(product);
     }
+
+    @Override
+    public List<Product> getUserDebitors(User user) {
+        return repository.findAllByOwner(user);
+    }
+
+    @Override
+    public List<Product> getMyDebts(User user) {
+        return repository.findAllByUsers(user);
+    }
     
 }
-*/

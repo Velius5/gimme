@@ -6,12 +6,14 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -39,7 +41,16 @@ public class Product {
     
     @ManyToOne
     @JoinColumn(name="owner_id")
+    @JsonBackReference
     private User owner;
+    
+    @ManyToOne
+    @JoinColumn(name ="receiptID")
+    @JsonBackReference
+    private Receipt receipt;
+    
+    @ManyToMany(mappedBy = "products")
+    private List<User> users;
     
     
     public Product() {
@@ -51,11 +62,12 @@ public class Product {
         this.count = count;
     }
         
-    public Product(String productName, double price, double count, User owner) {
+    public Product(String productName, double price, double count, User owner, Receipt receipt) {
         this.productName = productName;
         this.price = price;
         this.count = count;
         this.owner = owner;
+        this.receipt = receipt;
     }
 
     public Long getId() {
@@ -97,6 +109,34 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" + "id=" + id + ", productName=" + productName + ", price=" + price + ", count=" + count + ", ownerId=" + owner + '}';
+    }
+
+    /**
+     * @return the receipt
+     */
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    /**
+     * @return the users
+     */
+    public List<User> getUsers() {
+        return users;
+    }
+
+    /**
+     * @param receipt the receipt to set
+     */
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 

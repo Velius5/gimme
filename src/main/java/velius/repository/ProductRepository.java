@@ -5,13 +5,16 @@
  */
 package velius.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import velius.model.Product;
+import velius.model.User;
 
 /**
  *
  * @author Patryk
  */
 public interface ProductRepository extends JpaRepository<Product, String> {
-    
+    List<Product> findAllByOwner(User user);
+    List<Product> findAllByUsers(User user);
 }

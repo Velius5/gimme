@@ -68,9 +68,16 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    
     @Override
     public Boolean exists(long id) {
         return repository.exists(id);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        User user = repository.findByEmail(email);
+        return user;
     }
 
 }

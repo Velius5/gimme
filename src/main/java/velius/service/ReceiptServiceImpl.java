@@ -5,6 +5,7 @@
  */
 package velius.service;
 
+import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import velius.model.Receipt;
+import velius.model.User;
 import velius.repository.ReceiptRepository;
 
 @Service
@@ -33,6 +35,11 @@ public class ReceiptServiceImpl implements ReceiptService {
     public Receipt save(@NotNull @Valid final Receipt receipt) {
         LOGGER.debug("Creating {}", receipt);
         return repository.save(receipt);
+    }
+
+    @Override
+    public List<Receipt> findAllByOwner(User user) {
+        return repository.findAllByOwner(user);
     }
     
 }

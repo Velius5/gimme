@@ -5,8 +5,10 @@
  */
 package velius.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import velius.model.Receipt;
+import velius.model.User;
 
 /**
  *
@@ -14,4 +16,5 @@ import velius.model.Receipt;
  */
 public interface ReceiptRepository extends JpaRepository<Receipt, String> {
     Receipt findById(long id);
+    List<Receipt> findAllByOwner(User user);
 }

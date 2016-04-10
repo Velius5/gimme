@@ -18,6 +18,8 @@ public interface UserService {
 
     public User getUserByEmailAndPassword(String email, String password);
     
+    public User getUserByEmail(String email);
+    
     List<User> getUserFriends(long id);
     
     Boolean exists(long id);
