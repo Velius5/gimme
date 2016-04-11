@@ -5,6 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <div th:fragment="header" style="width:100%; height: 50px; background: black; color: white;">header</div>
+        <header class="main_header" th:fragment="header">
+                <div class="top" id="topmenu">
+                    <div class="container">
+                        <div class="left">
+                            <ul class="main_menu">
+                                <li><a href="panel">Mój profil</a></li>
+                                <li><a href="panel/friends">Znajomi</a></li>
+                                <li><a href="panel/history">Historia</a></li>
+                                <li><a href="panel/receipts">Paragony</a></li>
+                                <li><a href="panel/settings">Ustawienia</a></li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <form sec:authorize="isAnonymous()" th:action="@{/logout}" method="post">
+                                <input type="submit" value="Wyloguj się"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" id="logo"></a>
+            </header>
     </body>
 </html>

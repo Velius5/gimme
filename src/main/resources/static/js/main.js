@@ -21,4 +21,11 @@ jQuery(document).ready(function($){
           offset: -20
         });
 
+        /* GO TO MIDDLE FUNCTION  */
+        function gotoMiddle(obj) {
+            var myheight = $(obj).parent().height()/2;
+            var objheight = $(obj).height()/2;
+            $(obj).css('top', myheight-objheight);
+        }
+         gotoMiddle('.login_panel');
 });

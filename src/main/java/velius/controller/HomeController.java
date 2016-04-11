@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String homePage() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         //String md5Hash = HashGeneratorUtils.generateMD5("123456");
         //System.out.println(md5Hash);

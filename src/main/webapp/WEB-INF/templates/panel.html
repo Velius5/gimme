@@ -4,10 +4,142 @@
       layout:decorator="layout">
     <head>
         <title>Panel</title>
+        <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/static/js/excanvas.min.js" th:src="@{js/excanvas.min.js}"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="/static/js/jquery.flot.js" th:src="@{js/jquery.flot.js}"></script>
+	<script language="javascript" type="text/javascript" src="/static/js/jquery.flot.pie.js" th:src="@{js/jquery.flot.pie.js}"></script>
+        <script type="text/javascript">
+            $(function() {
+                var data = [
+			{ label: "Przychody",  data: 321},
+			{ label: "Wydatki",  data: 167}
+		];
+
+		var placeholder = $("#placeholder");
+                
+                
+                $.plot(placeholder, data, {
+                    series: {
+                        pie: {
+                            show: true,
+                            radius: 1,
+                            innerRadius: 0.5,
+                            label: {
+                                show: true,
+                                radius: 2/3,
+                                threshold: 0.1
+                            }
+                        }
+                    },
+                    legend: {
+                        show: false
+                    }
+                });
+                
+	
+            });
+        </script>
     </head>
-    <body>
+    <body class="panel_page">
         <div class="panel" th:fragment="content">
+            <div class="container">
+                
+                <div class="balance">
+                    <h2>Witaj, <b th:utext="${userName}"></b></h2>
+                    <h1>Saldo: <b class="positive">2,50 zł</b></h1>
+                    <a href="panel/history">zobacz szczegóły</a>
+                </div>
+                
+                <div class="fast_menu">
+                    <a class="left" href="panel/receipts/add">Dodaj paragon</a>
+                    |
+                    <a class="right" href="panel/receipts/add">Dodaj przychody</a>
+                </div>
+
+                <div class="your_receipts">
+                    <h1>Twoje zakupy</h1>
+                    <ul>
+                        <li>
+                            <div class="receipt_img">
+                                <img src="http://vignette3.wikia.nocookie.net/nonsensopedia/images/c/c0/Paragon_czyt.png/revision/latest?cb=20100531220310"/>
+                                <a class="receipt_price" href="#">21.59 zł</a>
+                            </div>
+                            <div class="receipt_shopname">Biedronka</div>
+                            <div class="receipt_date">10.04.2016</div>
+                        </li>
+                        <li>
+                            <div class="receipt_img">
+                                <img src="http://c.wrzuta.pl/wi1805/ea0266a90019db1546f16d15"/>
+                                <a class="receipt_price" href="#">17.21 zł</a>
+                            </div>
+                            <div class="receipt_shopname">Biedronka</div>
+                            <div class="receipt_date">10.04.2016</div>
+                        </li>
+                        <li>
+                            <div class="receipt_img">
+                                <img src="images/icons/receipt_icon.png"/>
+                                <a class="receipt_price" href="#">29.99 zł</a>
+                            </div>
+                            <div class="receipt_shopname">Biedronka</div>
+                            <div class="receipt_date">10.04.2016</div>
+                        </li>
+                        <li>
+                            <div class="receipt_img">
+                                <img src="images/icons/receipt_icon.png"/>
+                                <a class="receipt_price" href="#">29.99 zł</a>
+                            </div>
+                            <div class="receipt_shopname">Biedronka</div>
+                            <div class="receipt_date">10.04.2016</div>
+                        </li>
+                        <li>
+                            <div class="receipt_img">
+                                <img src="images/icons/receipt_icon.png"/>
+                                <a class="receipt_price" href="#">29.99 zł</a>
+                            </div>
+                            <div class="receipt_shopname">Biedronka</div>
+                            <div class="receipt_date">10.04.2016</div>
+                        </li>
+                        <li>
+                            <div class="receipt_img">
+                                <img src="images/icons/receipt_icon.png"/>
+                                <a class="receipt_price" href="#">29.99 zł</a>
+                            </div>
+                            <div class="receipt_shopname">Biedronka</div>
+                            <div class="receipt_date">10.04.2016</div>
+                        </li>
+                    </ul>
+                    
+                    <a class="btn" href="panel/receipts">Wszystkie paragony</a>
+                </div>
+
+                <div class="in_this_month">
+                    <h1>W tym miesiącu</h1>
+                    <div id="placeholder" style="width:600px;height:300px"></div>
+                </div>
+
+                <div class="outgoing">
+
+                </div>
+
+                <div class="incoming">
+
+                </div>
+                
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <h1 th:inline="text">Witaj [[${#httpServletRequest.remoteUser}]]!</h1>
+            Logged user: <span sec:authentication="name">Bob</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
             <h2 th:utext="${pageMessage}">123</h2>
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Sign Out"/>

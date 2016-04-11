@@ -38,6 +38,7 @@ public class PanelController {
         String email = auth.getName();
         
         User user = userService.getUserByEmail(email);
+        model.addAttribute("userName", user.getName());
         List<Receipt> receiptList = receiptService.findAllByOwner(user);
         model.addAttribute("paragony", receiptList);
         

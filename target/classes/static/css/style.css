@@ -8,6 +8,7 @@ html, body {
 
 a {
     text-decoration: none;
+    display: inline-block;
 }
 
 .all {
@@ -29,13 +30,26 @@ a {
     overflow: hidden;
 }
 
+.container h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 30px;
+    color: #7b4a43;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 
 header.main_header {
     width: 100%;
-    height: 480px;
-    min-height: 480px;
+    height: 200px;
+    min-height: 200px;
     background: transparent;
     padding-top: 50px;
+}
+
+.homepage header.main_header {
+    height: 480px;
+    min-height: 480px;
 }
 
 .top {
@@ -51,9 +65,14 @@ header.main_header {
     transition: all 1s ease;
 }
 
+.panel_page .top {
+    background: rgb(29, 22, 16) !important;
+}
+
 .top .left {
     width: 75%;
     float: left;
+    text-align: left;
 }
 
 .top .left > ul.main_menu {
@@ -75,5 +94,282 @@ header.main_header {
     width: 20%;
     float: right;
     margin-left: 5%;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: right;
 }
 
+.top .right form {
+    display: inline-block;
+}
+
+.top .right input, .top .right a {
+    font-size: 16px;
+    color: #fec223;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 18px;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+    border: none;
+    background: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 0;
+}
+
+.top .right input:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+body.login_page {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    background-color: #1d1610;
+}
+
+.login_page .background {
+    width: 100%;
+    height: 100%;
+    display: table;
+    background: url(../images/main_header_bg.jpg) no-repeat;
+}
+
+.login_panel {
+    width: 95%;
+    max-width: 400px;
+    background-color: #1d1610;
+    margin: 30vh auto;
+    border: 1px transparent solid;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.75);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 30px;
+}
+
+.login_panel > .logo {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-top: 7px;
+}
+
+.login_panel input {
+    width: 80%;
+    padding: 10px;
+    color: #1d1610;
+    font-size: 13px;
+    box-sizing: content-box;
+    margin: 5px 0 !important;
+}
+
+.btn_white {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 7px;
+    color: white !important;
+    margin: 0;
+    padding: 21px 7px 18px 7px !important;
+    text-decoration: none;
+    border: 3px white solid !important;
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: transparent;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btn_white:hover {
+    background-color: white;
+    color: black !important;
+    cursor: pointer;
+}
+
+.btn {
+    border: 2px #fec223 solid;
+    padding: 15px 40px 10px 40px;
+    font-family: 'Roboto', sans-serif;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-color: #fec223;
+    color: #7b4a43;
+    box-shadow: 0px 0px 13px -3px #7b4a43;
+}
+
+.welcome_message {
+    display: inline-block;
+    color: white;
+}
+
+.balance {
+    width: 50%;
+    float: left;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.balance > h1 {
+    font-size: 40px;
+    color: black;
+}
+
+.balance > h1 > b.positive {
+    color: #00e520;
+}
+
+.balance > h1 > b.negative {
+    color: #9d0000;
+}
+
+.balance > h2 {
+    margin-bottom: 10px;
+}
+
+.balance > a {
+    margin-top: 10px;
+}
+
+.your_receipts {
+    width: 50%;
+    float: left;
+    clear: both;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+}
+
+.your_receipts > h1 {
+    margin-bottom: 30px;
+}
+
+.your_receipts > ul {
+    margin: 0;
+    padding: 0;
+}
+
+.your_receipts > ul > li {
+    list-style: none;
+    width: 33.33%;
+    float: left;
+    text-align: center;
+}
+
+.your_receipts > ul > li > div {
+    margin: 10px 0;
+}
+
+.your_receipts > ul > li > div:first-child {
+    margin: 0 auto;
+}
+
+.your_receipts .receipt_img {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px #7b4a43 solid;
+    box-shadow: 0px 0px 13px -3px #7b4a43;
+    border-radius: 100px;
+    position:relative;
+    z-index:1;
+}
+
+.your_receipts .receipt_img > img {
+    width: 100%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.your_receipts li:hover .receipt_img > img {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.your_receipts .receipt_img > .receipt_price {
+    width: 140px;
+    height: 140px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: black;
+    box-shadow: 0px 0px 13px -1px black;
+    color: white;
+    opacity: 0;
+    padding-top: 62px;
+    box-sizing: border-box;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.your_receipts li:hover .receipt_img > .receipt_price {
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.your_receipts a.btn {
+    margin-top: 10px;
+}
+
+.panel {
+    padding: 50px 0;
+}
+
+.panel a {
+    font-size: 16px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fec223;
+    text-transform: uppercase;
+}
+
+.in_this_month {
+    width: 50%;
+    float: left;
+    clear: both;
+}
+
+.in_this_month > h1 {
+    margin-bottom: 30px;
+}
+
+.pieLabel > div {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 16px !important;
+    color: black !important;
+}
+
+.fast_menu {
+    float: right;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    color: black;
+}
