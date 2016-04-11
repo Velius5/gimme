@@ -16,4 +16,5 @@ import velius.model.User;
 public interface ReceiptService {
     Receipt save(Receipt receipt);
     List<Receipt> findAllByOwner(User user);
+    List<Receipt> findLast6ByOwner(User user);
 }

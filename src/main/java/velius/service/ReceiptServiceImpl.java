@@ -41,5 +41,11 @@ public class ReceiptServiceImpl implements ReceiptService {
     public List<Receipt> findAllByOwner(User user) {
         return repository.findAllByOwner(user);
     }
+
+    @Override
+    public List<Receipt> findLast6ByOwner(User user) {
+        List<Receipt> receipts = repository.findFirst6ByOwnerOrderByIdDesc(user);
+        return receipts;
+    }
     
 }

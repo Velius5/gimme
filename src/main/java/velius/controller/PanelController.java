@@ -39,7 +39,7 @@ public class PanelController {
         
         User user = userService.getUserByEmail(email);
         model.addAttribute("userName", user.getName());
-        List<Receipt> receiptList = receiptService.findAllByOwner(user);
+        List<Receipt> receiptList = receiptService.findLast6ByOwner(user);
         model.addAttribute("paragony", receiptList);
         
         List<Product> debtorList = productService.getUserDebitors(user);

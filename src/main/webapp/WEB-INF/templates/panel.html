@@ -58,54 +58,15 @@
                 <div class="your_receipts">
                     <h1>Twoje zakupy</h1>
                     <ul>
-                        <li>
+                        <li th:each="receipt : ${paragony}">
                             <div class="receipt_img">
                                 <img src="http://vignette3.wikia.nocookie.net/nonsensopedia/images/c/c0/Paragon_czyt.png/revision/latest?cb=20100531220310"/>
                                 <a class="receipt_price" href="#">21.59 zł</a>
                             </div>
-                            <div class="receipt_shopname">Biedronka</div>
-                            <div class="receipt_date">10.04.2016</div>
+                            <div class="receipt_shopname" th:text="${receipt.name}">Biedronka</div>
+                            <div class="receipt_date" th:text="${receipt.date}">10.04.2016</div>
                         </li>
-                        <li>
-                            <div class="receipt_img">
-                                <img src="http://c.wrzuta.pl/wi1805/ea0266a90019db1546f16d15"/>
-                                <a class="receipt_price" href="#">17.21 zł</a>
-                            </div>
-                            <div class="receipt_shopname">Biedronka</div>
-                            <div class="receipt_date">10.04.2016</div>
-                        </li>
-                        <li>
-                            <div class="receipt_img">
-                                <img src="images/icons/receipt_icon.png"/>
-                                <a class="receipt_price" href="#">29.99 zł</a>
-                            </div>
-                            <div class="receipt_shopname">Biedronka</div>
-                            <div class="receipt_date">10.04.2016</div>
-                        </li>
-                        <li>
-                            <div class="receipt_img">
-                                <img src="images/icons/receipt_icon.png"/>
-                                <a class="receipt_price" href="#">29.99 zł</a>
-                            </div>
-                            <div class="receipt_shopname">Biedronka</div>
-                            <div class="receipt_date">10.04.2016</div>
-                        </li>
-                        <li>
-                            <div class="receipt_img">
-                                <img src="images/icons/receipt_icon.png"/>
-                                <a class="receipt_price" href="#">29.99 zł</a>
-                            </div>
-                            <div class="receipt_shopname">Biedronka</div>
-                            <div class="receipt_date">10.04.2016</div>
-                        </li>
-                        <li>
-                            <div class="receipt_img">
-                                <img src="images/icons/receipt_icon.png"/>
-                                <a class="receipt_price" href="#">29.99 zł</a>
-                            </div>
-                            <div class="receipt_shopname">Biedronka</div>
-                            <div class="receipt_date">10.04.2016</div>
-                        </li>
+                        
                     </ul>
                     
                     <a class="btn" href="panel/receipts">Wszystkie paragony</a>
