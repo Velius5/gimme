@@ -1,12 +1,14 @@
 package zespolowe.pl.aplikacja;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,6 +33,8 @@ public class Menu_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {         System.out.println("Menu_Activity");
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_karta);
@@ -85,14 +89,14 @@ public class Menu_Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -105,6 +109,20 @@ public class Menu_Activity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
+    private static long back_pressed_time;
+    private static long PERIOD = 2000;
+
+    @Override
+    public void onBackPressed()
+    {
+        if (back_pressed_time + PERIOD > System.currentTimeMillis())
+          //  super.onBackPressed();
+        moveTaskToBack(true);
+        else Toast.makeText(getBaseContext(), "Naciśnij dwa razy, aby wyjść.", Toast.LENGTH_SHORT).show();
+        back_pressed_time = System.currentTimeMillis();
+        Vibrator vib = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);//Initiate the vibrate service
+        vib.vibrate(100);
+    }
 }

@@ -39,7 +39,7 @@ public class Gallery_Activity extends AppCompatActivity {
         for (int i = 1; i < IMGS.length; i++) {
 
             ImageModel imageModel = new ImageModel();
-            imageModel.setName("Paragon " + i);
+//            imageModel.setName("Paragon " + i);
             imageModel.setUrl(IMGS[i]);
             data.add(imageModel);
 

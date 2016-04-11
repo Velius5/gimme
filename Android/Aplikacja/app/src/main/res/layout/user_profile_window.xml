@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:background="@color/primary"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginBottom="64dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription=""
+            android:id="@+id/profil_foto" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Robert Zając"
+            android:id="@+id/profil_imie_nazw" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="54dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="781-198-671"
+            android:id="@+id/profil_telefon" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="24dp"
+            android:gravity="center">
+
+            <ImageView
+                android:background="@android:color/holo_green_light"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/profil_zdjecie_plus" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/profil_kwota_plus"
+                android:text="0 zł"
+                android:layout_marginLeft="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="24dp"
+            android:gravity="center">
+
+            <ImageView
+                android:background="@android:color/holo_red_light"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/profil_zdjecie_minus" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0 zł"
+                android:id="@+id/profil_kwota_minus"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/profil_splac"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="24dp"
+            style="vertical"
+            android:adjustViewBounds="false"
+            android:theme="@style/AppTheme.Dark"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom|center"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+
+</ScrollView>

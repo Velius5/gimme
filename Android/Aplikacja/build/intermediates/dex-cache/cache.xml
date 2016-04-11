@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\AndroidStudioProjects\Aplikacja\app\libs\butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1-d09ad681b22b41d984b9713dd3ca323945ea2b2e.jar" />
+    </item>
+    <item
+        jar="C:\ANDROID_SDK\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-c2c4957504c2065eccd57fbecf8be9cb28cc09ce.jar" />
+    </item>
+    <item
+        jar="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\classes-ca5688e2133f441644891ff499f37fe9f5c7e89f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rafał\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\glide-3.7.0-a207837d2bd2802c5ca466157dbc4e99603ac4b4.jar" />
+    </item>
+    <item
+        jar="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\classes-6cac45cc5ac18d0fa4cb4780ec544a88f79ec66e.jar" />
+    </item>
+    <item
+        jar="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\classes-df749b59e761f3ad18bf9d78eacf1538591516cb.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rafał\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.1\27293c440d2085cde1d859528aff6e7d3b6ae40\retrofit-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="027293c440d2085cde1d859528aff6e7d3b6ae40">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\retrofit-2.0.1-f40629194d2778d0905cc512fdd76f28f9dfe28d.jar" />
+    </item>
+    <item
+        jar="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-7a48212075650aa4de46fcf6255ab614c40c87d2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rafał\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\okio-1.6.0-9e64748530f7d2e2e1de44c4c80feb59f0e0d373.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rafał\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0-d7e6826a9c261d9188a194dce33d094e32cc8ac6.jar" />
+    </item>
+    <item
+        jar="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\classes-ba31a0190a9574ecd4b351e9b3bc4d2d47ee82c9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rafał\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.1\2780d858273ce1bb90f6b12e1ef0d40f7741fca\converter-gson-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="02780d858273ce1bb90f6b12e1ef0d40f7741fca">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.1-2fdb5d9a9c43fd90351ad87af763b87c1b812cd1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rafał\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="C:\AndroidStudioProjects\Aplikacja\app\build\intermediates\pre-dexed\debug\gson-2.6.2-f2a3a21cf598916f4c9092561c52ed37fe48022f.jar" />
+    </item>
+
+</items>

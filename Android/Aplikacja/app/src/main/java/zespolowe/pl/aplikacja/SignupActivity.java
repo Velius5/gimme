@@ -11,8 +11,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.model.User;
+import zespolowe.pl.aplikacja.services.UserService;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -41,7 +51,13 @@ public class SignupActivity extends AppCompatActivity {
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
+                try {
+                    signup();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -57,7 +73,7 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-    public void signup() {
+    public void signup()  throws UnsupportedEncodingException, NoSuchAlgorithmException {
         Log.d(TAG, "Zarejestrowano");
 
         if (!validate()) {
@@ -78,17 +94,41 @@ public class SignupActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.109:8080/api/user/register/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UserService userService = retrofit.create(UserService.class);
+        Call<User> call = userService.registerUser(email, password);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User user = response.body();
+                //System.out.println(user.toString());
+                onSignupSuccess();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                System.out.println("Blad.");
+                onSignupFailed();
+            }
+        });
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                        onSignupSuccess();
+                       // onSignupSuccess();
                         // onSignupFailed();
                         progressDialog.dismiss();
                     }
-                }, 3000);
+                }, 4000);
     }
 
 
@@ -99,7 +139,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "logowanie nie powiodło się", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "rejestracja nie powiodła się", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -107,16 +147,16 @@ public class SignupActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
+     //   String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3) {
+     /*   if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("wprowadź co najmniej 3 znaki");
             valid = false;
         } else {
             _nameText.setError(null);
-        }
+        }*/
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("podano błędny adres email");

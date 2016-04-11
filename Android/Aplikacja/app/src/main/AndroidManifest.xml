@@ -64,6 +64,8 @@
         <activity android:name=".DetailActivity" android:theme="@style/AppTheme.Dark"/>
         <activity android:name=".HttpClientExample" android:theme="@style/AppTheme.Dark"/>
         <activity android:name=".Friend_Activity" android:theme="@style/AppTheme.Dark"/>
+
+
     </application>
 
 </manifest>

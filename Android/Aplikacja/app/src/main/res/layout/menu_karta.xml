@@ -31,7 +31,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
 
-                <ImageButton
+                <ImageButton android:src="@drawable/camera"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton"
@@ -44,7 +44,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
 
-                <ImageButton
+                <ImageButton android:src="@drawable/galeria"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton2"
@@ -64,7 +64,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
-                <ImageButton
+                <ImageButton android:src="@drawable/znajomki"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton3"
@@ -77,7 +77,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
-                <ImageButton
+                <ImageButton android:src="@drawable/profil"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton4"
@@ -97,7 +97,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
-                <ImageButton
+                <ImageButton android:src="@drawable/historia"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton5"
@@ -110,7 +110,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1" >
 
-                <ImageButton
+                <ImageButton android:src="@drawable/ustawienia"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton6"

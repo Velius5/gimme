@@ -11,8 +11,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.functions.HashGeneratorUtils;
+import zespolowe.pl.aplikacja.model.User;
+import zespolowe.pl.aplikacja.services.UserService;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -33,7 +44,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                login();
+                try {
+                    login();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("LoginActivity_on click");
             }
         });
 
@@ -48,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void login() {
+    public void login() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         Log.d(TAG, "Loginee");
 
         if (!validate()) {
@@ -65,20 +83,52 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.show();
 
         String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-//      TODO:Implement your own authentication logic here.
-        //TUTAJ LOGOWANIE
+        String password = HashGeneratorUtils.generateMD5(_passwordText.getText().toString());
+
+//TODO/////////////////////////////////////////////////////////////////
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.109:8080/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UserService userService = retrofit.create(UserService.class);
+        Call<User> call = userService.loginUser(email, password);
+
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    User user = response.body();
+                    //System.out.println(user.toString());
+                    onLoginSuccess();
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    System.out.println("Blad.");
+                    onLoginFailed();
+                }
+            });
+
+
+        /////////////////////////////////////////////////////////////////////
+
+
+        //TUTAJ LOGOWANIE^^
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
+
+                        //
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
+
+
+
 
 
     @Override
@@ -88,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
+
                 this.finish();
             }
         }

@@ -1,0 +1,100 @@
+    <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:ignore="ContentDescription"
+    android:id="@+id/camera_okno"
+    tools:context=".CameraActivity" >
+
+
+
+
+    <!--galeria-->
+    <ImageView
+
+        android:id="@+id/image_camera1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/fab" />
+
+
+    <!--wlacznik aparatu-->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/fab"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_camera"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center"
+        style="vertical"
+        android:adjustViewBounds="false"
+        android:theme="@style/AppTheme.Dark" />
+
+</RelativeLayout>
+
+    <!--&lt;!&ndash;-->
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<RelativeLayout-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--tools:ignore="ContentDescription"-->
+        <!--android:id="@+id/camera_okno" >-->
+
+
+
+        <!--&lt;!&ndash;galeria&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;wlacznik aparatu&ndash;&gt;-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent">-->
+
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_weight="1">-->
+
+                <!--<ImageView-->
+
+                    <!--android:id="@+id/image_camera1"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:layout_above="@+id/fab"-->
+                  <!--/>-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_weight="3"-->
+                <!--android:layout_gravity="center_horizontal">-->
+
+                <!--<android.support.design.widget.FloatingActionButton-->
+                    <!--android:id="@+id/fab"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@android:drawable/ic_menu_camera"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_gravity="bottom|center"-->
+                    <!--style="vertical" />-->
+            <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--&ndash;&gt;-->
+<!-- From: file:/C:/AndroidStudioProjects/Aplikacja/app/src/main/res/layout/camera_okno.xml -->

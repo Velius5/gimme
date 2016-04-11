@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (!isNetworkAvailable()) {
             AlertDialog.Builder Checkbuilder = new AlertDialog.Builder(MainActivity.this,
-                    R.style.AlertDialog_BuilderCustom);
+                    R.style.AppTheme_PopupOverlay);//                    R.style.AlertDialog_BuilderCustom);//
+
             Checkbuilder.setIcon(R.mipmap.ic_launcher);
             Checkbuilder.setTitle("Błąd!");
             Checkbuilder.setMessage("Sprawdź połączenie z internetem.");
