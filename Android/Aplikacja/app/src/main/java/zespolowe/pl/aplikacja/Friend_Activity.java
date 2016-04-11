@@ -21,13 +21,13 @@ public class Friend_Activity extends Activity {
     ListView list;
     String[] itemname ={
             "Robert Zając",
-            "Robert Zając",
-            "Robert Zając",
-            "Robert Zając",
-            "Robert Zając",
-            "Robert Zając",
-            "Robert Zając",
-            "Robert Zając"
+            "Robert Zaj2222ąc",
+            "Robert Zajew44ąc",
+            "Robert Zajrerąc",
+            "Robert ddZając",
+            "Robert Zadehhhhhhhrąc",
+            "Robert Zaj1311111111ąc",
+            "Robert Zaj1112333333ąc"
     };
 
     Integer[] imgid={

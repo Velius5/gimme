@@ -2,8 +2,11 @@ package zespolowe.pl.aplikacja;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +14,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import zespolowe.pl.aplikacja.model.User;
 
-public class HttpClientExample extends ActionBarActivity {
+public class HttpClientExample extends AppCompatActivity {
 
     TextView textMsg, textPrompt;
-//    final String textSource = "https://sites.google.com/site/androidersite/text.txt";
-        final String textSource = "https://umk-zespolowka-2016.herokuapp.com/api/users/getall";
+    //    final String textSource = "https://sites.google.com/site/androidersite/text.txt";
+    final String textSource = "http://localhost:8080/api/user/1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,11 @@ public class HttpClientExample extends ActionBarActivity {
 
                 bufferReader.close();
                 textResult = stringText;
+
+                    Gson gson = new GsonBuilder().create();
+                    User p = gson.fromJson(textResult, User.class);
+                    System.out.println(p);
+
 
             } catch(MalformedURLException e) {
                 e.printStackTrace();
