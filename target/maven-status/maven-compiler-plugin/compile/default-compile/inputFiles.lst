@@ -7,7 +7,9 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\UserService.j
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\UserServiceImpl.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Tesco.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\ReceiptRepository.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\validation\RegistrationValidation.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Biedronka.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\RegisterController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\ReceiptServiceImpl.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\AuthUserDetailsService.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Lidl.java
@@ -26,6 +28,7 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Torimpex.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\Application.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\PanelController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\TessOCR.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\dto\RegistrationDTO.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\WebSecurityConfig.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\ProductRepository.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Receipt.java
