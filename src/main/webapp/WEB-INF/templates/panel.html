@@ -45,7 +45,7 @@
                 
                 <div class="balance">
                     <h2>Witaj, <b th:utext="${userName}"></b></h2>
-                    <h1>Saldo: <b class="positive">2,50 zł</b></h1>
+                    <h1>Saldo: <b class="positive" th:text="${bilans}">0 ZŁ</b></h1>
                     <a href="panel/history">zobacz szczegóły</a>
                 </div>
                 
@@ -60,8 +60,8 @@
                     <ul>
                         <li th:each="receipt : ${paragony}">
                             <div class="receipt_img">
-                                <img src="http://vignette3.wikia.nocookie.net/nonsensopedia/images/c/c0/Paragon_czyt.png/revision/latest?cb=20100531220310"/>
-                                <a class="receipt_price" href="#">21.59 zł</a>
+                                <img src=""/>
+                                <a class="receipt_price" href="#" th:text="${receipt.sum} + 'zł'">21.59 zł</a>
                             </div>
                             <div class="receipt_shopname" th:text="${receipt.name}">Biedronka</div>
                             <div class="receipt_date" th:text="${receipt.date}">10.04.2016</div>

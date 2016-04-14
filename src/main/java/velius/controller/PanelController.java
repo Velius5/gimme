@@ -5,6 +5,8 @@
  */
 package velius.controller;
 
+import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,12 +35,13 @@ public class PanelController {
     ProductService productService;
     
     @RequestMapping("/panel")
-    public String panelPage(Model model) {
+    public String panelPage(Model model, Principal principal) {
+        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
-        
         User user = userService.getUserByEmail(email);
         model.addAttribute("userName", user.getName());
+        
         List<Receipt> receiptList = receiptService.findLast6ByOwner(user);
         model.addAttribute("paragony", receiptList);
         
@@ -48,8 +51,14 @@ public class PanelController {
         List<Product> myDebts = productService.getMyDebts(user);
         model.addAttribute("mojeDlugi", myDebts);
         
-        
-        
+        BigDecimal saldo = BigDecimal.ZERO;
+        for (Product prod : debtorList) {
+            saldo = saldo.add(prod.getPrice());
+        }
+        for (Product prod : myDebts) {
+            saldo = saldo.subtract(prod.getPrice());
+        }
+        model.addAttribute("bilans", saldo+" zł");
         
         return "panel";
     }
