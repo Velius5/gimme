@@ -18,6 +18,8 @@ pl\piotr\Biedronka.class
 pl\piotr\TessOCR.class
 velius\service\ReceiptService.class
 pl\piotr\Lidl.class
+velius\controller\RegisterController.class
+velius\dto\RegistrationDTO.class
 pl\piotr\Receipt.class
 pl\piotr\ReceiptOCR.class
 velius\model\Product.class
@@ -29,6 +31,7 @@ velius\controller\api\ApiPageController.class
 velius\service\AuthUserDetailsService.class
 velius\model\Receipt.class
 velius\Application.class
+velius\validation\RegistrationValidation.class
 velius\model\Friend.class
 velius\service\UserServiceImpl.class
 velius\service\UserService.class

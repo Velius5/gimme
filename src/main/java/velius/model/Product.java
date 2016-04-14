@@ -32,10 +32,10 @@ public class Product {
     @Column(name="nazwa_produktu")
     private String productName;
     
-    @Column(name="cena")
+    @Column(name="cena", columnDefinition="Decimal(10,2)")
     private double price;
     
-    @Column(name="ilosc")
+    @Column(name="ilosc", columnDefinition="Decimal(10,3)")
     private double count;
     
     
@@ -50,6 +50,7 @@ public class Product {
     private Receipt receipt;
     
     @ManyToMany(mappedBy = "products")
+    @JsonBackReference
     private List<User> users;
     
     

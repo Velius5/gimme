@@ -55,6 +55,7 @@ public class ReceiptApiController {
         System.out.println(tempReceipt.getDate());
         receipt.setName(tempReceipt.getShopName());
         receipt.setOwner(owner);
+        receipt.setSummary(tempReceipt.getSum());
         receiptService.save(receipt);
         
         for(pl.piotr.Product product : tempReceipt.getProductList()) {

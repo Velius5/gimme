@@ -15,6 +15,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -57,9 +58,12 @@ public class Receipt {
     @JsonManagedReference
     private List<Product> productList;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     private User owner;
+    
+    @Column(name="suma", columnDefinition="Decimal(10,2)")
+    private double summary;
 
     public Receipt(){};
     
@@ -146,6 +150,20 @@ public class Receipt {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    /**
+     * @return the summary
+     */
+    public double getSummary() {
+        return summary;
+    }
+
+    /**
+     * @param summary the summary to set
+     */
+    public void setSummary(double summary) {
+        this.summary = summary;
     }
     
     

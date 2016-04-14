@@ -66,6 +66,7 @@ public class User {
             joinColumns = @JoinColumn(name = "userID"), 
             inverseJoinColumns = @JoinColumn(name = "productID"))
     @JsonManagedReference
+    @JsonIgnore
     private List<Product> products;
     
     User(){}
