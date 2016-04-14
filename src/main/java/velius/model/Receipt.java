@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,8 +63,8 @@ public class Receipt {
     @JoinColumn(name="owner_id")
     private User owner;
     
-    @Column(name="suma", columnDefinition="Decimal(10,2)")
-    private double summary;
+    @Column(name="suma")
+    private BigDecimal sum;
 
     public Receipt(){};
     
@@ -153,17 +154,17 @@ public class Receipt {
     }
 
     /**
-     * @return the summary
+     * @return the sum
      */
-    public double getSummary() {
-        return summary;
+    public BigDecimal getSum() {
+        return sum;
     }
 
     /**
-     * @param summary the summary to set
+     * @param summary the sum to set
      */
-    public void setSummary(double summary) {
-        this.summary = summary;
+    public void setSum(BigDecimal summary) {
+        this.sum = summary;
     }
     
     

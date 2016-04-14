@@ -6,6 +6,7 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,10 +33,10 @@ public class Product {
     @Column(name="nazwa_produktu")
     private String productName;
     
-    @Column(name="cena", columnDefinition="Decimal(10,2)")
-    private double price;
+    @Column(name="cena")
+    private BigDecimal price;
     
-    @Column(name="ilosc", columnDefinition="Decimal(10,3)")
+    @Column(name="ilosc")
     private double count;
     
     
@@ -57,13 +58,13 @@ public class Product {
     public Product() {
     }
     
-    public Product(String productName, double price, double count) {
+    public Product(String productName, BigDecimal price, double count) {
         this.productName = productName;
         this.price = price;
         this.count = count;
     }
         
-    public Product(String productName, double price, double count, User owner, Receipt receipt) {
+    public Product(String productName, BigDecimal price, double count, User owner, Receipt receipt) {
         this.productName = productName;
         this.price = price;
         this.count = count;
@@ -83,11 +84,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

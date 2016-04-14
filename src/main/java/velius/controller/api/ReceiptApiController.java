@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -55,11 +56,11 @@ public class ReceiptApiController {
         System.out.println(tempReceipt.getDate());
         receipt.setName(tempReceipt.getShopName());
         receipt.setOwner(owner);
-        receipt.setSummary(tempReceipt.getSum());
+        receipt.setSum(BigDecimal.valueOf(tempReceipt.getSum()));
         receiptService.save(receipt);
         
         for(pl.piotr.Product product : tempReceipt.getProductList()) {
-            Product prod = new Product(product.getName(), (double)product.getPrice(), (double)product.getCount(),
+            Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
             owner,receipt);
             productList.add(prod);
         }
