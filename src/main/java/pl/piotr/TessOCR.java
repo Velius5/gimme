@@ -26,6 +26,7 @@ public class TessOCR {
      */
     public static void init(){
         ocr = new Tesseract();
+        ocr.setLanguage("pol");
         shopHeaderList = new ArrayList<>();
         shopHeaderList.add("BIEDRONKA \"CODZIENNIE NISKIE CENY\"");
         shopHeaderList.add("LIDL POLSKA SKLEPY SPOZYWCZE");

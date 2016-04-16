@@ -7,7 +7,9 @@ package velius.controller;
 
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,7 +45,14 @@ public class PanelController {
         model.addAttribute("userName", user.getName());
         
         List<Receipt> receiptList = receiptService.findLast6ByOwner(user);
-        model.addAttribute("paragony", receiptList);
+        List<Receipt> receiptListWithBase64EncodedImages = new ArrayList<>();
+        for (int i = 0; i < receiptList.size(); i++) {
+            Receipt rec = receiptList.get(i);
+            String base64Image = Base64.encodeBase64String(rec.getImage());
+            rec.setDescription(base64Image);
+            receiptListWithBase64EncodedImages.add(rec);
+        }
+        model.addAttribute("paragony", receiptListWithBase64EncodedImages);
         
         List<Product> debtorList = productService.getUserDebitors(user);
         model.addAttribute("produktyDluznikow", debtorList);

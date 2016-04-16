@@ -28,4 +28,7 @@ jQuery(document).ready(function($){
             $(obj).css('top', myheight-objheight);
         }
          gotoMiddle('.login_panel');
+         
+         /* PERFECT SCROLLBAR  */
+         $('.outgoing > .overflow').perfectScrollbar();
 });

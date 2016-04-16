@@ -4,6 +4,8 @@
       layout:decorator="layout">
     <head>
         <title>Panel</title>
+        <link href="/static/css/perfect-scrollbar.min.css" th:href="@{css/perfect-scrollbar.min.css}" rel="stylesheet" media="screen"/>
+        <script language="javascript" type="text/javascript" src="/static/js/perfect-scrollbar.jquery.min.js" th:src="@{js/perfect-scrollbar.jquery.min.js}"></script>
         <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/static/js/excanvas.min.js" th:src="@{js/excanvas.min.js}"></script><![endif]-->
 	<script language="javascript" type="text/javascript" src="/static/js/jquery.flot.js" th:src="@{js/jquery.flot.js}"></script>
 	<script language="javascript" type="text/javascript" src="/static/js/jquery.flot.pie.js" th:src="@{js/jquery.flot.pie.js}"></script>
@@ -60,7 +62,7 @@
                     <ul>
                         <li th:each="receipt : ${paragony}">
                             <div class="receipt_img">
-                                <img src=""/>
+                                <img th:src="@{'data:image/jpeg;base64,'+${receipt.description}}"/>
                                 <a class="receipt_price" href="#" th:text="${receipt.sum} + 'zł'">21.59 zł</a>
                             </div>
                             <div class="receipt_shopname" th:text="${receipt.name}">Biedronka</div>
@@ -72,13 +74,80 @@
                     <a class="btn" href="panel/receipts">Wszystkie paragony</a>
                 </div>
 
+                <div class="outgoing">
+                    <h1>Do spłaty</h1>
+                    <div class="overflow">
+                        <table>
+                            <tr th:each="dlug : ${mojeDlugi}">
+                                <td>Patryk Dobrzyński</td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                            <tr>
+                                <td>Patryk Dobrzyński</td>
+                                <td>Piwo</td>
+                                <td>2.99zł</td>
+                                <td><a href="#"><img class="logo" src="images/icons/pay.png"/></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
                 <div class="in_this_month">
                     <h1>W tym miesiącu</h1>
                     <div id="placeholder" style="width:600px;height:300px"></div>
-                </div>
-
-                <div class="outgoing">
-
                 </div>
 
                 <div class="incoming">

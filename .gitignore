@@ -1,5 +1,3 @@
-target/
-
 nb-configuration.xml
 nbactions.xml
 .gradle
@@ -9,3 +7,5 @@ nbactions.xml
 .DS_Store
 /build
 /captures
+target
+target/*

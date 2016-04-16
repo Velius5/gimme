@@ -374,6 +374,37 @@ body.login_page {
     color: black;
 }
 
+.outgoing {
+    width: 50%;
+    float: right;
+}
+
+.outgoing > h1 {
+    margin-bottom: 30px;
+}
+
+.outgoing > .overflow {
+    overflow: auto;
+    height: 500px;
+}
+
+.outgoing table {
+    width: 100%;
+}
+
+.outgoing table  tr {
+    border: 1px silver solid;
+}
+
+.outgoing table  tr  td {
+    vertical-align: middle;
+    padding: 10px 10px 10px 20px;
+}
+
+.outgoing table  tr  td  a {
+    background-size: 25px;
+}
+
 body.registration_page {
     width: 100%;
     height: 100vh;
