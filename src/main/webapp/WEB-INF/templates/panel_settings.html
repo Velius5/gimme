@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+    <head>
+        <title>Panel - Ustawienia</title>
+    </head>
+    <body class="panel_page">
+        <div class="panel panel_settings" th:fragment="content">
+            <div class="container">
+                <h1>Ustawienia</h1>
+                <form th:action="@{/panel/settings}" method="post" th:object="${editProfile}" enctype="multipart/form-data">
+                    
+                    <div class="personal_data">
+                        <h1>Dane personalne</h1>
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect name</p>
+                        <input type="text" name="name" th:field="*{name}" placeholder="IMIĘ"/>
+                        <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Incorrect surname</p>
+                        <input type="text" name="surname" th:field="*{surname}" placeholder="NAZWISKO"/>
+                    </div>
+                    
+                    <div class="photo">
+                        <h1>Zdjęcie</h1>
+                        <img src="../images/icons/default-user.png"/>
+                        <input type="file" name="photo" />
+                    </div>
+                    
+                    <div class="login">
+                        <h1>Dane logowania</h1>
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect email</p>
+                        <input type="text" name="email" th:field="*{email}" placeholder="EMAIL"/>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect password</p>
+                        <input type="password" name="password" th:field="*{password}" placeholder="HASŁO"/>
+                        <p th:if="${#fields.hasErrors('passwordVerification')}" th:errors="*{passwordVerification}">Incorrect password verification</p>
+                        <input type="password" name="passwordVerification" th:field="*{passwordVerification}" placeholder="POWTÓRZ HASŁO"/>
+                    </div>
+                    
+                    <div><input class="btn" type="submit" value="Zapisz zmiany"/></div>
+                </form>
+                
+            </div>
+        </div>
+    </body>
+</html>

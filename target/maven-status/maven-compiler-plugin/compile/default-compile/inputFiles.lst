@@ -14,6 +14,8 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\ReceiptServic
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\AuthUserDetailsService.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Lidl.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Product.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\UserEditProfileApiController.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\Response.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\ProdDatabaseConfig.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\Product.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\ProductService.java
@@ -35,3 +37,4 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Receipt.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\Receipt.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\HomeController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\User.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\PanelSettingsController.java

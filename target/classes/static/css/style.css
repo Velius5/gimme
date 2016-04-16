@@ -90,6 +90,10 @@ header.main_header {
     margin: 21px 50px 0 0;
 }
 
+.top .left > ul.main_menu > li > a.active {
+    text-decoration: underline;
+}
+
 .top .right {
     width: 20%;
     float: right;
@@ -358,7 +362,7 @@ body.login_page {
 }
 
 .in_this_month > h1 {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 .pieLabel > div {
@@ -385,7 +389,8 @@ body.login_page {
 
 .outgoing > .overflow {
     overflow: auto;
-    height: 500px;
+    height: 457px;
+    position: relative;
 }
 
 .outgoing table {
@@ -394,6 +399,10 @@ body.login_page {
 
 .outgoing table  tr {
     border: 1px silver solid;
+}
+
+.outgoing table  tr:nth-child(even) {
+    background: #f1f1f1;
 }
 
 .outgoing table  tr  td {
@@ -491,4 +500,22 @@ body.registration_page {
 .registration_page.registration_success .background_text > h1 {
     line-height: 55px;
     margin-top: 50px;
+}
+
+.main_header > #logo {
+    width: 100%;
+    max-width: 200px;
+    height: 100px;
+    background: url(../images/logo.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+}
+
+.panel_settings {
+    text-align: left;
+}
+
+.panel_settings > .container > div {
+    width: 50%;
+    float: left;
 }

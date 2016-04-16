@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import velius.model.Friend;
+import velius.model.Response;
 import velius.model.User;
+import velius.repository.UserRepository;
 import velius.service.UserService;
 
 @RestController
@@ -61,30 +63,32 @@ public class UserApiController {
     }
     
     @RequestMapping(value = "/user/{id}/addfriend/{friendId}", method = RequestMethod.GET)
-    public boolean addUserFriends(@PathVariable("id") Long id, @PathVariable("friendId") Long friendId) {
+    public Response addUserFriends(@PathVariable("id") Long id, @PathVariable("friendId") Long friendId) {
         
             User user = userService.getUser(id);
             List<Friend> friends = user.getFriends();
             if(userService.exists(id) && (!friends.contains(new Friend(friendId, 0)) || !friends.contains(new Friend(friendId, 1)))) {
                     friends.add(new Friend(friendId, 0));
                     userService.save(user);
-                    return true;
+                    Response response = new Response(true);
+                    return response;
             } else {
-                return false;
+                Response response = new Response(false);
+                return response;
             }
        
     }
     
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
-    public boolean registerUser(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "haslo", required = true) String password) {
+    public Response registerUser(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "haslo", required = true) String password) {
+        
         User user = new User(email, password, false, 0);
-
-            User save = userService.save(user);
-            return true;
+        User save = userService.save(user);
+        Response response = new Response(true);
+        return response;
   
     }
     
-
     
     
 }

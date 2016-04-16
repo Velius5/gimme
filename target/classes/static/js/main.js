@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     
     /* PARALLAX EFFECT ON TOP */
-    $('.main_header').parallax({imageSrc: 'images/main_header_bg.jpg'});
+    $('.main_header').parallax({imageSrc: '/images/main_header_bg.jpg'});
     
     /* WAYPOINTS */
 	window.scrollTo(0, 0);
@@ -28,6 +28,7 @@ jQuery(document).ready(function($){
             $(obj).css('top', myheight-objheight);
         }
          gotoMiddle('.login_panel');
+         gotoMiddle('header #logo');
          
          /* PERFECT SCROLLBAR  */
          $('.outgoing > .overflow').perfectScrollbar();

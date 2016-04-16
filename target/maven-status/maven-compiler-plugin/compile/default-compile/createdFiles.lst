@@ -1,6 +1,7 @@
 velius\utils\HashGeneratorUtils.class
 pl\piotr\Product.class
 velius\model\User.class
+velius\controller\api\UserEditProfileApiController.class
 velius\repository\UserRepository.class
 velius\controller\api\ApiTestController.class
 velius\controller\HomeController.class
@@ -9,6 +10,7 @@ velius\service\ProductService.class
 velius\controller\api\UserApiController.class
 velius\controller\PanelController.class
 velius\WebSecurityConfig.class
+velius\model\Response.class
 velius\service\ReceiptServiceImpl.class
 pl\piotr\Torimpex.class
 velius\ProdDatabaseConfig.class
@@ -30,6 +32,7 @@ velius\service\ProductServiceImpl.class
 velius\controller\api\ApiPageController.class
 velius\service\AuthUserDetailsService.class
 velius\model\Receipt.class
+velius\controller\PanelSettingsController.class
 velius\Application.class
 velius\validation\RegistrationValidation.class
 velius\model\Friend.class
