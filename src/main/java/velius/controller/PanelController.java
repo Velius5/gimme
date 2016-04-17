@@ -61,14 +61,18 @@ public class PanelController {
         model.addAttribute("mojeDlugi", myDebts);
         
         BigDecimal saldo = BigDecimal.ZERO;
+        
         for (Product prod : debtorList) {
             saldo = saldo.add(prod.getPrice());
         }
+        int incoming = saldo.intValue();
         for (Product prod : myDebts) {
             saldo = saldo.subtract(prod.getPrice());
         }
+        int outcoming = incoming - saldo.intValue();
         model.addAttribute("bilans", saldo+" zł");
-        
+        model.addAttribute("przychody",incoming);
+        model.addAttribute("wydatki", outcoming);
         return "panel";
     }
 }

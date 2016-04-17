@@ -7,6 +7,8 @@ package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -106,6 +109,11 @@ public class Product {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+    
+    @Transient
+    public BigDecimal getPricePerPerson(){
+        return BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
     }
 
     @Override
