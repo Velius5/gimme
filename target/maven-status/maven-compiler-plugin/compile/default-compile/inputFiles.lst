@@ -3,6 +3,7 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\UserReposi
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Zabka.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\LoginController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\Friend.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\validation\EditProfileValidation.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\UserService.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\UserServiceImpl.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Tesco.java
@@ -35,6 +36,7 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\WebSecurityConfig.jav
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\ProductRepository.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\Receipt.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\Receipt.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\dto\EditProfileDTO.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\HomeController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\User.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\PanelSettingsController.java

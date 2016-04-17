@@ -14,21 +14,20 @@
                     <div class="personal_data">
                         <h1>Dane personalne</h1>
                         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect name</p>
-                        <input type="text" name="name" th:field="*{name}" placeholder="IMIĘ"/>
+                        <input type="text" name="name" id="name" th:value="*{name != null} ? *{name} : ${userName}" placeholder="IMIĘ"/>
                         <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Incorrect surname</p>
-                        <input type="text" name="surname" th:field="*{surname}" placeholder="NAZWISKO"/>
+                        <input type="text" name="surname" id="surname" th:value="*{surname != null} ? *{surname} : ${userSurname}" placeholder="NAZWISKO"/>
                     </div>
                     
                     <div class="photo">
-                        <h1>Zdjęcie</h1>
-                        <img src="../images/icons/default-user.png"/>
+                        <img th:src="${userPhoto}"/>
                         <input type="file" name="photo" />
                     </div>
                     
                     <div class="login">
                         <h1>Dane logowania</h1>
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect email</p>
-                        <input type="text" name="email" th:field="*{email}" placeholder="EMAIL"/>
+                        <input type="text" name="email" id="email" th:value="*{email != null} ? *{email} : ${userEmail}" placeholder="EMAIL"/>
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect password</p>
                         <input type="password" name="password" th:field="*{password}" placeholder="HASŁO"/>
                         <p th:if="${#fields.hasErrors('passwordVerification')}" th:errors="*{passwordVerification}">Incorrect password verification</p>
