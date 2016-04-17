@@ -512,10 +512,36 @@ body.registration_page {
 }
 
 .panel_settings {
-    text-align: left;
+    text-align: center;
 }
 
-.panel_settings > .container > div {
-    width: 50%;
-    float: left;
+.panel_settings .container > h1 {
+    margin-bottom: 50px;
+}
+
+.panel_settings .container form > div > h1 {
+    text-transform: capitalize;
+    font-size: 24px;
+    text-align: center;
+}
+
+.panel_settings form input {
+    display: block;
+    margin: 10px auto;
+    width: 95%;
+    max-width: 225px;
+    padding: 10px;
+    border: 1px #7b4a43 solid;
+    color: #7b4a43;
+}
+
+.panel_settings form .login {
+    margin-top: 50px;
+}
+
+.panel_settings form .photo img {
+    width: 250px;
+    height: 250px;
+    border: 1px transparent solid;
+    border-radius: 10px;
 }

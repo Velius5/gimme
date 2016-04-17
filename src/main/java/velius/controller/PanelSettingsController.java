@@ -5,52 +5,105 @@
  */
 package velius.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import javax.validation.Valid;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import velius.dto.RegistrationDTO;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import velius.dto.EditProfileDTO;
 import velius.model.User;
 import velius.service.UserService;
 import velius.utils.HashGeneratorUtils;
-import velius.validation.RegistrationValidation;
+import velius.validation.EditProfileValidation;
 
 @Controller
 public class PanelSettingsController {
     @Autowired
     UserService userService;
+    
     @Autowired
-    RegistrationValidation registrationValidation;
+    EditProfileValidation editProfileValidation;
     
     @RequestMapping(value="/panel/settings", method=RequestMethod.GET)
     public String panelSettingsPage(Model model, Principal principal) {
-        RegistrationDTO registrationDTO = new RegistrationDTO();
-	model.addAttribute("editProfile", registrationDTO);
+        String userPhoto;
+        EditProfileDTO editProfileDTO = new EditProfileDTO();
+	model.addAttribute("editProfile", editProfileDTO);
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userService.getUserByEmail(email);
+        model.addAttribute("userName", user.getName());
+        model.addAttribute("userSurname", user.getSurname());
+        model.addAttribute("userEmail", user.getEmail());
+        
+        
+        String base64Image = Base64.encodeBase64String(user.getImage());
+        if(base64Image == null) {
+            userPhoto = "../images/icons/default-user.png";
+        } else {
+            userPhoto = "data:image/jpeg;base64,"+base64Image;
+        }
+        
+    
+        model.addAttribute("userPhoto", userPhoto);
+        
         return "panel_settings";
     }
         
     @RequestMapping(value="/panel/settings", method=RequestMethod.POST)
-    public String processForm(@ModelAttribute("editProfile") @Valid RegistrationDTO registrationDTO, BindingResult result) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        registrationValidation.validate(registrationDTO, result);
+    public String processForm(@ModelAttribute("editProfile") @Valid EditProfileDTO editProfileDTO, BindingResult result, @RequestParam(value = "photo", required = false) MultipartFile photo) throws NoSuchAlgorithmException, UnsupportedEncodingException, IOException {
+        editProfileValidation.validate(editProfileDTO, result);
         if (result.hasErrors()) {
             //formularz nie jest uzupełniony prawidłowo
         } else {
             //formularz wypełniony prawidłowo
-            String password = HashGeneratorUtils.generateMD5(registrationDTO.getPassword());
-            String name = registrationDTO.getName();
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
+            User user = userService.getUserByEmail(email);
+        
+            
+            String name = editProfileDTO.getName();
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
-            String surname = registrationDTO.getSurname();
+            user.setName(name);
+            
+            String surname = editProfileDTO.getSurname();
             surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
-            userService.save(new User(name, surname, registrationDTO.getEmail(), password, false, 2));
+            user.setSurname(surname);
+            
+            if(email != editProfileDTO.getEmail() && userService.getUserByEmail(editProfileDTO.getEmail()) == null) {
+                user.setEmail(editProfileDTO.getEmail());
+                SecurityContextHolder.clearContext();
+            }
+            
+            if(!editProfileDTO.getPassword().isEmpty()) {
+                String password = HashGeneratorUtils.generateMD5(editProfileDTO.getPassword());
+                user.setPassword(password);
+                SecurityContextHolder.clearContext();
+            }
+            
+            if (!photo.isEmpty()) {
+                user.setImage(photo.getBytes());
+            }
+                        
+            
+            userService.save(user);
         }
-        return "panel_settings";
+        return "redirect:settings";
     }
         
     
