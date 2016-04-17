@@ -2,11 +2,13 @@ velius\utils\HashGeneratorUtils.class
 pl\piotr\Product.class
 velius\model\User.class
 velius\controller\api\UserEditProfileApiController.class
+velius\validation\EditProfileValidation.class
 velius\repository\UserRepository.class
 velius\controller\api\ApiTestController.class
 velius\controller\HomeController.class
 velius\repository\ProductRepository.class
 velius\service\ProductService.class
+velius\dto\EditProfileDTO.class
 velius\controller\api\UserApiController.class
 velius\controller\PanelController.class
 velius\WebSecurityConfig.class
