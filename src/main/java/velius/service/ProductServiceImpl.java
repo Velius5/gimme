@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> getUserDebitors(User user) {
-        return repository.findAllByOwner(user);
+        return repository.findAllByOwnerAndUsersNotNull(user);
     }
 
     @Override

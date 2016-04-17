@@ -79,89 +79,11 @@
                     <div class="overflow">
                         <table>
                             <tr th:each="dlug : ${mojeDlugi}">
-                                <td>Patryk Dobrzyński</td>
+                                <td th:text="${dlug.owner.name} + ' ' + ${dlug.owner.surname}">Patryk Dobrzyński</td>
                                 <td th:text="${dlug.productName}">Piwo</td>
                                 <td th:text="${dlug.price}">2.99zł</td>
-                                <td><a th:href="panel/receipts/payoff/${dlug.id}"><img title="Spłać" src="images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
-                            <tr>
-                                <td>Patryk Dobrzyński</td>
-                                <td>Piwo</td>
-                                <td>2.99zł</td>
-                                <td><a href="#"><img title="Spłać" src="/images/icons/pay.png"/></a></td>
-                            </tr>
+                                <td><a th:href="'panel/receipts/payoff/' + ${dlug.id}"><img title="Spłać" src="images/icons/pay.png"/></a></td>
+                            </tr>                    
                         </table>
                     </div>
                 </div>
@@ -175,12 +97,14 @@
                     <h1>Twoi dłużnicy</h1>
                     <div class="overflow">
                         <table>
-                            <tr th:each="dlug : ${mojeDlugi}">
-                                <td>Patryk Dobrzyński</td>
+                            <span th:each="dlug : ${produktyDluznikow}">
+                            <tr th:each="dluznik : ${dlug.users}">
+                                <td th:text="${dluznik.name} +' ' + ${dluznik.surname}"></td>
                                 <td th:text="${dlug.productName}">Piwo</td>
                                 <td th:text="${dlug.price}">2.99zł</td>
-                                <td><a th:href="panel/receipts/payoff/${dlug.id}"><img title="Spłać" src="images/icons/pay.png"/></a></td>
+                                <td><a th:href="'panel/receipts/payoff/' + ${dlug.id}"><img title="Spłać" src="images/icons/pay.png"/></a></td>
                             </tr>
+                            </span>
                             <tr>
                                 <td>Michał Majewski</td>
                                 <td>Piwo</td>
