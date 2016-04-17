@@ -15,6 +15,6 @@ import velius.model.User;
  * @author Patryk
  */
 public interface ProductRepository extends JpaRepository<Product, String> {
-    List<Product> findAllByOwnerAndUsersNotNull(User user);
+    List<Product> findIdDistinctByOwnerAndUsersNotNull(User user);
     List<Product> findAllByUsers(User user);
 }
