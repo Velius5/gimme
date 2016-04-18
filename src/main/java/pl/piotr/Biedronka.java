@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.piotr;
 
 import java.text.ParseException;
@@ -14,10 +9,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+/**
+ *Klasa implementująca klasę abstrakcyjną Receipt. 
+ * Dostarcza szablon paragonu dla sklepów sieci Biedronka.
+ **/
 public class Biedronka extends Receipt {
-    
+    /**
+     * Pole przechowujące nazwe sklepu
+     */
     private final String shopName = "Biedronka";
 
+    
     @Override
     public void setDate(String txt) {
         Scanner scaner = new Scanner(txt);

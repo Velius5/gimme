@@ -6,12 +6,25 @@
 package pl.piotr;
 
 /**
- *
- * @author Piotr
+ * Klasa dostarczająca informacji o pojedynczym produkcie.
+ * Zawiera pola przechowujące informację o nazwie produktu, jego cenie oraz ilości
+ * a także metody pozwalające na ustawienie i pobranie zawartości tych poł
+ * @author Piotr Czarny
  */
 public class Product {
+    /**
+     * Pole zawierające nazwę produktu
+     */
     protected String name;
+    
+    /**
+     * Pole zawierające cenę produktu
+     */
     protected float price;
+    
+    /**
+     * Pole określające ilość
+     */
     protected float count;
     
     public Product(){};
@@ -23,42 +36,42 @@ public class Product {
     }
 
     /**
-     * @return the name
+     * @return nazwę prouktu
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return the price
+     * @return cenę produktu
      */
     public float getPrice() {
         return price;
     }
 
     /**
-     * @return the count
+     * @return ilość
      */
     public float getCount() {
         return count;
     }
 
     /**
-     * @param name the name to set
+     * @param name nazwa produktu
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @param price the price to set
+     * @param price cena produktu
      */
     public void setPrice(float price) {
         this.price = price;
     }
 
     /**
-     * @param count the count to set
+     * @param count ilość
      */
     public void setCount(float count) {
         this.count = count;

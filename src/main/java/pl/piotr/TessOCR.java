@@ -14,7 +14,8 @@ import net.sourceforge.tess4j.*;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ * Główna klasa modułu aplikacji odpowiedzialnego za rozpoznawanie tekstu.
+ * Pozwala na użycie silnika Tesseract OCR.
  * @author Piotr
  */
 public class TessOCR {
@@ -22,7 +23,8 @@ public class TessOCR {
     private static ITesseract ocr;
     
     /**
-     *
+     *  Funkcja inicjująca tablicę z nazwami sklepów oraz ustawiająca niektóre
+     *  właściwości silnika OCR
      */
     public static void init(){
         ocr = new Tesseract();
@@ -35,6 +37,13 @@ public class TessOCR {
     }
     
 
+    /**
+     * Funkcja służąca do rozpoznawania tekstu zawartego na zdjęciu paragonu.
+     * Funkcja rozpoznaje z jakiego sklepu pochodzi paragon i zwraca obiekt
+     * odpowiedniej klasy.
+     * @param img zdjęcie paragonu w formacie JPG
+     * @return obiekt klasy implementującej klase abstrakcyjną pl.piotr.Receipt
+     */
     public static Receipt recognizeReceipt(BufferedImage img){
         int minEditLength = 100;
         Receipt receipt = null;

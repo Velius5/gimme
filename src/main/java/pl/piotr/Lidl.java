@@ -13,7 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-
+/**
+ *Klasa implementująca klasę abstrakcyjną Receipt. 
+ * Dostarcza szablon paragonu dla sklepów sieci Lidl.
+ **/
 public class Lidl extends Receipt {
 
     @Override
