@@ -101,4 +101,24 @@ public class UserEditProfileApiController {
         
     }
     
+    @RequestMapping(value = "/user/{id}/editNameAndUsername", method = RequestMethod.POST)
+    public Response editNameAndUsername(@PathVariable("id") Long id, @RequestParam(value = "name", required = true) String name, @RequestParam(value = "surname", required = true) String surname) {
+        
+        User user = userService.getUser(id);
+        if(!(user == null)) {
+            user.setName(name);
+            user.setSurname(surname);
+
+            User save = userService.save(user);
+            Response response = new Response(true);
+            return response;
+        } else {
+            Response response = new Response(false);
+            return response;
+        }
+        
+    }        
+        
+
+    
 }
