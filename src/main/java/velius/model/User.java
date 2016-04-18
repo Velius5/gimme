@@ -22,6 +22,9 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Klasa mapująca encję z bazy danych dotyczącą użytkownika na obiekt.
+ */
 @Entity
 @Table(name = "uzytkownicy")
 public class User {
@@ -68,9 +71,10 @@ public class User {
     @JsonManagedReference
     @JsonIgnore
     private List<Product> products;
-    
-    User(){}
 
+    public User() {
+    }
+    
     public User(String name, String surname, String email, String password, boolean active, int role) {
         this.name = name;
         this.surname = surname;

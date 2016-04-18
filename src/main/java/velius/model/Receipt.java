@@ -29,8 +29,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Cascade;
 
 /**
- *
- * @author Piotr
+ * Klasa mapująca encję z bazy danych dotyczącą paragonu na obiekt.
  */
 @Entity
 @Table(name = "paragony")

@@ -23,7 +23,11 @@ import velius.service.ProductService;
 import velius.service.ReceiptService;
 import velius.service.UserService;
 
-
+/**
+ * Kontroler obsługujący zapytania wysyłane przez przeglądarkę po zalogowaniu 
+ * się przez użytkownika. Dostarcza dane do widoku strony głównej dla 
+ * zalogowanych użytkowników
+ */
 @Controller
 public class PanelController {
     

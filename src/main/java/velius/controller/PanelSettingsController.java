@@ -30,6 +30,11 @@ import velius.service.UserService;
 import velius.utils.HashGeneratorUtils;
 import velius.validation.EditProfileValidation;
 
+/**
+ *  Kontroler obsługujący żądanie wyświetlenia strony zawierającej ustawienia
+ * konta użytkownika. Dostarcza do widoku dane dotyczące użytkownika oraz obługuję zmiane
+ * tych dancyh przez użytkownika.
+ */
 @Controller
 public class PanelSettingsController {
     @Autowired

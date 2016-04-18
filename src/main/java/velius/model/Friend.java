@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Klasa mapująca encję z bazy danych dotyczącą znajomych na obiekt.
+ */
 @Entity
 @Table(name = "znajomi")
 public class Friend {

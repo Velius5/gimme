@@ -22,8 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- *
- * @author Piotr
+ * Klasa mapująca encję z bazy danych dotyczącą produktu na obiekt.
  */
 @Entity
 @Table(name = "produkty")

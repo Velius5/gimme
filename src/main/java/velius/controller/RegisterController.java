@@ -22,6 +22,9 @@ import velius.service.UserService;
 import velius.utils.HashGeneratorUtils;
 import velius.validation.RegistrationValidation;
 
+/**
+ * Kontroler obsługujący rejestrację nowych użytkowników.
+ */
 @Controller
 public class RegisterController {
     @Autowired
