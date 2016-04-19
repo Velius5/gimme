@@ -5,6 +5,7 @@
  */
 package velius.controller.api;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +27,15 @@ public class UserEditProfileApiController {
     }
     
     @RequestMapping(value = "/user/{id}/editProfile", method = RequestMethod.POST)
-    public Response editUserProfile(@PathVariable("id") Long id, @RequestParam(value = "name", required = true) String name, @RequestParam(value = "surname", required = true) String surname, @RequestParam(value = "image", required = true) byte[] image, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) {
+    public Response editUserProfile(@PathVariable("id") Long id, @RequestParam(value = "name", required = true) String name, @RequestParam(value = "surname", required = true) String surname, @RequestParam(value = "image", required = true) String image, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) {
         
         User user = userService.getUser(id);
         if(!(user == null)) {
             if(userService.getUserByEmail(email) == null) user.setEmail(email);
-            user.setImage(image);
+            if(!image.equals(new String("BRAK"))) 
+            user.setImage(Base64.decodeBase64(image));
             user.setName(name);
+            if(!password.equals(new String("BRAK"))) 
             user.setPassword(password);
             user.setSurname(surname);
 

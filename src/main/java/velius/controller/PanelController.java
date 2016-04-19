@@ -67,11 +67,11 @@ public class PanelController {
         BigDecimal saldo = BigDecimal.ZERO;
         
         for (Product prod : debtorList) {
-            saldo = saldo.add(prod.getPrice());
+            saldo = saldo.add(prod.getPricePerPerson());
         }
         int incoming = saldo.intValue();
         for (Product prod : myDebts) {
-            saldo = saldo.subtract(prod.getPrice());
+            saldo = saldo.subtract(prod.getPricePerPerson());
         }
         int outcoming = incoming - saldo.intValue();
         model.addAttribute("bilans", saldo+" zł");

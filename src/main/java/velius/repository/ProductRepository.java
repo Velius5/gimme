@@ -17,4 +17,5 @@ import velius.model.User;
 public interface ProductRepository extends JpaRepository<Product, String> {
     List<Product> findIdDistinctByOwnerAndUsersNotNull(User user);
     List<Product> findAllByUsers(User user);
+    List<Product> findIdDistinctByOwnerAndUsers(User user, User friend);
 }

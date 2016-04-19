@@ -19,4 +19,11 @@ public interface ProductService {
     List<Product>  getUserDebitors(User user);
 
     public List<Product> getMyDebts(User user);
+    
+    public List<Product> getMyDebtsToFriend(User user, User friend);
+    
+    public List<Product> getFriendDebtsToMe(User user, User friend);
+    
+    
+    
 }

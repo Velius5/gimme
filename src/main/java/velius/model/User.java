@@ -68,7 +68,6 @@ public class User {
     @JoinTable(name = "user_product", 
             joinColumns = @JoinColumn(name = "userID"), 
             inverseJoinColumns = @JoinColumn(name = "productID"))
-    @JsonManagedReference
     @JsonIgnore
     private List<Product> products;
 

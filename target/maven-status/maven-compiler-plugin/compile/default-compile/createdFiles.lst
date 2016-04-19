@@ -1,7 +1,7 @@
 velius\utils\HashGeneratorUtils.class
 pl\piotr\Product.class
 velius\model\User.class
-velius\controller\api\UserEditProfileApiController.class
+velius\controller\FriendsController.class
 velius\validation\EditProfileValidation.class
 velius\repository\UserRepository.class
 velius\controller\api\ApiTestController.class
@@ -14,7 +14,6 @@ velius\controller\PanelController.class
 velius\WebSecurityConfig.class
 velius\model\Response.class
 velius\service\ReceiptServiceImpl.class
-pl\piotr\Torimpex.class
 velius\ProdDatabaseConfig.class
 pl\piotr\Tesco.class
 pl\piotr\Zabka.class
@@ -25,7 +24,6 @@ pl\piotr\Lidl.class
 velius\controller\RegisterController.class
 velius\dto\RegistrationDTO.class
 pl\piotr\Receipt.class
-pl\piotr\ReceiptOCR.class
 velius\model\Product.class
 velius\controller\api\ReceiptApiController.class
 velius\repository\ReceiptRepository.class
@@ -36,6 +34,7 @@ velius\service\AuthUserDetailsService.class
 velius\model\Receipt.class
 velius\controller\PanelSettingsController.class
 velius\Application.class
+velius\controller\FriendsController$ModelFriend.class
 velius\validation\RegistrationValidation.class
 velius\model\Friend.class
 velius\service\UserServiceImpl.class
