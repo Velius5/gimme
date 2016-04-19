@@ -49,7 +49,7 @@ public class User {
     @JsonIgnore
     private String password;
     
-    @Column(name = "zdjecie", nullable = true, columnDefinition="longblob")
+    @Column(name = "zdjecie", nullable = true)
     private byte[] image;
     
     @Column(name = "aktywny")
