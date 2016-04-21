@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import velius.controller.FriendsController;
 import velius.model.Friend;
+import velius.model.ModelFriend;
 import velius.model.Product;
 import velius.model.Response;
 import velius.model.User;
@@ -24,77 +24,6 @@ import velius.service.UserService;
 @RestController
 @RequestMapping(value = "/api")
 public class UserApiController {
-            class ModelFriend{
-        private Long id;
-        private String name;
-        private String surname;
-        private String photo;
-        private BigDecimal bilans;
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-        
-        /**
-         * @return the name
-         */
-        public String getName() {
-            return name;
-        }
-
-        /**
-         * @param name the name to set
-         */
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        /**
-         * @return the surname
-         */
-        public String getSurname() {
-            return surname;
-        }
-
-        /**
-         * @param surname the surname to set
-         */
-        public void setSurname(String surname) {
-            this.surname = surname;
-        }
-
-        /**
-         * @return the photo
-         */
-        public String getPhoto() {
-            return photo;
-        }
-
-        /**
-         * @param photo the photo to set
-         */
-        public void setPhoto(String photo) {
-            this.photo = photo;
-        }
-
-        /**
-         * @return the bilans
-         */
-        public BigDecimal getBilans() {
-            return bilans;
-        }
-
-        /**
-         * @param bilans the bilans to set
-         */
-        public void setBilans(BigDecimal bilans) {
-            this.bilans = bilans;
-        }
-    }
 
     private final UserService userService;
     
@@ -126,9 +55,7 @@ public class UserApiController {
     
     @RequestMapping(value = "/user/{id}/getfriends", method=RequestMethod.GET)
     public List<ModelFriend> listFriends(@PathVariable("id") Long id) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        User user = userService.getUserByEmail(email);
+        User user = userService.getUser(id);
         
         List<User> friends = userService.getUserFriends(user.getId());
         List<ModelFriend> friendList = new ArrayList();
