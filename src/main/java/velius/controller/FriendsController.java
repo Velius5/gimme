@@ -28,6 +28,7 @@ import velius.service.UserService;
 
 
 @Controller
+@RequestMapping("/panel/friends")
 public class FriendsController {
     class ModelFriend{
         private Long id;
@@ -107,7 +108,7 @@ public class FriendsController {
     @Autowired
     ProductService productService;
     
-    @RequestMapping("/panel/friends")
+    @RequestMapping("/")
     public String friendsPage(Model model, Principal principal){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();

@@ -7,6 +7,7 @@ package velius.controller.api;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +44,11 @@ public class ReceiptApiController {
     }
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
-    public Receipt addReceipt(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
+    public Receipt addReceipt(@RequestParam String file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
         List<Product> productList = new ArrayList<Product>();
         User owner = userService.getUser(id);
-        byte[] image = file.getBytes();
+        
+        byte[] image = Base64.decodeBase64(file);
         Receipt receipt = new Receipt(image);
         
         InputStream in = new ByteArrayInputStream(image);
@@ -69,6 +72,12 @@ public class ReceiptApiController {
         receiptService.save(receipt);
         
         System.out.println("Dodano paragon."); 
+        return receipt;
+    }
+    
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public Receipt showReceipt(@PathVariable("id") Long id){
+        Receipt receipt = receiptService.findById(id);
         return receipt;
     }
     

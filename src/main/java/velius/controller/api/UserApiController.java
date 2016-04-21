@@ -1,24 +1,105 @@
 
 package velius.controller.api;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import velius.controller.FriendsController;
 import velius.model.Friend;
+import velius.model.Product;
 import velius.model.Response;
 import velius.model.User;
-import velius.repository.UserRepository;
+import velius.service.ProductService;
 import velius.service.UserService;
 
 @RestController
 @RequestMapping(value = "/api")
 public class UserApiController {
+            class ModelFriend{
+        private Long id;
+        private String name;
+        private String surname;
+        private String photo;
+        private BigDecimal bilans;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+        
+        /**
+         * @return the name
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * @param name the name to set
+         */
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        /**
+         * @return the surname
+         */
+        public String getSurname() {
+            return surname;
+        }
+
+        /**
+         * @param surname the surname to set
+         */
+        public void setSurname(String surname) {
+            this.surname = surname;
+        }
+
+        /**
+         * @return the photo
+         */
+        public String getPhoto() {
+            return photo;
+        }
+
+        /**
+         * @param photo the photo to set
+         */
+        public void setPhoto(String photo) {
+            this.photo = photo;
+        }
+
+        /**
+         * @return the bilans
+         */
+        public BigDecimal getBilans() {
+            return bilans;
+        }
+
+        /**
+         * @param bilans the bilans to set
+         */
+        public void setBilans(BigDecimal bilans) {
+            this.bilans = bilans;
+        }
+    }
+
     private final UserService userService;
+    
+    @Autowired
+    ProductService productService;
 
     @Autowired
     public UserApiController(UserService userService) {
@@ -44,22 +125,36 @@ public class UserApiController {
     }
     
     @RequestMapping(value = "/user/{id}/getfriends", method=RequestMethod.GET)
-    public List<User> listFriends(@PathVariable("id") Long id) {
-        /*User userA = new User("Jan", "Nowak", "email@wp.pl", "123456", false, 0);
-        List<Friend> friends = new ArrayList<>();
-        friends.add(new Friend(2, 1));
-        friends.add(new Friend(3, 0));
-        friends.add(new Friend(4, 1));
-        userA.setFriends(friends);
-
-        userService.save(userA);*/
-        try {
-            List<User> users = userService.getUserFriends(id);
-            return users;
-        } catch(Exception ex) {
-            return null;
+    public List<ModelFriend> listFriends(@PathVariable("id") Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userService.getUserByEmail(email);
+        
+        List<User> friends = userService.getUserFriends(user.getId());
+        List<ModelFriend> friendList = new ArrayList();
+        for(User friend : friends){
+            ModelFriend mf = new ModelFriend();
+            mf.setId(friend.getId());
+            mf.setName(friend.getName());
+            mf.setSurname(friend.getSurname());
+            mf.setPhoto(Base64.encodeBase64String(friend.getImage()));
+            
+            BigDecimal bilans =  BigDecimal.ZERO;
+            List<Product> temp = productService.getMyDebtsToFriend(user, friend);
+            for(Product prod : temp){
+                bilans = bilans.subtract(prod.getPricePerPerson());
+            }
+            
+            temp = productService.getFriendDebtsToMe(user, friend);
+            for(Product prod : temp){
+                bilans = bilans.add(prod.getPricePerPerson());
+            }
+            mf.setBilans(bilans);
+            friendList.add(mf);
         }
-
+        
+        
+        return friendList;
     }
     
     @RequestMapping(value = "/user/{id}/addfriend/{friendId}", method = RequestMethod.GET)

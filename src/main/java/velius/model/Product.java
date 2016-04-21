@@ -6,12 +6,14 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,12 +44,12 @@ public class Product {
     private double count;
     
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     @JsonBackReference
     private User owner;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="receiptID")
     @JsonBackReference
     private Receipt receipt;
@@ -111,6 +113,7 @@ public class Product {
     }
     
     @Transient
+    @JsonIgnore
     public BigDecimal getPricePerPerson(){
         return BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
     }

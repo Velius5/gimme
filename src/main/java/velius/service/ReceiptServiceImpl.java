@@ -47,5 +47,15 @@ public class ReceiptServiceImpl implements ReceiptService {
         List<Receipt> receipts = repository.findFirst6ByOwnerOrderByIdDesc(user);
         return receipts;
     }
+
+    @Override
+    public Receipt findById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public Long deleteReceipt(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
