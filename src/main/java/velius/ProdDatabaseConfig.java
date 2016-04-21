@@ -33,6 +33,7 @@ public class ProdDatabaseConfig {
         userRepository.save(new User("Robert", "Nowak", "robert555@gmail.com", "e10adc3949ba59abbe56e057f20f883e", true, 2));
         userRepository.save(new User("Mateusz", "Jakiśtam", "mati22@wp.pl", "e10adc3949ba59abbe56e057f20f883e", false, 2));
         userRepository.save(new User("Eugeniusz", "Jakieśnazwisko", "eugeniusz@wp.pl", "e10adc3949ba59abbe56e057f20f883e", true, 2));
+        userRepository.save(new User("Robert", "Zając", "zazajac@gmail.com", "81dc9bdb52d04dc20036dbd8313ed055", true, 2));
     }
     
 }
