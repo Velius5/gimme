@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,11 +30,20 @@ import velius.service.UserService;
 @Controller
 public class FriendsController {
     class ModelFriend{
+        private Long id;
         private String name;
         private String surname;
-        private byte[] photo;
+        private String photo;
         private BigDecimal bilans;
 
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+        
         /**
          * @return the name
          */
@@ -65,14 +75,14 @@ public class FriendsController {
         /**
          * @return the photo
          */
-        public byte[] getPhoto() {
+        public String getPhoto() {
             return photo;
         }
 
         /**
          * @param photo the photo to set
          */
-        public void setPhoto(byte[] photo) {
+        public void setPhoto(String photo) {
             this.photo = photo;
         }
 
@@ -107,9 +117,10 @@ public class FriendsController {
         List<ModelFriend> friendList = new ArrayList();
         for(User friend : friends){
             ModelFriend mf = new ModelFriend();
+            mf.setId(friend.getId());
             mf.setName(friend.getName());
             mf.setSurname(friend.getSurname());
-            mf.setPhoto(friend.getImage());
+            mf.setPhoto(Base64.encodeBase64String(friend.getImage()));
             
             BigDecimal bilans =  BigDecimal.ZERO;
             List<Product> temp = productService.getMyDebtsToFriend(user, friend);
@@ -126,6 +137,6 @@ public class FriendsController {
         }
         model.addAttribute("znajomi", friendList);
         
-        return "friends";
+        return "panel_friends";
     }
 }

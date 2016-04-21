@@ -10,3 +10,11 @@ nbactions.xml
 target
 target/*
 *.properties
+*/target/**
+.classpath
+.project
+.settings/
+target/
+*.lst
+*.jar
+*.original
