@@ -545,3 +545,22 @@ body.registration_page {
     border: 1px transparent solid;
     border-radius: 10px;
 }
+
+.friends_page .your_friends {
+    float: left;
+}
+
+.friends_page .your_friends .overflow {
+    height: 800px;
+}
+
+.friends_page .your_friends .friend_img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.friends_page .your_friends .friend_img > img {
+    height: 100%;
+    width: auto;
+}
