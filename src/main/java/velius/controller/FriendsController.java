@@ -114,14 +114,12 @@ public class FriendsController {
             BigDecimal bilans =  BigDecimal.ZERO;
             List<Product> temp = productService.getMyDebtsToFriend(user, friend);
             for(Product prod : temp){
-                BigDecimal debug = prod.getPricePerPerson();
-                bilans.subtract(debug);
+                bilans.subtract(prod.getPricePerPerson());
             }
             
             temp = productService.getFriendDebtsToMe(user, friend);
             for(Product prod : temp){
-                BigDecimal debug = prod.getPricePerPerson();
-                bilans.add(debug);
+                bilans.add(prod.getPricePerPerson());
             }
             mf.setBilans(bilans);
             friendList.add(mf);
