@@ -13,6 +13,8 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import pl.piotr.AbbyOCR;
 import pl.piotr.TessOCR;
 import velius.model.Product;
 import velius.model.Receipt;
@@ -44,17 +47,23 @@ public class ReceiptApiController {
     }
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
-    public Receipt addReceipt(@RequestParam String file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
+    public Receipt addReceipt(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
         List<Product> productList = new ArrayList<Product>();
         User owner = userService.getUser(id);
+        byte[] image=file.getBytes();
+        //byte[] image = Base64.decodeBase64(byteArr);
+        String img = Base64.encodeBase64String(image);
         
-        byte[] image = Base64.decodeBase64(file);
         Receipt receipt = new Receipt(image);
         
-        InputStream in = new ByteArrayInputStream(image);
-	BufferedImage img = ImageIO.read(in);
         
-        pl.piotr.Receipt tempReceipt = TessOCR.recognizeReceipt(img);
+        
+        pl.piotr.Receipt tempReceipt=null;
+        try {
+            tempReceipt = TessOCR.recognizeReceipt(image);
+        } catch (Exception ex) {
+            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         receipt.setDate(tempReceipt.getDate());
         System.out.println(tempReceipt.getDate());
         receipt.setName(tempReceipt.getShopName());

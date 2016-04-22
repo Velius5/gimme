@@ -6,10 +6,14 @@
 package pl.piotr;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import net.sourceforge.tess4j.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,13 +45,15 @@ public class TessOCR {
      * Funkcja służąca do rozpoznawania tekstu zawartego na zdjęciu paragonu.
      * Funkcja rozpoznaje z jakiego sklepu pochodzi paragon i zwraca obiekt
      * odpowiedniej klasy.
-     * @param img zdjęcie paragonu w formacie JPG
+     * @param image zdjęcie paragonu w formacie JPG
      * @return obiekt klasy implementującej klase abstrakcyjną pl.piotr.Receipt
      */
-    public static Receipt recognizeReceipt(BufferedImage img){
+    public static Receipt recognizeReceipt(byte[] image){
         int minEditLength = 100;
         Receipt receipt = null;
         try {
+            InputStream in = new ByteArrayInputStream(image);
+            BufferedImage img = ImageIO.read(in);
             ocr.setLanguage("pol");
             String text = ocr.doOCR(img).toUpperCase();
             System.out.println(text);
@@ -87,6 +93,8 @@ public class TessOCR {
             
         } catch (TesseractException ex) {
             Logger.getLogger(TessOCR.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(IOException e){
+            e.printStackTrace();
         }
         return receipt;
     }

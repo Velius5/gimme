@@ -9,9 +9,9 @@ import java.net.*;
  */
 public class ClientSettings {
 	// Name of application you created
-	public static final String APPLICATION_ID = "";
+	public static final String APPLICATION_ID = "Gimme Application";
 	// Password should be sent to your e-mail after application was created
-	public static final String PASSWORD = "";
+	public static final String PASSWORD = "hYhjyKTVA1qg6j67bBTWLOOS";
 	
 	public static void setupProxy()
 	{

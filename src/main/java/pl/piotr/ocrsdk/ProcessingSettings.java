@@ -7,6 +7,20 @@ public class ProcessingSettings {
 				outputFormat);
 	}
 
+    /**
+     * @return the imageSource
+     */
+    public String getImageSource() {
+        return imageSource;
+    }
+
+    /**
+     * @param imageSource the imageSource to set
+     */
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
+    }
+
 	public enum OutputFormat {
 		txt, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, xml
 	}
@@ -50,4 +64,5 @@ public class ProcessingSettings {
 
 	private String language = "English";
 	private OutputFormat outputFormat = OutputFormat.pdfSearchable;
+        private String imageSource = "photo";
 }

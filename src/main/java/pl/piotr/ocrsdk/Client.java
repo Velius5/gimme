@@ -5,6 +5,7 @@ import java.net.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.io.IOUtils;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,19 +22,19 @@ public class Client {
 	 * Upload image to server and optionally append it to existing task. If
 	 * taskId is null, creates new task.
 	 */
-	public Task submitImage(String filePath, String taskId) throws Exception {
-		String taskPart = "";
-		if (taskId != null && !taskId.isEmpty()) {
-			taskPart = "?taskId=" + taskId;
-		}
-		URL url = new URL(serverUrl + "/submitImage" + taskPart);
-		return postFileToUrl(filePath, url);
-	}
+        /*public Task submitImage(String filePath, String taskId) throws Exception {
+        String taskPart = "";
+        if (taskId != null && !taskId.isEmpty()) {
+        taskPart = "?taskId=" + taskId;
+        }
+        URL url = new URL(serverUrl + "/submitImage" + taskPart);
+        return postFileToUrl(filePath, url);
+        }*/
 
-	public Task processImage(String filePath, ProcessingSettings settings)
+	public Task processImage(byte[] image, ProcessingSettings settings)
 			throws Exception {
 		URL url = new URL(serverUrl + "/processImage?" + settings.asUrlParams());
-		return postFileToUrl(filePath, url);
+		return postFileToUrl(image, url);
 	}
 
 	public Task processRemoteImage( String fileUrl, ProcessingSettings settings)
@@ -54,31 +55,31 @@ public class Client {
 		return getResponse(connection);
 	}
 
-	public Task processBusinessCard(String filePath, BusCardSettings settings)
-			throws Exception {
-		URL url = new URL(serverUrl + "/processBusinessCard?"
-				+ settings.asUrlParams());
-		return postFileToUrl(filePath, url);
-	}
+        /*public Task processBusinessCard(String filePath, BusCardSettings settings)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processBusinessCard?"
+        + settings.asUrlParams());
+        return postFileToUrl(filePath, url);
+        }*/
 
-	public Task processTextField(String filePath, TextFieldSettings settings)
-			throws Exception {
-		URL url = new URL(serverUrl + "/processTextField?"
-				+ settings.asUrlParams());
-		return postFileToUrl(filePath, url);
-	}
+        /*public Task processTextField(String filePath, TextFieldSettings settings)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processTextField?"
+        + settings.asUrlParams());
+        return postFileToUrl(filePath, url);
+        }*/
 
-	public Task processBarcodeField(String filePath, BarcodeSettings settings)
-			throws Exception {
-		URL url = new URL(serverUrl + "/processBarcodeField?"
-				+ settings.asUrlParams());
-		return postFileToUrl(filePath, url);
-	}
+        /*public Task processBarcodeField(String filePath, BarcodeSettings settings)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processBarcodeField?"
+        + settings.asUrlParams());
+        return postFileToUrl(filePath, url);
+        }*/
 
-	public Task processCheckmarkField(String filePath) throws Exception {
-		URL url = new URL(serverUrl + "/processCheckmarkField");
-		return postFileToUrl(filePath, url);
-	}
+        /*public Task processCheckmarkField(String filePath) throws Exception {
+        URL url = new URL(serverUrl + "/processCheckmarkField");
+        return postFileToUrl(filePath, url);
+        }*/
 
 	/**
 	 * Recognize multiple text, barcode and checkmark fields at one call.
@@ -89,11 +90,11 @@ public class Client {
 	 * @param settingsPath
 	 *            path to xml file describing processing settings
 	 */
-	public Task processFields(String taskId, String settingsPath)
-			throws Exception {
-		URL url = new URL(serverUrl + "/processFields?taskId=" + taskId);
-		return postFileToUrl(settingsPath, url);
-	}
+        /*public Task processFields(String taskId, String settingsPath)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processFields?taskId=" + taskId);
+        return postFileToUrl(settingsPath, url);
+        }*/
 	
 	
 	/**
@@ -103,10 +104,10 @@ public class Client {
 	 * http://ocrsdk.com/documentation/apireference/processMRZ/
 	 * 
 	 */
-	public Task processMrz(String filePath ) throws Exception {
-		URL url = new URL(serverUrl + "/processMrz" );
-		return postFileToUrl(filePath, url);
-	}
+        /*public Task processMrz(String filePath ) throws Exception {
+        URL url = new URL(serverUrl + "/processMrz" );
+        return postFileToUrl(filePath, url);
+        }*/
 	
 	public Task getTaskStatus(String taskId) throws Exception {
 		URL url = new URL(serverUrl + "/getTaskStatus?taskId=" + taskId);
@@ -121,7 +122,7 @@ public class Client {
 		return getTaskListResponse(connection);
 	}
 
-	public void downloadResult(Task task, String outputFile) throws Exception {
+	public String downloadResult(Task task) throws Exception {
 		if (task.Status != Task.TaskStatus.Completed) {
 			throw new IllegalArgumentException("Invalid task status");
 		}
@@ -139,17 +140,9 @@ public class Client {
 		BufferedInputStream reader = new BufferedInputStream(
 				connection.getInputStream());
 
-		FileOutputStream out = new FileOutputStream(outputFile);
+		String output = IOUtils.toString(reader, "UTF-8");
 
-		try {
-			byte[] data = new byte[1024];
-			int count;
-			while ((count = reader.read(data, 0, data.length)) != -1) {
-				out.write(data, 0, count);
-			}
-		} finally {
-			out.close();
-		}
+		return output;
 	}
 
 	public Task deleteTask(String taskId) throws Exception {
@@ -215,15 +208,13 @@ public class Client {
 		return dataBuffer;
 	}
 
-	private Task postFileToUrl(String filePath, URL url) throws Exception {
-		byte[] fileContents = readDataFromFile(filePath);
-
+	private Task postFileToUrl(byte[] image, URL url) throws Exception {
 		HttpURLConnection connection = openPostConnection(url);
-		connection.setRequestProperty("Content-Length", Integer.toString(fileContents.length));
+		connection.setRequestProperty("Content-Length", Integer.toString(image.length));
 
 		OutputStream stream = connection.getOutputStream();
 		try {
-			stream.write(fileContents);
+			stream.write(image);
 		} finally {
 			stream.close();
 		}
