@@ -16,10 +16,10 @@
                     <div class="overflow">
                         <table>
                             <tr th:each="znajomy : ${znajomi}">
-                                <td><div class="friend_img"><img th:src="@{'data:image/jpeg;base64,'+${znajomy.photo}}"/></div></td>
+                                <td><div class="friend_img"><img th:src="${znajomy.photo} ? 'data:image/jpeg;base64,'+${znajomy.photo} : '../images/icons/default-user.png'"/></div></td>
                                 <td th:text="${znajomy.name} + ' ' + ${znajomy.surname}">Patryk Dobrzyński</td>
                                 <td th:text="${znajomy.bilans}  + 'zł'">2.99zł</td>
-                                <td><a th:href="'panel/friends/delete/' + ${znajomy.id}"><img title="Usuń znajomego" src="images/icons/pay.png"/></a></td>
+                                <td><a th:href="'panel/friends/delete/' + ${znajomy.id}"><img title="Usuń znajomego" th:src="@{/images/icons/remove_user.png}"/></a></td>
                             </tr>                    
                         </table>
                     </div>

@@ -108,7 +108,7 @@ public class FriendsController {
     @Autowired
     ProductService productService;
     
-    @RequestMapping("/")
+    @RequestMapping("")
     public String friendsPage(Model model, Principal principal){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
