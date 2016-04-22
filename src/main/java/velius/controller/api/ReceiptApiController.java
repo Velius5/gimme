@@ -49,7 +49,7 @@ public class ReceiptApiController {
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public Receipt addReceipt(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
         List<Product> productList = new ArrayList<Product>();
-        User owner = userService.getUser(id);
+        User owner = userService.getUser(id);      
         byte[] image=file.getBytes();
         //byte[] image = Base64.decodeBase64(byteArr);
         String img = Base64.encodeBase64String(image);

@@ -1,8 +1,11 @@
 package pl.piotr;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.Vector;
+import org.apache.commons.lang3.StringUtils;
 import pl.piotr.ocrsdk.Client;
 import pl.piotr.ocrsdk.ProcessingSettings;
 import pl.piotr.ocrsdk.Task;
@@ -14,6 +17,7 @@ import pl.piotr.ocrsdk.Task;
 public class AbbyOCR {
 
     private static Client restClient;
+    private static ArrayList<String> shopHeaderList;
 
     public static Receipt recognizeReceipt(byte[] img) throws Exception {
         System.out.println("Process documents using ABBYY Cloud OCR SDK.\n");
@@ -30,9 +34,9 @@ public class AbbyOCR {
         restClient.password = ClientSettings.PASSWORD;
 
         //Vector<String> argList = new Vector<String>(Arrays.asList(args));
-        String language = "Polish";       
+        String language = "Polish";
         String imageSource = "photo";
-        
+
         ProcessingSettings.OutputFormat outputFormat = ProcessingSettings.OutputFormat.txt;
 
         ProcessingSettings settings = new ProcessingSettings();
@@ -41,14 +45,48 @@ public class AbbyOCR {
         settings.setImageSource(imageSource);
 
         Task task = null;
-        
+
         task = restClient.processImage(img, settings);
 
-         
+        String text = waitAndDownloadResult(task);
+        System.out.println(text);
 
-        String result = waitAndDownloadResult(task);
-        System.out.println(result);
-        return new Biedronka();
+        int minEditLength = 100;
+        Receipt receipt = null;
+
+        Scanner scaner = new Scanner(text);
+        String line = scaner.nextLine();
+        int tmp = 0;
+        int LD;
+        for (int i = 0; i < shopHeaderList.size(); i++) {
+            LD = StringUtils.getLevenshteinDistance(line, shopHeaderList.get(i));
+            if (LD < minEditLength) {
+                minEditLength = LD;
+                tmp = i;
+            }
+            //System.out.println(LD);
+        }
+        //System.out.println(tmp);
+        switch (tmp) {
+            case 0:
+                receipt = new Biedronka();
+                break;
+            case 1:
+                receipt = new Lidl();
+                break;
+            case 2:
+                receipt = new Tesco();
+                break;
+            case 3:
+                receipt = new Zabka();
+                break;
+        }
+
+        receipt.setDate(text);
+        receipt.setProductList(text);
+        receipt.setSum(text);
+
+        return receipt;
     }
 
     /**
@@ -101,4 +139,11 @@ public class AbbyOCR {
 		}
 		return task;
 	}
+    public static void init(){
+        shopHeaderList = new ArrayList<>();
+        shopHeaderList.add("BIEDRONKA \"CODZIENNIE NISKIE CENY\"");
+        shopHeaderList.add("LIDL POLSKA SKLEPY SPOZYWCZE");
+        shopHeaderList.add("TESCO /POLSKA/ SP Z.O.O");
+        shopHeaderList.add("SKLEP ZABKA");
+    }
 }
