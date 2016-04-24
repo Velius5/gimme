@@ -80,7 +80,7 @@ public class Tesco extends Receipt {
         }
         temp = "SPRZEDAZ OPODATK";
         while (scaner.hasNextLine()) {
-            String name = scaner.findInLine(Pattern.compile("(\\p{Alnum}|\\p{Space}){1,18}"));
+            String name = scaner.findInLine(Pattern.compile("(\\p{Alnum}|\\p{Space}|[ĄĆĘŁŃÓŹŻ]){1,18}"));
             int j = 0;
             int i;
             for (i = 0; i < temp.length() && i < name.length(); i++)
@@ -166,7 +166,7 @@ public class Tesco extends Receipt {
     public void setSum(String txt) {
         Scanner scaner = new Scanner(txt);
         while(scaner.hasNextLine()){
-            String temp = scaner.findInLine("(?>SUM. PLN)\\s");
+            String temp = scaner.findInLine("(?>SUM.\\s{1,}PLN)\\s");
             if(temp != null){
                 
                 String sum = scaner.findInLine("(\\w){1,3}(,|.)?(\\w){0,2}");
