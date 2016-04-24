@@ -3,7 +3,6 @@ pl\piotr\Product.class
 pl\piotr\ocrsdk\BusCardSettings.class
 velius\model\User.class
 velius\controller\api\UserEditProfileApiController.class
-velius\controller\FriendsController.class
 pl\piotr\ClientSettings.class
 pl\piotr\ocrsdk\BusCardSettings$OutputFormat.class
 velius\controller\ReceiptController.class
@@ -16,7 +15,6 @@ velius\repository\ProductRepository.class
 velius\service\ProductService.class
 velius\dto\EditProfileDTO.class
 pl\piotr\ocrsdk\Client.class
-velius\controller\api\UserApiController.class
 pl\piotr\ocrsdk\Base64.class
 velius\controller\PanelController.class
 velius\WebSecurityConfig.class
@@ -49,9 +47,7 @@ velius\model\Receipt.class
 velius\controller\PanelSettingsController.class
 pl\piotr\ocrsdk\ProcessingSettings$1.class
 velius\Application.class
-velius\controller\FriendsController$ModelFriend.class
 velius\validation\RegistrationValidation.class
 pl\piotr\ocrsdk\BarcodeSettings.class
 velius\model\Friend.class
-velius\service\UserServiceImpl.class
 velius\service\UserService.class

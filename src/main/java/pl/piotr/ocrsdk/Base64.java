@@ -180,11 +180,11 @@ public class Base64 {
      * Call as <code>Base64 [string]</code>.
      */
 
-    public static void
-    main(String[] args) {
-    	System.out.println("encode: " + args[0]  + " -> (" 
-    	    + encode(args[0]) + ")");
-    	System.out.println("decode: " + args[0]  + " -> (" 
-    	    + new String(decode(args[0])) + ")");
-    }
+//    public static void
+//    main(String[] args) {
+//    	System.out.println("encode: " + args[0]  + " -> (" 
+//    	    + encode(args[0]) + ")");
+//    	System.out.println("decode: " + args[0]  + " -> (" 
+//    	    + new String(decode(args[0])) + ")");
+//    }
 }

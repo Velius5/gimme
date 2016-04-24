@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import jdk.nashorn.internal.objects.NativeArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +63,10 @@ public class UserServiceImpl implements UserService {
         List<Friend> friends = repository.findById(id).getFriends();
         List<User> users = new ArrayList<>();
         for(Friend friend : friends) {
-            User user = repository.findById(friend.getFriendId());
-            users.add(user);
+            if(friend.getStatus() == 1) {
+                User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
         }
         return users;
     }
@@ -79,5 +82,34 @@ public class UserServiceImpl implements UserService {
         User user = repository.findByEmail(email);
         return user;
     }
+
+    @Override
+    public List<User> getUsersByFullnameLike(String fullname) {
+        List<User> usersList;
+        String nameAndSurname[] = fullname.split(" ");
+        if(nameAndSurname.length < 2)
+            usersList = repository.findTop30BySurnameContainingAndNameContaining(nameAndSurname[0], "");
+        else {
+            usersList = repository.findTop30BySurnameContainingAndNameContaining(nameAndSurname[0], nameAndSurname[1]);
+            if(usersList.isEmpty())
+            usersList = repository.findTop30BySurnameContainingAndNameContaining(nameAndSurname[1], nameAndSurname[0]);
+        }
+        
+        return usersList;
+    }
+
+    @Override
+    public List<User> getUserInvitations(long id) {
+        List<Friend> friends = repository.findById(id).getFriends();
+        List<User> users = new ArrayList<>();
+        for(Friend friend : friends) {
+            if(friend.getStatus() == 0) {
+                User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
+        }
+        return users;
+    }
+
 
 }

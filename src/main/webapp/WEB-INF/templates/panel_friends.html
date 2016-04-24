@@ -16,17 +16,41 @@
                     <div class="overflow">
                         <table>
                             <tr th:each="znajomy : ${znajomi}">
-                                <td><div class="friend_img"><img th:src="${znajomy.photo} ? 'data:image/jpeg;base64,'+${znajomy.photo} : '../images/icons/default-user.png'"/></div></td>
+                                <td><div class="friend_img"><img th:src="'/userphoto/' + ${znajomy.id}"/></div></td>
                                 <td th:text="${znajomy.name} + ' ' + ${znajomy.surname}">Patryk Dobrzyński</td>
                                 <td th:text="${znajomy.bilans}  + 'zł'">2.99zł</td>
-                                <td><a th:href="'panel/friends/delete/' + ${znajomy.id}"><img title="Usuń znajomego" th:src="@{/images/icons/remove_user.png}"/></a></td>
+                                <td><a title="Usuń ze znajomych" th:href="'panel/friends/delete/' + ${znajomy.id}"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>
                 </div>
                 
-                <div class="add_friend">
+                <div class="outgoing add_friend" ng-controller="APIGetFriends">
                     <h1>Dodaj znajomego</h1>
+                    <input type="text" ng-change="searchFriend()" ng-model="searchFriends" id="searchFriendInput" placeholder="Nazwisko Imię"/>
+                    <input type="hidden" id="userId" th:value="${userId}"/>
+                    <div class="overflow">
+                        <table>
+                            <tr ng-repeat="apiFriend in friendsList">
+                                <td><div class="friend_img"><img src="/userphoto/[[apiFriend.id]]"/></div></td>
+                                <td>[[apiFriend.name]] [[apiFriend.surname]]</td>
+                                <td><a title="Wyślij zaproszenie do znajomych" href="friends/addfriend/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
+                            </tr>                    
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="outgoing add_friend">
+                    <h1>Zaproszenia do znajomych</h1>
+                    <div class="overflow">
+                        <table>
+                            <tr th:each="invitation : ${invitations}">
+                                <td><div class="friend_img"><img th:src="'/userphoto/' + ${invitation.id}"/></div></td>
+                                <td th:text="${invitation.name} + ' ' + ${invitation.surname}"></td>
+                                <td><a title="Zaakceptuj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
+                            </tr>                    
+                        </table>
+                    </div>
                 </div>
                 
             </div>
