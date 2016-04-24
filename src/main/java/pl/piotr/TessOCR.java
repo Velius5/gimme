@@ -16,6 +16,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import net.sourceforge.tess4j.*;
 import org.apache.commons.lang3.StringUtils;
+import pl.piotr.ReceiptsTemplates.Biedronka;
+import pl.piotr.ReceiptsTemplates.Lidl;
+import pl.piotr.ReceiptsTemplates.Receipt;
+import pl.piotr.ReceiptsTemplates.Tesco;
+import pl.piotr.ReceiptsTemplates.Zabka;
 
 /**
  * Główna klasa modułu aplikacji odpowiedzialnego za rozpoznawanie tekstu.

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.piotr;
+package pl.piotr.ReceiptsTemplates;
 
 import java.util.Date;
 import java.util.ArrayList;

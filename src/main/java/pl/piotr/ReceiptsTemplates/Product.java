@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.piotr;
+package pl.piotr.ReceiptsTemplates;
 
 /**
  * Klasa dostarczająca informacji o pojedynczym produkcie.
