@@ -58,7 +58,7 @@ public class ReceiptApiController {
         
         
         
-        pl.piotr.Receipt tempReceipt=null;
+        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
         try {
             tempReceipt = TessOCR.recognizeReceipt(image);
         } catch (Exception ex) {
@@ -71,7 +71,7 @@ public class ReceiptApiController {
         receipt.setSum(BigDecimal.valueOf(tempReceipt.getSum()));
         receiptService.save(receipt);
         
-        for(pl.piotr.Product product : tempReceipt.getProductList()) {
+        for(pl.piotr.ReceiptsTemplates.Product product : tempReceipt.getProductList()) {
             Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
             owner,receipt);
             productList.add(prod);

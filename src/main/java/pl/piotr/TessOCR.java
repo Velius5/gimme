@@ -5,6 +5,11 @@
  */
 package pl.piotr;
 
+import pl.piotr.ReceiptsTemplates.Receipt;
+import pl.piotr.ReceiptsTemplates.Zabka;
+import pl.piotr.ReceiptsTemplates.Tesco;
+import pl.piotr.ReceiptsTemplates.Lidl;
+import pl.piotr.ReceiptsTemplates.Biedronka;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,25 +27,11 @@ import org.apache.commons.lang3.StringUtils;
  * Pozwala na użycie silnika Tesseract OCR.
  * @author Piotr
  */
-public class TessOCR {
-    private static ArrayList<String> shopHeaderList;
-    private static ITesseract ocr;
-    
-    /**
-     *  Funkcja inicjująca tablicę z nazwami sklepów oraz ustawiająca niektóre
-     *  właściwości silnika OCR
-     */
-    public static void init(){
-        ocr = new Tesseract();
-        ocr.setLanguage("pol");
-        shopHeaderList = new ArrayList<>();
-        shopHeaderList.add("BIEDRONKA \"CODZIENNIE NISKIE CENY\"");
-        shopHeaderList.add("LIDL POLSKA SKLEPY SPOZYWCZE");
-        shopHeaderList.add("TESCO /POLSKA/ SP Z.O.O");
-        shopHeaderList.add("SKLEP ZABKA");
-    }
+public class TessOCR extends ReceiptParser{
+    private static ITesseract ocr = new Tesseract();
     
 
+    
     /**
      * Funkcja służąca do rozpoznawania tekstu zawartego na zdjęciu paragonu.
      * Funkcja rozpoznaje z jakiego sklepu pochodzi paragon i zwraca obiekt
@@ -50,60 +41,18 @@ public class TessOCR {
      */
     public static Receipt recognizeReceipt(byte[] image){
         int minEditLength = 100;
-        Receipt receipt = null;
+        String text = null;
         try {
+            ocr.setLanguage("pol");
             InputStream in = new ByteArrayInputStream(image);
             BufferedImage img = ImageIO.read(in);
             ocr.setLanguage("pol");
-            String text = ocr.doOCR(img).toUpperCase();
-            System.out.println(text);
-            Scanner scaner = new Scanner(text);
-            String line = scaner.nextLine();
-            
-            int tmp=0;
-            int LD;
-            for(int i=0;i<shopHeaderList.size();i++){
-                LD = StringUtils.getLevenshteinDistance(line, shopHeaderList.get(i));
-                if(LD < minEditLength){
-                    minEditLength = LD;
-                    tmp = i;
-                }
-                //System.out.println(LD);
-            }
-            //System.out.println(tmp);
-            switch(tmp){
-                case 0:
-                    receipt = new Biedronka();
-                    break;
-                case 1:
-                    receipt = new Lidl();
-                    break;
-                case 2:
-                    receipt = new Tesco();
-                    break;
-                case 3:
-                    receipt = new Zabka();
-                    break;
-            }
-            
-            receipt.setDate(text);
-            receipt.setProductList(text);
-            receipt.setSum(text);
-            
-            
+            text = ocr.doOCR(img).toUpperCase();
         } catch (TesseractException ex) {
             Logger.getLogger(TessOCR.class.getName()).log(Level.SEVERE, null, ex);
         }catch(IOException e){
             e.printStackTrace();
         }
-        return receipt;
+        return parseString(text);
     }
-    /*
-    public static void main(String[] args){
-        TessOCR.init();
-        File img = new File("bieda0.tif");
-        Receipt recognizeReceipt = TessOCR.recognizeReceipt(img);
-    }
-    */
-
 }

@@ -174,17 +174,4 @@ public class Base64 {
       } catch (ArrayIndexOutOfBoundsException e) {}
       return result;
     }
-
-    /**
-     * Test the decoder and encoder.
-     * Call as <code>Base64 [string]</code>.
-     */
-
-    public static void
-    main(String[] args) {
-    	System.out.println("encode: " + args[0]  + " -> (" 
-    	    + encode(args[0]) + ")");
-    	System.out.println("decode: " + args[0]  + " -> (" 
-    	    + new String(decode(args[0])) + ")");
-    }
 }
