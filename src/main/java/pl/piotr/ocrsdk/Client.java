@@ -17,7 +17,20 @@ public class Client {
 	public String password;
 
 	public String serverUrl = "http://cloud.ocrsdk.com";
-	
+
+	/*
+	 * Upload image to server and optionally append it to existing task. If
+	 * taskId is null, creates new task.
+	 */
+        /*public Task submitImage(String filePath, String taskId) throws Exception {
+        String taskPart = "";
+        if (taskId != null && !taskId.isEmpty()) {
+        taskPart = "?taskId=" + taskId;
+        }
+        URL url = new URL(serverUrl + "/submitImage" + taskPart);
+        return postFileToUrl(filePath, url);
+        }*/
+
 	public Task processImage(byte[] image, ProcessingSettings settings)
 			throws Exception {
 		URL url = new URL(serverUrl + "/processImage?" + settings.asUrlParams());
@@ -42,9 +55,59 @@ public class Client {
 		return getResponse(connection);
 	}
 
+        /*public Task processBusinessCard(String filePath, BusCardSettings settings)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processBusinessCard?"
+        + settings.asUrlParams());
+        return postFileToUrl(filePath, url);
+        }*/
+
+        /*public Task processTextField(String filePath, TextFieldSettings settings)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processTextField?"
+        + settings.asUrlParams());
+        return postFileToUrl(filePath, url);
+        }*/
+
+        /*public Task processBarcodeField(String filePath, BarcodeSettings settings)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processBarcodeField?"
+        + settings.asUrlParams());
+        return postFileToUrl(filePath, url);
+        }*/
+
+        /*public Task processCheckmarkField(String filePath) throws Exception {
+        URL url = new URL(serverUrl + "/processCheckmarkField");
+        return postFileToUrl(filePath, url);
+        }*/
+
+	/**
+	 * Recognize multiple text, barcode and checkmark fields at one call.
+	 * 
+	 * For details see
+	 * http://ocrsdk.com/documentation/apireference/processFields/
+	 * 
+	 * @param settingsPath
+	 *            path to xml file describing processing settings
+	 */
+        /*public Task processFields(String taskId, String settingsPath)
+        throws Exception {
+        URL url = new URL(serverUrl + "/processFields?taskId=" + taskId);
+        return postFileToUrl(settingsPath, url);
+        }*/
 	
 	
-	
+	/**
+	 * Process and parse Machine-Readable Zone (MRZ) of Passport, ID card, Visa etc
+	 * 
+	 * For details see
+	 * http://ocrsdk.com/documentation/apireference/processMRZ/
+	 * 
+	 */
+        /*public Task processMrz(String filePath ) throws Exception {
+        URL url = new URL(serverUrl + "/processMrz" );
+        return postFileToUrl(filePath, url);
+        }*/
 	
 	public Task getTaskStatus(String taskId) throws Exception {
 		URL url = new URL(serverUrl + "/getTaskStatus?taskId=" + taskId);

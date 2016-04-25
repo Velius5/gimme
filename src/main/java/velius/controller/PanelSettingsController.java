@@ -55,17 +55,7 @@ public class PanelSettingsController {
         model.addAttribute("userName", user.getName());
         model.addAttribute("userSurname", user.getSurname());
         model.addAttribute("userEmail", user.getEmail());
-        
-        
-        String base64Image = Base64.encodeBase64String(user.getImage());
-        if(base64Image == null) {
-            userPhoto = "../images/icons/default-user.png";
-        } else {
-            userPhoto = "data:image/jpeg;base64,"+base64Image;
-        }
-        
-    
-        model.addAttribute("userPhoto", userPhoto);
+        model.addAttribute("userId", user.getId());
         
         return "panel_settings";
     }

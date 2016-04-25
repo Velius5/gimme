@@ -47,6 +47,20 @@ public class UserApiController {
         return user;
     }
     
+    @RequestMapping(value = "/user/search/{id}/{fullname}", method=RequestMethod.GET)
+    public List<User> getUserByFullname(@PathVariable("id") Long id, @PathVariable("fullname") String fullname) {
+        User user = userService.getUser(id);
+        List<Friend> userFriends = user.getFriends();
+        List<User> usersList = userService.getUsersByFullnameLike(fullname);
+        List<User> selectedUsers = new ArrayList<>();
+        for(User friend : usersList) {
+            if(friend.getId() != id && !userFriends.contains(new Friend(friend.getId(), 0)) && !userFriends.contains(new Friend(friend.getId(), 1))) {
+                selectedUsers.add(friend);
+            }
+        }
+        return selectedUsers;
+    }
+    
     @RequestMapping(value = "/users/getall")
     public List<User> listUsers() {
         List<User> users = userService.getList();

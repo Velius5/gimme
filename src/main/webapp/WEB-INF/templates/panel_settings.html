@@ -20,7 +20,7 @@
                     </div>
                     
                     <div class="photo">
-                        <img th:src="${userPhoto}"/>
+                        <img th:src="'/userphoto/' + ${userId}"/>
                         <input type="file" name="photo" />
                     </div>
                     
