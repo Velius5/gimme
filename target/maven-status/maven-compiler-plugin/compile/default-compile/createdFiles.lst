@@ -2,11 +2,9 @@ velius\utils\HashGeneratorUtils.class
 pl\piotr\ReceiptsTemplates\Biedronka.class
 pl\piotr\ReceiptsTemplates\Receipt.class
 pl\piotr\ReceiptsTemplates\Tesco.class
-pl\piotr\ocrsdk\BusCardSettings.class
 velius\model\User.class
 velius\controller\api\UserEditProfileApiController.class
 pl\piotr\ClientSettings.class
-pl\piotr\ocrsdk\BusCardSettings$OutputFormat.class
 pl\piotr\ReceiptsTemplates\Lidl.class
 velius\controller\ReceiptController.class
 velius\validation\EditProfileValidation.class
@@ -36,7 +34,6 @@ velius\model\Product.class
 pl\piotr\ReceiptsTemplates\Zabka.class
 velius\controller\api\ReceiptApiController.class
 pl\piotr\ReceiptsTemplates\Product.class
-pl\piotr\ocrsdk\TextFieldSettings.class
 velius\controller\PanelFriendsController.class
 velius\repository\ReceiptRepository.class
 pl\piotr\ocrsdk\ProcessingSettings.class
@@ -53,7 +50,6 @@ velius\controller\PanelSettingsController.class
 pl\piotr\ocrsdk\ProcessingSettings$1.class
 velius\Application.class
 velius\validation\RegistrationValidation.class
-pl\piotr\ocrsdk\BarcodeSettings.class
 velius\model\Friend.class
 velius\service\UserServiceImpl.class
 velius\service\UserService.class

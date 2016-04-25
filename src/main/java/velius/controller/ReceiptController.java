@@ -70,4 +70,14 @@ public class ReceiptController {
         
         return "panel_receipts";
     }
+    
+    @RequestMapping("/add")
+    public String addReceiptPage(){
+        return "receipt_add";
+    }
+    /*
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addReceiptPhoto(Model model, Principal principal){
+        
+    }*/
 }

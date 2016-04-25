@@ -6,7 +6,12 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +24,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import net.coobird.thumbnailator.Thumbnails;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -137,8 +143,14 @@ public class User {
         return image;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImage(byte[] image) throws IOException {
+        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+        BufferedImage img = Thumbnails.of(temp).size(250,250).asBufferedImage();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        byte[] bytes = baos.toByteArray();
+        this.image = bytes;
     }
 
     public boolean isActive() {
