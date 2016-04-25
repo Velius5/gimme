@@ -8,8 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import pl.piotr.AbbyOCR;
-import pl.piotr.TessOCR;
+import pl.piotr.ReceiptParser;
 
 @Configuration
 @EnableAutoConfiguration
@@ -18,8 +17,7 @@ public class Application extends SpringBootServletInitializer {
 
     public static void main(final String[] args) throws TesseractException, IOException {
         SpringApplication.run(Application.class, args);
-        TessOCR.init();
-        AbbyOCR.init();
+        ReceiptParser.init();
         System.setProperty("jna.library.path", "src/main/resources");
         
         /* TEST POŁĄCZENIA Z API
