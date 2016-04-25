@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import velius.model.Receipt;
 import velius.model.User;
+import velius.service.ReceiptService;
 import velius.service.UserService;
 
 @Controller
@@ -30,6 +32,9 @@ public class ImagesController {
     
     @Autowired
     UserService userService;
+    
+    @Autowired
+    ReceiptService receiptService;
 
     @ResponseBody
     @RequestMapping(value = "/userphoto/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
@@ -45,4 +50,20 @@ public class ImagesController {
             return user.getImage();
         }
     }
+    
+    @ResponseBody
+    @RequestMapping(value = "/receiptphoto/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getReceiptPhoto(@PathVariable("id") Long id) throws IOException {
+        Receipt receipt = receiptService.findById(id);
+        byte[] img = null;
+        if(receipt == null || receipt.getImage() == null) {
+            ClassPathResource classPathResource = new ClassPathResource("static/images/icons/receipt_icon.png");
+            InputStream is = classPathResource.getInputStream();
+            img = IOUtils.toByteArray(is);
+            return img;
+        } else {
+            return receipt.getImage();
+        }
+    }
+    
 }
