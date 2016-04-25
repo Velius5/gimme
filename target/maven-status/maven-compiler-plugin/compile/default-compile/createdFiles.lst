@@ -1,0 +1,9 @@
+velius\utils\HashGeneratorUtils.class
+velius\controller\api\ApiTestController.class
+velius\controller\HomeController.class
+velius\WebSecurityConfig.class
+pl\piotr\TessOCR.class
+velius\controller\LoginController.class
+velius\controller\api\ApiPageController.class
+velius\Application.class
+velius\model\Friend.class
