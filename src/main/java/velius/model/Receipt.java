@@ -68,8 +68,35 @@ public class Receipt {
 
     public Receipt(){};
     
+    public Receipt(pl.piotr.ReceiptsTemplates.Receipt tempReceipt,byte[] image, User owner) throws IOException{
+        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+        BufferedImage img = Thumbnails.of(temp).size(640, 1138).asBufferedImage();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        byte[] bytes = baos.toByteArray();
+        this.image = bytes;
+        
+        this.date = tempReceipt.getDate();
+        this.name = tempReceipt.getShopName();
+        this.owner = owner;
+        this.sum = BigDecimal.valueOf(tempReceipt.getSum());
+        
+        for(pl.piotr.ReceiptsTemplates.Product product : tempReceipt.getProductList()) {
+            Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
+            owner,this);
+            productList.add(prod);
+        }
+    }
+    
     public Receipt(byte[] image) throws IOException {
-        this.image = image;
+        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+        BufferedImage img = Thumbnails.of(temp).size(640, 1138).asBufferedImage();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        byte[] bytes = baos.toByteArray();
+        this.image = bytes;
     }
     
     public Long getId() {
