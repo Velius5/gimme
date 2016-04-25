@@ -49,6 +49,7 @@ public class User {
     @JsonIgnore
     private String password;
     
+    @JsonIgnore
     @Column(name = "zdjecie", nullable = true, columnDefinition="longblob")
     private byte[] image;
     

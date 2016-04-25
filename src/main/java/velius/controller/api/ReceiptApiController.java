@@ -62,7 +62,7 @@ public class ReceiptApiController {
         
         pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
         try {
-            tempReceipt = AbbyOCR.recognizeReceipt(image);
+            tempReceipt = TessOCR.recognizeReceipt(image);
         } catch (Exception ex) {
             Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
         }
