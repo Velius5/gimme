@@ -91,6 +91,10 @@ public class PanelController {
         Product prod = productService.getProduct(prodId);
         productList.remove(prod);
         user.setProducts(productList);
+        List<Product> history = user.getProductsHistory();
+        history.add(prod);
+        user.setProductsHistory(history);
+        
         userService.save(user);
         return "panel";
     }

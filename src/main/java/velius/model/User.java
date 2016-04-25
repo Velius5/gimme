@@ -6,11 +6,11 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -184,6 +184,13 @@ public class User {
      */
     public List<Product> getProductsHistory() {
         return productsHistory;
+    }
+
+    /**
+     * @param productsHistory the productsHistory to set
+     */
+    public void setProductsHistory(List<Product> productsHistory) {
+        this.productsHistory = productsHistory;
     }
     
     
