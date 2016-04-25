@@ -14,7 +14,9 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     User findByEmailAndPassword(String email, String password);
     
-    User findByEmail(String email); 
+    User findByEmail(String email);
+    
+    
     
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM User u WHERE u.id = ?1")
     Boolean exists(Long id);

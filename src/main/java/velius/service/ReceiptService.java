@@ -19,4 +19,5 @@ public interface ReceiptService {
     List<Receipt> findAllByOwner(User user);
     List<Receipt> findLast6ByOwner(User user);
     Long deleteReceipt(Long id);
+    void deleteReceipt(Receipt receipt);
 }

@@ -55,7 +55,12 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     @Override
     public Long deleteReceipt(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repository.deleteById(id);
+    }
+
+    @Override
+    public void deleteReceipt(Receipt receipt) {
+        repository.delete(receipt);
     }
     
 }

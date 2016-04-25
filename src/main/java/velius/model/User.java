@@ -71,6 +71,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "productID"))
     @JsonIgnore
     private List<Product> products;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_product_history", 
+            joinColumns = @JoinColumn(name = "userID"), 
+            inverseJoinColumns = @JoinColumn(name = "productHistoryID"))
+    @JsonIgnore
+    private List<Product> productsHistory;
 
     public User() {
     }
@@ -171,6 +178,13 @@ public class User {
      */
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    /**
+     * @return the productsHistory
+     */
+    public List<Product> getProductsHistory() {
+        return productsHistory;
     }
     
     

@@ -101,7 +101,7 @@ public class AbbyOCR extends ReceiptParser{
 		// at http://ocrsdk.com/documentation/apireference/listFinishedTasks/).
 		while (task.isTaskActive()) {
 
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			System.out.println("Waiting..");
 			task = restClient.getTaskStatus(task.Id);
 		}

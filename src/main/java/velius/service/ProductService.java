@@ -16,6 +16,8 @@ import velius.model.User;
 public interface ProductService {
     Product save(Product Product);
     
+    Product getProduct(Long id);
+    
     List<Product>  getUserDebitors(User user);
 
     public List<Product> getMyDebts(User user);

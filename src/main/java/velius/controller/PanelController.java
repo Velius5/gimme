@@ -15,7 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import velius.model.Product;
 import velius.model.Receipt;
 import velius.model.User;
@@ -29,6 +31,7 @@ import velius.service.UserService;
  * zalogowanych użytkowników
  */
 @Controller
+@RequestMapping("/panel")
 public class PanelController {
     
     @Autowired
@@ -40,7 +43,7 @@ public class PanelController {
     @Autowired
     ProductService productService;
     
-    @RequestMapping("/panel")
+    @RequestMapping("/")
     public String panelPage(Model model, Principal principal) {
         
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -77,6 +80,18 @@ public class PanelController {
         model.addAttribute("bilans", saldo+" zł");
         model.addAttribute("przychody",incoming);
         model.addAttribute("wydatki", outcoming);
+        return "panel";
+    }
+    
+    @RequestMapping(value = "/product/paid/{prodId}/{payerId}",method = RequestMethod.GET)
+    public String productPaid(Model model, Principal principal,@PathVariable Long prodId,@PathVariable Long payerId){
+        User user = userService.getUser(payerId);
+        List<Product> productList = user.getProducts();
+        
+        Product prod = productService.getProduct(prodId);
+        productList.remove(prod);
+        user.setProducts(productList);
+        userService.save(user);
         return "panel";
     }
 }

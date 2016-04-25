@@ -17,8 +17,7 @@ import velius.model.User;
 public interface ReceiptRepository extends JpaRepository<Receipt, String> {
     Receipt findById(long id);
     List<Receipt> findAllByOwner(User user);
-    public List<Receipt> findFirst6ByOwnerOrderByIdDesc(User user);
-    
+    public List<Receipt> findFirst6ByOwnerOrderByIdDesc(User user);  
     Long deleteById(Long id);
 
 }

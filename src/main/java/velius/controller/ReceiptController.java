@@ -57,7 +57,16 @@ public class ReceiptController {
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteReceipt(Model model, Principal principal){
+    public String deleteReceipt(Model model, Principal principal,@PathVariable Long id){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        
+        User owner = userService.getUserByEmail(email);
+        
+        Receipt receipt = receiptService.findById(id);
+        if(owner.equals(receipt.getOwner())){
+            receiptService.deleteReceipt(receipt);
+        }
         
         return "panel_receipts";
     }
