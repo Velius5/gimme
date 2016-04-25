@@ -78,7 +78,6 @@ public class UserApiController {
             mf.setId(friend.getId());
             mf.setName(friend.getName());
             mf.setSurname(friend.getSurname());
-            mf.setPhoto(Base64.encodeBase64String(friend.getImage()));
             
             BigDecimal bilans =  BigDecimal.ZERO;
             List<Product> temp = productService.getMyDebtsToFriend(user, friend);

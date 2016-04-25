@@ -58,7 +58,7 @@ public class Receipt {
     @JsonManagedReference
     private List<Product> productList;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     private User owner;
     
