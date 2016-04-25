@@ -43,7 +43,7 @@ public class PanelController {
     @Autowired
     ProductService productService;
     
-    @RequestMapping("/")
+    @RequestMapping("")
     public String panelPage(Model model, Principal principal) {
         
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -52,14 +52,7 @@ public class PanelController {
         model.addAttribute("userName", user.getName());
         
         List<Receipt> receiptList = receiptService.findLast6ByOwner(user);
-        List<Receipt> receiptListWithBase64EncodedImages = new ArrayList<>();
-        for (int i = 0; i < receiptList.size(); i++) {
-            Receipt rec = receiptList.get(i);
-            String base64Image = Base64.encodeBase64String(rec.getImage());
-            rec.setDescription(base64Image);
-            receiptListWithBase64EncodedImages.add(rec);
-        }
-        model.addAttribute("paragony", receiptListWithBase64EncodedImages);
+        model.addAttribute("paragony", receiptList);
         
         List<Product> debtorList = productService.getUserDebitors(user);
         model.addAttribute("produktyDluznikow", debtorList);
@@ -96,6 +89,6 @@ public class PanelController {
         user.setProductsHistory(history);
         
         userService.save(user);
-        return "panel";
+        return "redirect:/panel";
     }
 }
