@@ -91,4 +91,6 @@ public class PanelController {
         userService.save(user);
         return "redirect:/panel";
     }
+    
+    
 }

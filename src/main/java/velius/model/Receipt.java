@@ -7,12 +7,14 @@ package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +27,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.Transient;
-import org.hibernate.annotations.Cascade;
+import net.coobird.thumbnailator.Thumbnails;
 
 /**
  * Klasa mapująca encję z bazy danych dotyczącą paragonu na obiekt.
@@ -67,8 +68,35 @@ public class Receipt {
 
     public Receipt(){};
     
+    public Receipt(pl.piotr.ReceiptsTemplates.Receipt tempReceipt,byte[] image, User owner) throws IOException{
+        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+        BufferedImage img = Thumbnails.of(temp).size(640, 1138).asBufferedImage();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        byte[] bytes = baos.toByteArray();
+        this.image = bytes;
+        
+        this.date = tempReceipt.getDate();
+        this.name = tempReceipt.getShopName();
+        this.owner = owner;
+        this.sum = BigDecimal.valueOf(tempReceipt.getSum());
+        
+        for(pl.piotr.ReceiptsTemplates.Product product : tempReceipt.getProductList()) {
+            Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
+            owner,this);
+            productList.add(prod);
+        }
+    }
+    
     public Receipt(byte[] image) throws IOException {
-        this.image = image;
+        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+        BufferedImage img = Thumbnails.of(temp).size(640, 1138).asBufferedImage();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        byte[] bytes = baos.toByteArray();
+        this.image = bytes;
     }
     
     public Long getId() {
@@ -125,10 +153,15 @@ public class Receipt {
     /**
      * @param image the image to set
      */
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImage(byte[] image) throws IOException {
+        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+        BufferedImage img = Thumbnails.of(temp).size(640, 1138).asBufferedImage();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "jpg", baos);
+        byte[] bytes = baos.toByteArray();
+        this.image = bytes;
     }
-
     /**
      * @param description the description to set
      */

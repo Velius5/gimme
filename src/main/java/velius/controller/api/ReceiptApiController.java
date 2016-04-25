@@ -56,30 +56,13 @@ public class ReceiptApiController {
         //byte[] image = Base64.decodeBase64(byteArr);
         String img = Base64.encodeBase64String(image);
         
-        Receipt receipt = new Receipt(image);
-        
-        
-        
         pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
         try {
             tempReceipt = TessOCR.recognizeReceipt(image);
         } catch (Exception ex) {
             Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        receipt.setDate(tempReceipt.getDate());
-        System.out.println(tempReceipt.getDate());
-        receipt.setName(tempReceipt.getShopName());
-        receipt.setOwner(owner);
-        receipt.setSum(BigDecimal.valueOf(tempReceipt.getSum()));
-        receiptService.save(receipt);
-        
-        for(pl.piotr.ReceiptsTemplates.Product product : tempReceipt.getProductList()) {
-            Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
-            owner,receipt);
-            productList.add(prod);
-        }
-        
-        receipt.setProductList(productList);
+        Receipt receipt = new Receipt(tempReceipt,image,owner);
         receiptService.save(receipt);
         
         System.out.println("Dodano paragon."); 
@@ -91,6 +74,7 @@ public class ReceiptApiController {
         Receipt receipt = receiptService.findById(id);
         return receipt;
     }
+    
     
     /*@RequestMapping(value = "/test")
     public Receipt testReceipts() throws IOException {
