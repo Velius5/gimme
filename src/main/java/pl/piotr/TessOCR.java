@@ -55,12 +55,4 @@ public class TessOCR extends ReceiptParser{
         }
         return receipt;
     }
-    /*
-    public static void main(String[] args){
-        TessOCR.init();
-        File img = new File("bieda0.tif");
-        Receipt recognizeReceipt = TessOCR.recognizeReceipt(img);
-    }
-    */
-
 }
