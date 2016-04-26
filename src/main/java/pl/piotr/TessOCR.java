@@ -7,8 +7,10 @@ package pl.piotr;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -16,6 +18,10 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import net.sourceforge.tess4j.*;
 import org.apache.commons.lang3.StringUtils;
+import org.openimaj.image.DisplayUtilities;
+import org.openimaj.image.ImageUtilities;
+import org.openimaj.image.MBFImage;
+import org.openimaj.image.processing.edges.CannyEdgeDetector;
 import pl.piotr.ReceiptsTemplates.Biedronka;
 import pl.piotr.ReceiptsTemplates.Lidl;
 import pl.piotr.ReceiptsTemplates.Receipt;
@@ -45,6 +51,11 @@ public class TessOCR extends ReceiptParser{
         try {
             InputStream in = new ByteArrayInputStream(image);
             BufferedImage img = ImageIO.read(in);
+//            MBFImage im = ImageUtilities.createMBFImage(img, true);
+//            im.processInplace(new CannyEdgeDetector());
+//            DisplayUtilities.display(im);
+//            BufferedImage immm = ImageUtilities.createBufferedImageForDisplay(im);
+            
             ocr.setLanguage("pol");
             String text = ocr.doOCR(img).toUpperCase();
             return parseString(text);
