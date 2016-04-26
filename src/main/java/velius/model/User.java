@@ -65,8 +65,7 @@ public class User {
     @Column(name = "uprawnienia")
     private int role;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_uzytkownika")
+    @OneToMany(mappedBy = "userId",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Friend> friends;
     

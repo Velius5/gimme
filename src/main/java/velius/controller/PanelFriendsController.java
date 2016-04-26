@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import velius.model.Friend;
 import velius.model.ModelFriend;
 import velius.model.Product;
@@ -94,7 +95,10 @@ public class PanelFriendsController {
         if(id == user.getId() || friends.contains(friend) || invitations.contains(friend)) {
             message = friend.getName() + " " + friend.getSurname() + " jest już w gronie Twoich znajomych, bądź też wysłaleś już zaproszenie";
         } else {
-            user.getFriends().add(new Friend(friend.getId(), 0));
+            List<Friend> friendList = user.getFriends();
+            Friend fr = new Friend(user,friend, 0);
+            friendList.add(new Friend(user,friend, 0));
+            user.setFriends(friendList);
             userService.save(user);
             message = "Wysłano zaproszenie do grona znajomych dla " + friend.getName() + " " + friend.getSurname();
         }
@@ -105,4 +109,18 @@ public class PanelFriendsController {
         return "panel_friends_adding";
     }
     
+    @RequestMapping(value = "/remove/{id}",method = RequestMethod.GET)
+    public String removeFriend(@PathVariable Long id){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userService.getUserByEmail(email);
+        
+        User friend = userService.getUser(id);
+        
+        List<Friend> friendsList = user.getFriends();
+        
+       // friendsList.remove();
+        
+        return "redirect:/panel/friends";
+    }
 }
