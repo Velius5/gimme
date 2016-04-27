@@ -18,12 +18,14 @@
         android:id="@+id/image_camera1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/fab" />
+        android:layout_above="@+id/btn_wyslij_paragon_na_serw"
+
+        />
 
 
     <!--wlacznik aparatu-->
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/fab"
+        android:id="@+id/btn_wyslij_paragon_na_serw"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_camera"
@@ -31,6 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center"
         style="vertical"
+        android:text="Wyslij zdjęcie"
         android:adjustViewBounds="false"
         android:theme="@style/AppTheme.Dark" />
 

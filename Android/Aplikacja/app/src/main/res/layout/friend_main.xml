@@ -1,13 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="{relativePackage}.${Friend_Activity}" >
+    tools:context="{relativePackage}.${Friend_Activity}"
+    android:orientation="vertical">
 <!--
     tools:context="{relativePackage}.${activityClass}" >
 -->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Lista znajomych"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:layout_marginBottom="8dp"/>
 
     <ListView
         android:id="@+id/list"
@@ -17,4 +28,4 @@
         android:layout_alignParentTop="true" >
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>

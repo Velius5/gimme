@@ -8,36 +8,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CustomListAdapter extends ArrayAdapter<String> {
+import com.loopj.android.image.SmartImageView;
 
-    private final Activity context;
-    private final String[] itemname;
-    private final Integer[] imgid;
+import java.util.ArrayList;
+import java.util.List;
 
-    public CustomListAdapter(Activity context, String[] itemname, Integer[] imgid) {
-        super(context, R.layout.my_friend_list, itemname);
+import zespolowe.pl.aplikacja.functions.SessionManager;
+import zespolowe.pl.aplikacja.model.Friend;
+
+public class CustomListAdapter extends ArrayAdapter {
+    private Activity context;
+//    private Friend_Activity.MyAsyncTask context ;
+    private List<Friend> friends = new ArrayList<>();
+
+    public CustomListAdapter(Activity context, List<Friend> friends) {
+        super(context, R.layout.my_friend_list, friends);
         // TODO Auto-generated constructor stub
 
         this.context=context;
-        this.itemname=itemname;
-        this.imgid=imgid;
+        this.friends = friends;
     }
 
     public View getView(int position,View view,ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.my_friend_list, null,true);
+        View rowView=inflater.inflate(R.layout.my_friend_list, null, true);
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.item);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        /*TextView extratxt = (TextView) rowView.findViewById(R.id.textView1);*/
+        SmartImageView imageView = (SmartImageView) rowView.findViewById(R.id.icon);
+        TextView balanceTitle = (TextView) rowView.findViewById(R.id.saldo);
 
-        txtTitle.setText(itemname[position]);
-        imageView.setImageResource(imgid[position]);
+        txtTitle.setText(friends.get(position).getName() + " " + friends.get(position).getSurname());
+        balanceTitle.setText(String.valueOf(friends.get(position).getBilans() + " zł"));
+        imageView.setImageUrl(SessionManager.getSERWERURL() + "userphoto/"+ friends.get(position).getId());
+//        if(friends.get(position).getPhoto() !=null) {
+//            byte[] imageAsBytes = Base64.decode(friends.get(position).getPhoto(), Base64.DEFAULT);
+//            imageView.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
+//        }
+
         /*extratxt.setText("Description "+itemname[position]);*/
         return rowView;
 
     };
+
 }

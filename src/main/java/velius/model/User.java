@@ -77,11 +77,11 @@ public class User {
     @JsonIgnore
     private List<Product> products;
     
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_product_history", 
             joinColumns = @JoinColumn(name = "userID"), 
             inverseJoinColumns = @JoinColumn(name = "productHistoryID"))
-    @JsonIgnore
     private List<Product> productsHistory;
 
     public User() {

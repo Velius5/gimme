@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,36 +20,36 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import zespolowe.pl.aplikacja.model.User;
+import zespolowe.pl.aplikacja.functions.HashGeneratorUtils;
+import zespolowe.pl.aplikacja.functions.SessionManager;
+import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.services.UserService;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
-    private static final int REQUEST_SIGNUP = 0;
+   // private static final int REQUEST_SIGNUP = 0;
 
 
-    @Bind(R.id.input_name)
-    EditText _nameText;
-    @Bind(R.id.input_email)
+    @Bind(R.id.input_email_signup)
     EditText _emailText;
-    @Bind(R.id.input_password)
+    @Bind(R.id.input_password_signup)
     EditText _passwordText;
     @Bind(R.id.btn_signup)
     Button _signupButton;
     @Bind(R.id.link_login)
     TextView _loginLink;
+    @Bind(R.id.input_password_signup_test)
+    EditText _passwordText2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
-
-        System.out.println("SignupActivity");
-
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
                     signup();
                 } catch (UnsupportedEncodingException e) {
@@ -64,20 +63,18 @@ public class SignupActivity extends AppCompatActivity {
         _loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the registration screen and return to the Login activity
-                //finish();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
-
+                // Start the Signup activity
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivityForResult(intent, REQUEST_SIGNUP);
+                finish();
             }
         });
     }
 
-    public void signup()  throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        Log.d(TAG, "Zarejestrowano");
+    public void signup()throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         if (!validate()) {
-            onSignupFailed();
+            onSignupFailed("");
             return;
         }
 
@@ -89,74 +86,73 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Tworzenie konta...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        final String email = _emailText.getText().toString();
+        final String password = HashGeneratorUtils.generateMD5(_passwordText.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.109:8080/api/user/register/")
+                    .baseUrl(SessionManager.getAPIURL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         UserService userService = retrofit.create(UserService.class);
-        Call<User> call = userService.registerUser(email, password);
+        System.out.println(_passwordText.getText() + " " + _passwordText2.getText());
+        if(_passwordText2.getText().toString().equals(_passwordText.getText().toString())) {
 
-        call.enqueue(new Callback<User>() {
+            Call<Respon> call = userService.registerUser(email, password);
+
+        call.enqueue(new Callback<Respon>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User user = response.body();
-                //System.out.println(user.toString());
+            public void onResponse(Call<Respon> call, Response<Respon> response) {
+                Respon resp = response.body();
+//                System.out.println(resp.getValue());
+
                 onSignupSuccess();
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Respon> call, Throwable t) {
                 System.out.println("Blad.");
-                onSignupFailed();
+                onSignupFailed("Podane konto juz istnieje.");
             }
         });
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        } else {
+            onSignupFailed("Hasła różnią się od siebie");
+            //System.out.println(_passwordText.getText() + " " + _passwordText2.getText());
+        }
+////////////////////////////////////////////////////////////////////////////////////////////
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                       // onSignupSuccess();
+                        // onSignupSuccess();
                         // onSignupFailed();
                         progressDialog.dismiss();
                     }
-                }, 4000);
+                }, 3000);
     }
-
 
     public void onSignupSuccess() {
+        Toast.makeText(getBaseContext(), "Zaloguj się na swoje konto.", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        finish();
+        //finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
     }
 
-    public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "rejestracja nie powiodła się", Toast.LENGTH_LONG).show();
-
+    public void onSignupFailed(String text) {
+        Toast.makeText(getBaseContext(), text, Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-     //   String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
-
-     /*   if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("wprowadź co najmniej 3 znaki");
-            valid = false;
-        } else {
-            _nameText.setError(null);
-        }*/
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("podano błędny adres email");
@@ -174,10 +170,14 @@ public class SignupActivity extends AppCompatActivity {
 
         return valid;
     }
+
     @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
 }
+
+

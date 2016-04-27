@@ -22,14 +22,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import zespolowe.pl.aplikacja.functions.HashGeneratorUtils;
+import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    SessionManager session;
+    User user;
 
-    @Bind(R.id.input_email) EditText _emailText;
+    @Bind(R.id.input_email)
+    EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
@@ -39,9 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        System.out.println("LoginActivity");
+        session = new SessionManager(getApplicationContext());
         _loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 try {
@@ -66,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
     public void login() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         Log.d(TAG, "Loginee");
 
@@ -88,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 //TODO/////////////////////////////////////////////////////////////////
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.109:8080/api/")
+                .baseUrl(SessionManager.getAPIURL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -98,8 +103,10 @@ public class LoginActivity extends AppCompatActivity {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    User user = response.body();
-                    //System.out.println(user.toString());
+                    User us = response.body();
+                    user = us;
+                    runSessionManager();
+
                     onLoginSuccess();
                 }
 
@@ -111,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             });
 
 
+
         /////////////////////////////////////////////////////////////////////
 
 
@@ -119,16 +127,24 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
 
-                        //
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
 
+    private void runSessionManager() {
+        new Thread() {
+            @Override
+            public void run() {
 
+                session.createLoginSession(String.valueOf(user.getId()),user.getName(),user.getSurname(),user.getEmail());
+                System.out.println(session.isLoggedIn());
 
+                System.out.println("Nowy wątek");
+            }
+        }.start();
+    }
 
 
     @Override
@@ -148,13 +164,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+
         Intent intent = new Intent(this, Menu_Activity.class);
         startActivity(intent);
     }
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Logowanie nie powiodło się", Toast.LENGTH_LONG).show();
-
         _loginButton.setEnabled(true);
     }
 
@@ -186,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
 
 }
 

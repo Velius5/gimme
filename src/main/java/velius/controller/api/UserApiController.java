@@ -51,7 +51,8 @@ public class UserApiController {
         User user = userService.getUser(id);
         List<Friend> userFriends = user.getFriends();
         List<User> usersList = userService.getUsersByFullnameLike(fullname);
-        List<User> selectedUsers = new ArrayList<>();
+        //List<User> selectedUsers = new ArrayList<>();
+        List<User> selectedUsers = userService.getUserFriends(1);
         for (User friend : usersList) {
             if (friend.getId() != id && !userFriends.contains(new Friend(friend, 0)) && !userFriends.contains(new Friend(friend, 1))) {
                 selectedUsers.add(friend);
@@ -77,23 +78,27 @@ public class UserApiController {
             mf.setId(friend.getId());
             mf.setName(friend.getName());
             mf.setSurname(friend.getSurname());
+            mf.setBilans(BigDecimal.ONE);
+/*
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    BigDecimal bilans = BigDecimal.ZERO;
+                    List<Product> temp = productService.getMyDebtsToFriend(user, friend);
+                    for (Product prod : temp) {
+                        bilans = bilans.subtract(prod.getPricePerPerson());
+                    }
 
-            
-            BigDecimal bilans =  BigDecimal.ZERO;
-
-            List<Product> temp = productService.getMyDebtsToFriend(user, friend);
-            for (Product prod : temp) {
-                bilans = bilans.subtract(prod.getPricePerPerson());
-            }
-
-            temp = productService.getFriendDebtsToMe(user, friend);
-            for (Product prod : temp) {
-                bilans = bilans.add(prod.getPricePerPerson());
-            }
-            mf.setBilans(bilans);
+                    temp = productService.getFriendDebtsToMe(user, friend);
+                    for (Product prod : temp) {
+                        bilans = bilans.add(prod.getPricePerPerson());
+                    }
+                    mf.setBilans(bilans);
+                }
+            }).start();*/
             friendList.add(mf);
         }
-
+        
         return friendList;
     }
 
@@ -109,8 +114,8 @@ public class UserApiController {
             return new Response(false);
         } else {
             List<Friend> friendList = user.getFriends();
-            Friend fr = new Friend(user, friend, 0);
-            friendList.add(new Friend(user, friend, 0));
+            Friend fr = new Friend(user, friend, 1);
+            friendList.add(new Friend(user, friend, 1));
             user.setFriends(friendList);
             userService.save(user);
             return new Response(true);
