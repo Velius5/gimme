@@ -110,8 +110,8 @@ public class UserApiController {
             return new Response(false);
         } else {
             List<Friend> friendList = user.getFriends();
-            Friend fr = new Friend(user, friend, 0);
-            friendList.add(new Friend(user, friend, 0));
+            Friend fr = new Friend(user, friend, 1);
+            friendList.add(new Friend(user, friend, 1));
             user.setFriends(friendList);
             userService.save(user);
             return new Response(true);
