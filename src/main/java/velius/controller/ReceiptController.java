@@ -39,7 +39,7 @@ public class ReceiptController {
     @Autowired
     ProductService productService;
     
-    @RequestMapping("/")
+    @RequestMapping("")
     public String receiptPage(Model model, Principal principal){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -58,7 +58,7 @@ public class ReceiptController {
         
         model.addAttribute("paragon",receipt);
         
-        return "panel_receipt_show_";
+        return "panel_receipt_show";
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

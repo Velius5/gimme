@@ -63,7 +63,7 @@
                         <li th:each="receipt : ${paragony}">
                             <div class="receipt_img">
                                 <img th:src="@{'/receiptphoto/'+${receipt.id}}"/>
-                                <a class="receipt_price" href="#" th:text="${receipt.sum} + 'zł'">21.59 zł</a>
+                                <a class="receipt_price" th:href="'panel/receipts/show/'+${receipt.id}" th:text="${receipt.sum} + 'zł'">21.59 zł</a>
                             </div>
                             <div class="receipt_shopname" th:text="${receipt.name}">Biedronka</div>
                             <div class="receipt_date" th:text="${receipt.date}">10.04.2016</div>
@@ -102,7 +102,7 @@
                                 <td th:text="${dluznik.name} +' ' + ${dluznik.surname}"></td>
                                 <td th:text="${dlug.productName}">Piwo</td>
                                 <td th:text="${dlug.getPricePerPerson()}  + 'zł'">2.99zł</td>
-                                <td><a title="Spłacono" th:href="'panel/receipts/payoff/' + ${dlug.id}"><i class="fa fa-money fa-2x" aria-hidden="true"></i></a></td>
+                                <td><a class="tooltip" title="Spłacono" th:href="'panel/receipts/payoff/' + ${dlug.id}"><i class="fa fa-money fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             </span>
                         </table>

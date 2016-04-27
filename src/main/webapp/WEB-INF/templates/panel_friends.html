@@ -19,7 +19,7 @@
                                 <td><div class="friend_img"><img th:src="'/userphoto/' + ${znajomy.id}"/></div></td>
                                 <td th:text="${znajomy.name} + ' ' + ${znajomy.surname}">Patryk Dobrzyński</td>
                                 <td th:text="${znajomy.bilans}  + 'zł'">2.99zł</td>
-                                <td><a title="Usuń ze znajomych" th:href="'panel/friends/delete/' + ${znajomy.id}"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
+                                <td><a class="tooltip" title="Usuń ze znajomych" th:href="'panel/friends/delete/' + ${znajomy.id}"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>
@@ -34,7 +34,7 @@
                             <tr ng-repeat="apiFriend in friendsList">
                                 <td><div class="friend_img"><img src="/userphoto/[[apiFriend.id]]"/></div></td>
                                 <td>[[apiFriend.name]] [[apiFriend.surname]]</td>
-                                <td><a title="Wyślij zaproszenie do znajomych" href="friends/addfriend/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
+                                <td><a class="tooltip" title="Wyślij zaproszenie do znajomych" href="friends/addfriend/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>
@@ -47,7 +47,7 @@
                             <tr th:each="invitation : ${invitations}">
                                 <td><div class="friend_img"><img th:src="'/userphoto/' + ${invitation.id}"/></div></td>
                                 <td th:text="${invitation.name} + ' ' + ${invitation.surname}"></td>
-                                <td><a title="Zaakceptuj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
+                                <td><a class="tooltip" title="Zaakceptuj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>

@@ -20,7 +20,7 @@
             android:layout_gravity="center_horizontal" />
 
         <!-- Name Label -->
-        <android.support.design.widget.TextInputLayout
+     <!--   <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Nazwa" />
-        </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>-->
 
         <!--  Email Label -->
         <android.support.design.widget.TextInputLayout
@@ -38,10 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
+            <EditText android:id="@+id/input_email_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textEmailAddress|textNoSuggestions"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
 
@@ -51,11 +51,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
+            <EditText android:id="@+id/input_password_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
+                android:inputType="textPassword|textNoSuggestions"
                 android:hint="Hasło"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_password_signup_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword|textNoSuggestions"
+                android:hint="Powtórz Hasło"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->

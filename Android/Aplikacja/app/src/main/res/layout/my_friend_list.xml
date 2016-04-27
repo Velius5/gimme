@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <ImageView
+    <com.loopj.android.image.SmartImageView
         android:id="@+id/icon"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -23,7 +23,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:padding="2dp"
-            android:textColor="@color/iron" />
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/saldo" />
 
     </LinearLayout>
 </LinearLayout>
