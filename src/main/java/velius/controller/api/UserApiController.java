@@ -78,27 +78,23 @@ public class UserApiController {
             mf.setId(friend.getId());
             mf.setName(friend.getName());
             mf.setSurname(friend.getSurname());
-            mf.setBilans(BigDecimal.ONE);
-/*
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    BigDecimal bilans = BigDecimal.ZERO;
-                    List<Product> temp = productService.getMyDebtsToFriend(user, friend);
-                    for (Product prod : temp) {
-                        bilans = bilans.subtract(prod.getPricePerPerson());
-                    }
 
-                    temp = productService.getFriendDebtsToMe(user, friend);
-                    for (Product prod : temp) {
-                        bilans = bilans.add(prod.getPricePerPerson());
-                    }
-                    mf.setBilans(bilans);
-                }
-            }).start();*/
+            
+            BigDecimal bilans =  BigDecimal.ZERO;
+/*
+            List<Product> temp = productService.getMyDebtsToFriend(user, friend);
+            for (Product prod : temp) {
+                bilans = bilans.subtract(prod.getPricePerPerson());
+            }
+
+            temp = productService.getFriendDebtsToMe(user, friend);
+            for (Product prod : temp) {
+                bilans = bilans.add(prod.getPricePerPerson());
+            }*/
+            mf.setBilans(bilans);
             friendList.add(mf);
         }
-        
+
         return friendList;
     }
 
@@ -114,8 +110,8 @@ public class UserApiController {
             return new Response(false);
         } else {
             List<Friend> friendList = user.getFriends();
-            Friend fr = new Friend(user, friend, 1);
-            friendList.add(new Friend(user, friend, 1));
+            Friend fr = new Friend(user, friend, 0);
+            friendList.add(new Friend(user, friend, 0));
             user.setFriends(friendList);
             userService.save(user);
             return new Response(true);
