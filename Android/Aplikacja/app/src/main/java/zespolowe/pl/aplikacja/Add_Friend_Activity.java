@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,11 @@ import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
-
 public class Add_Friend_Activity extends AppCompatActivity {
-    @Bind(R.id.search_friend) EditText _search_friend;//pole wyszukiwania
-    @Bind(R.id.btn_znajdz_znajomych) Button _btn_znajdz_znajomych;
+    @Bind(R.id.search_friend)
+    EditText _search_friend;//pole wyszukiwania
+    @Bind(R.id.btn_znajdz_znajomych)
+    Button _btn_znajdz_znajomych;
     ListView list;
     List<FindFriend> findFriends = new ArrayList<>();
     SessionManager session;
@@ -41,8 +43,8 @@ public class Add_Friend_Activity extends AppCompatActivity {
         setContentView(R.layout.add_user);
         ButterKnife.bind(this);
 
-        CustomListAdapterWyszukiwarka adapter=new CustomListAdapterWyszukiwarka(this, findFriends);
-        list=(ListView)findViewById(R.id.list);
+        CustomListAdapterWyszukiwarka adapter = new CustomListAdapterWyszukiwarka(this, findFriends);
+        list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -50,6 +52,7 @@ public class Add_Friend_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FindFriend Slecteditem = findFriends.get(position);
                 sendRequest(Slecteditem);
+                Toast.makeText(getBaseContext(), "Dodano znajomego", Toast.LENGTH_LONG).show();
 
             }
 
@@ -58,16 +61,14 @@ public class Add_Friend_Activity extends AppCompatActivity {
         _btn_znajdz_znajomych.setOnClickListener(new View.OnClickListener() { //guzik wyszukiwania
             @Override
             public void onClick(View v) {
-                pobierzListe();
+                wyszukiwanie();
 
             }
         });
 
     }
 
-
-
-    public void sendRequest(FindFriend Slecteditem){
+    public void sendRequest(FindFriend Slecteditem) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SessionManager.getAPIURL())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -88,34 +89,64 @@ public class Add_Friend_Activity extends AppCompatActivity {
         });
     }
 
+//
+//    public void pobierzListe() {
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(SessionManager.getAPIURL())
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        UserService userService = retrofit.create(UserService.class);
+//        Call<List<FindFriend>> call = userService.getFindFriendList(user.getId());
+//        call.enqueue(new Callback<List<FindFriend>>() {
+//            @Override
+//            public void onResponse(Call<List<FindFriend>> call, Response<List<FindFriend>> response) {
+//                List<FindFriend> resp = response.body();
+//                //friends = resp;
+//                for (FindFriend findFriend : resp) {
+//                    findFriends.add(new FindFriend(findFriend.getId(), findFriend.getName(), findFriend.getSurname()));
+//                    System.out.println(findFriend.toString());
+//                }
+//                //onAddSuccess();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<FindFriend>> call, Throwable t) {
+//                System.out.println("Blad.");
+//            }
+//        });
+//    }
 
-public void pobierzListe(){
+    public void wyszukiwanie() {
+        final String fullname = _search_friend.getText().toString();
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(SessionManager.getAPIURL())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SessionManager.getAPIURL())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-    UserService userService = retrofit.create(UserService.class);
-    Call<List<FindFriend>> call = userService.getFindFriendList(user.getId());
-    call.enqueue(new Callback<List<FindFriend>>() {
-        @Override
-        public void onResponse(Call<List<FindFriend>> call, Response<List<FindFriend>> response) {
-            List<FindFriend> resp = response.body();
-            //friends = resp;
-            for (FindFriend findFriend : resp) {
-                findFriends.add(new FindFriend(findFriend.getId(), findFriend.getName(),findFriend.getSurname()));
-                System.out.println(findFriend.toString());
+        UserService userService = retrofit.create(UserService.class);
+
+        Call<List<FindFriend>> call = userService.getFindFriendList(user.getId(),fullname);
+
+        call.enqueue(new Callback<List<FindFriend>>() {
+            @Override
+            public void onResponse(Call<List<FindFriend>> call, Response<List<FindFriend>> response) {
+                List<FindFriend> resp = response.body();
+//                for (FindFriend findFriend : resp) {
+//                    findFriends.add(new FindFriend(findFriend.getId(), findFriend.getName(), findFriend.getSurname()));
+//                    System.out.println(findFriend.toString());
+                System.out.println(resp.toString());
+
+//                    pobierzListe();
             }
-            //onAddSuccess();
-        }
 
-        @Override
-        public void onFailure(Call<List<FindFriend>> call, Throwable t) {
-            System.out.println("Blad.");
-        }
-    });
-}
+            @Override
+            public void onFailure(Call<List<FindFriend>> call, Throwable t) {
+                System.out.println("Blad.");
+            }
+        });
 
-
+    }
 }

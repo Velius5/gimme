@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import retrofit2.Retrofit;
 import zespolowe.pl.aplikacja.LoginActivity;
 import zespolowe.pl.aplikacja.model.User;
 

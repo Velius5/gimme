@@ -16,6 +16,5 @@ target/*
 .settings/
 target/
 *.lst
-*.jar
 *.original
 src/main/resources/application.properties

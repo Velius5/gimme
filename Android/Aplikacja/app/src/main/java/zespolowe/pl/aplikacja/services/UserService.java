@@ -52,7 +52,7 @@ public interface UserService {
 
     //pobieranie listy wyszukanych userów których mozemy dodac do znajomków
     @GET("user/search/{id}/{fullname}")
-    Call<List<FindFriend>> getFindFriendList(@Path("id") Long id);
+    Call<List<FindFriend>> getFindFriendList(@Path("id") Long id, @Path(""));
 
     //dodawanie znajomkow
     @GET("user/{id}/addfriend/{friendId}")

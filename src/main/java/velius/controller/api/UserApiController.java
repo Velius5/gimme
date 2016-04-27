@@ -51,8 +51,8 @@ public class UserApiController {
         User user = userService.getUser(id);
         List<Friend> userFriends = user.getFriends();
         List<User> usersList = userService.getUsersByFullnameLike(fullname);
-        //List<User> selectedUsers = new ArrayList<>();
-        List<User> selectedUsers = userService.getUserFriends(1);
+        List<User> selectedUsers = new ArrayList<>();
+        //List<User> selectedUsers = userService.getUserFriends(1);
         for (User friend : usersList) {
             if (friend.getId() != id && !userFriends.contains(new Friend(friend, 0)) && !userFriends.contains(new Friend(friend, 1))) {
                 selectedUsers.add(friend);
