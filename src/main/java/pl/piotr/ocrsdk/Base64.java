@@ -52,9 +52,8 @@ public class Base64 {
     /**
      * base-64 encode a string
      * @param s		The ascii string to encode
-     * @returns		The base64 encoded result
+     * @return		The base64 encoded result
      */
-
     public static String
     encode(String s) {
         return encode(s.getBytes());
@@ -63,9 +62,8 @@ public class Base64 {
     /**
      * base-64 encode a byte array
      * @param src	The byte array to encode
-     * @returns		The base64 encoded result
+     * @return		The base64 encoded result
      */
-
     public static String
     encode(byte[] src) {
 	return encode(src, 0, src.length);
@@ -75,10 +73,9 @@ public class Base64 {
      * base-64 encode a byte array
      * @param src	The byte array to encode
      * @param start	The starting index
-     * @param len	The number of bytes
-     * @returns		The base64 encoded result
+     * @param length	The number of bytes
+     * @return		The base64 encoded result
      */
-
     public static String
     encode(byte[] src, int start, int length) {
         byte[] dst = new byte[(length+2)/3 * 4 + length/72];
@@ -115,7 +112,6 @@ public class Base64 {
 	/*
 	 * now clean up the end bytes
 	 */
-
 	switch (state) {
 	case 1: dst[dstIndex++] = encodeData[(old<<4) & 0x30];
 	   dst[dstIndex++] = (byte) '=';
@@ -133,9 +129,8 @@ public class Base64 {
      * doesn't handle wrapped lines.
      * The output is undefined if there are errors in the input.
      * @param s		a Base64 encoded string
-     * @returns		The byte array eith the decoded result
+     * @return		The byte array eith the decoded result
      */
-
     public static byte[]
     decode(String s) {
       int end = 0;	// end state

@@ -58,6 +58,10 @@ public class Product {
     @JsonBackReference
     private List<User> users;
     
+    @ManyToMany(mappedBy = "productsHistory")
+    @JsonBackReference
+    private List<User> usersHistory;
+    
     
     public Product() {
     }

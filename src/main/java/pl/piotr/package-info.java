@@ -1,5 +1,5 @@
 /**
- * Dostarcza klasy związane z silnikiem Tesseract OCR oraz klasy przetwarzające 
- * dostarczony tekst na szablony paragonów.
+ * Pakiet zawiera klasy, które dostarczają interfejsy do wykorzystania silników OCR
+ * w aplikacji serwerowej, ustawienia tych silników oraz przetwarzania rozpoznanego tekstu
  **/
 package pl.piotr;

@@ -11,16 +11,18 @@ import pl.piotr.ReceiptsTemplates.Tesco;
 import pl.piotr.ReceiptsTemplates.Zabka;
 
 /**
- *
+ * Klasa dostarcza pola i metody wspólne dla obu silników OCR
  * @author Piotr Czarny
  */
 public class ReceiptParser {
-    
+    /**
+     * Statyczna tablica przechowująca nagłówki rozpoznawancyh paragonów 
+     */
     protected static ArrayList<String> shopHeaderList;
     
     /**
-     *  Funkcja inicjująca tablicę z nazwami sklepów oraz ustawiająca niektóre
-     *  właściwości silnika OCR
+     *  Funkcja inicjująca statyczną tablicę shopHeaderList
+     * z nazwami sklepów oraz ustawiająca.
      */
     public static void init(){
         shopHeaderList = new ArrayList<>();
@@ -30,6 +32,13 @@ public class ReceiptParser {
         shopHeaderList.add("SKLEP ZABKA");
     }
 
+    /**
+     * Metoda rozpoznaje sklep z jakiego pochodzi paragon, tworzy obiekt odpowiedniej klasy
+     * i przekazuje tekst z paragonu w celu dalszego przetworzenia
+     * @param text - tekst rozpoznany ze zdjęcia paragonu przez silnik OCR
+     * @return obiekt klasy pl.piotr.receiptTemplates.Receipt zawierający dane
+     * z paragonu
+     */
     protected static Receipt parseString(String text){
         System.out.println(text);
 

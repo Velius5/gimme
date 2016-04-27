@@ -65,8 +65,7 @@ public class User {
     @Column(name = "uprawnienia")
     private int role;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_uzytkownika")
+    @OneToMany(mappedBy = "userId",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Friend> friends;
     
@@ -78,11 +77,11 @@ public class User {
     @JsonIgnore
     private List<Product> products;
     
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_product_history", 
             joinColumns = @JoinColumn(name = "userID"), 
             inverseJoinColumns = @JoinColumn(name = "productHistoryID"))
-    @JsonIgnore
     private List<Product> productsHistory;
 
     public User() {

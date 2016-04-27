@@ -7,26 +7,13 @@ package pl.piotr;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import net.sourceforge.tess4j.*;
-import org.apache.commons.lang3.StringUtils;
-import org.openimaj.image.DisplayUtilities;
-import org.openimaj.image.ImageUtilities;
-import org.openimaj.image.MBFImage;
-import org.openimaj.image.processing.edges.CannyEdgeDetector;
-import pl.piotr.ReceiptsTemplates.Biedronka;
-import pl.piotr.ReceiptsTemplates.Lidl;
 import pl.piotr.ReceiptsTemplates.Receipt;
-import pl.piotr.ReceiptsTemplates.Tesco;
-import pl.piotr.ReceiptsTemplates.Zabka;
 
 /**
  * Główna klasa modułu aplikacji odpowiedzialnego za rozpoznawanie tekstu.
@@ -34,7 +21,6 @@ import pl.piotr.ReceiptsTemplates.Zabka;
  * @author Piotr
  */
 public class TessOCR extends ReceiptParser{
-    private static ArrayList<String> shopHeaderList;
     private static ITesseract ocr = new Tesseract();
     
     

@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,7 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 @Entity
 @Table(name = "paragony")
-public class Receipt {
+public class Receipt{
 
     @Id
     @Column(name = "id")
