@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--         -->
+  <!--  <color name="primary">#E43F3F</color>
+    <color name="primary_dark">#E12929</color>
+    <color name="primary_darker">#CC1D1D</color>
+    <color name="accent">#FFFFFF</color>-->
+
+    <!--        -->
+    <!--<color name="primary">#252839</color>-->
+    <color name="primary">#1d1610</color>
+    <color name="primary_dark">#677077</color>
+    <color name="primary_darker">#f2b632</color>
+    <color name="accent">#b5b5b7</color>
+
+
+    <color name="black">#252839</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="accent_material_light">#f2b632</color>
+    <color name="statusBarColor">#252839</color>
+    <color name="primary_material_dark">#252839</color>
+    <color name="primary_dark_material_dark">#252839</color>
+    <color name="background_material_light">#ffffff</color>
+    <color name="foreground_material_dark">#f2b632</color>
+    <color name="accent_material_dark">#f2b632</color>
+    <color name="background_material_dark">#252839</color>
+</resources>
+<!--
+<resources>
+
+
+    <color name="colorPrimaryLight">#CFD8DC</color>
+    <color name="colorTextDark">#212121</color>
+    <color name="colorBackDark">#ff263238</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="colorPrimaryIcon">#FFFFFF</color>
+    <color name="colorTextLight">#FFFFFF</color>
+    <color name="colorDivider">#B6B6B6</color>
+    <color name="colorPrimaryText">#FFFFFF</color>
+</resources>
+-->

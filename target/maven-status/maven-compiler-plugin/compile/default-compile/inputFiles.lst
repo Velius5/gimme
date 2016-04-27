@@ -1,8 +1,10 @@
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\ModelProductHistory.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\ReceiptRepository.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\service\AuthUserDetailsService.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\ImagesController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\package-info.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ReceiptsTemplates\Tesco.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\ProductApiController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\UserEditProfileApiController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\ProdDatabaseConfig.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ReceiptsTemplates\Product.java
@@ -37,6 +39,7 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\ApiTes
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\ModelFriend.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ocrsdk\Base64.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ReceiptsTemplates\Biedronka.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\HistoryController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ReceiptsTemplates\Lidl.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\UserApiController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\package-info.java
@@ -45,15 +48,14 @@ C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\Application.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\AbbyOCR.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ReceiptParser.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\PanelController.java
-C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ocrsdk\TextFieldSettings.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\package-info.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\TessOCR.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\WebSecurityConfig.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\FriendRepository.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\repository\ProductRepository.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ReceiptsTemplates\Receipt.java
-C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ocrsdk\BarcodeSettings.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\HomeController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\model\User.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\PanelSettingsController.java
 C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ClientSettings.java
-C:\Users\Patryk\Documents\GitHub\2016\src\main\java\pl\piotr\ocrsdk\BusCardSettings.java
+C:\Users\Patryk\Documents\GitHub\2016\src\main\java\velius\controller\api\HistoryApiController.java

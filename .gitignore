@@ -18,3 +18,4 @@ target/
 *.lst
 *.original
 src/main/resources/application.properties
+/Android/Aplikacja/app/build/

@@ -33,6 +33,9 @@ jQuery(document).ready(function($){
          /* PERFECT SCROLLBAR  */
          $('.outgoing > .overflow').perfectScrollbar();
          
+         /* TOOLTOPSTER */
+         $('.tooltip').tooltipster();
+         
 
 });
 

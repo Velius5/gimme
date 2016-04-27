@@ -536,6 +536,7 @@ body.registration_page {
     padding: 10px;
     border: 1px #7b4a43 solid;
     color: #7b4a43;
+    box-sizing: content-box;
 }
 
 .panel_settings form .login {
@@ -547,6 +548,22 @@ body.registration_page {
     height: 250px;
     border: 1px transparent solid;
     border-radius: 10px;
+}
+
+.panel_settings .btn {
+    background-color: white;
+    border-width: 3px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+}
+
+.panel_settings .btn:hover {
+    background-color: #fec223;
+    color: #7b4a43;
+    cursor: pointer;
 }
 
 .friends_page .your_friends {
@@ -585,4 +602,50 @@ body.registration_page {
 
 .adding_friend .panel > .container > div {
     margin: 20px auto;
+}
+
+.full_width {
+    width: 100% !important;
+}
+
+.panel_receipts .your_receipts > h1 {
+    margin-bottom: 50px;
+}
+
+.panel_receipts .your_receipts > ul > li {
+    width: 20%;
+    min-height: 250px;
+}
+
+.show_receipt_page .panel > .container > div {
+    width: 50%;
+    float: left;
+}
+
+.show_receipt_page .panel > .container > .receipt_img > img {
+    width: 100%;
+}
+
+.show_receipt_page .panel > .container > div > h1 {
+    margin-bottom: 30px;
+}
+
+.show_receipt_page .receipt_costs {
+    width: 40% !important;
+    float: right !important;
+}
+
+.receipt_costs_user > img {
+    width: 32px;
+    height: 32px;
+    border: 1px transparent solid;
+    border-radius: 100px;
+}
+
+.receipt_costs ul {
+    float: right;
+}
+
+.receipt_costs ul > li {
+    display: inline-block;
 }
