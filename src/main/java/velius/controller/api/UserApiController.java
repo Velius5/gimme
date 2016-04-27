@@ -81,7 +81,7 @@ public class UserApiController {
 
             
             BigDecimal bilans =  BigDecimal.ZERO;
-/*
+
             List<Product> temp = productService.getMyDebtsToFriend(user, friend);
             for (Product prod : temp) {
                 bilans = bilans.subtract(prod.getPricePerPerson());
@@ -90,7 +90,7 @@ public class UserApiController {
             temp = productService.getFriendDebtsToMe(user, friend);
             for (Product prod : temp) {
                 bilans = bilans.add(prod.getPricePerPerson());
-            }*/
+            }
             mf.setBilans(bilans);
             friendList.add(mf);
         }

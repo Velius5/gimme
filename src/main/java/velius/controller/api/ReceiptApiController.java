@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.piotr.TessOCR;
 import velius.model.Product;
 import velius.model.Receipt;
+import velius.model.Response;
 import velius.model.User;
 import velius.service.ReceiptService;
 import velius.service.UserService;
@@ -60,6 +61,12 @@ public class ReceiptApiController {
 //        System.out.println("Dodano paragon."); 
         Receipt receipt = receiptService.findById(Long.valueOf("1"));
         return receipt;
+    }
+    
+    @RequestMapping(value = "/edit/{userid}",method = RequestMethod.POST)
+    public Response editProducts(@RequestParam Receipt receipt,HttpServletRequest request, HttpServletResponse response, @PathVariable("userid") Long id){
+        receiptService.save(receipt);
+        return new Response(true);
     }
     
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
