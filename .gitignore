@@ -19,3 +19,4 @@ target/
 *.original
 src/main/resources/application.properties
 /Android/Aplikacja/app/build/
+*.class
