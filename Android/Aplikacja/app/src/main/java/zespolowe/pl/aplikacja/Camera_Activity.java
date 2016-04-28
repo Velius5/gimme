@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -27,6 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.functions.ExifUtil;
 import zespolowe.pl.aplikacja.functions.ImageManager;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Receipt;
@@ -65,9 +68,10 @@ public class Camera_Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                    sendImageToReceiptApi();
+                    SendImageToReceiptAPITask task = new SendImageToReceiptAPITask();
+                    task.execute();
 
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -104,49 +108,75 @@ public class Camera_Activity extends AppCompatActivity {
         startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
-    private void sendImageToReceiptApi() throws IOException {
-        ImageView image = (ImageView) findViewById(R.id.image_camera1);
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immagex = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        return imageEncoded;
+    }
+
+
+
+    private class SendImageToReceiptAPITask extends AsyncTask<String, Integer, Void> {
+        User us;
+        byte[] img = new byte[0];
         String img_str;
-        if(ImageManager.hasImage(image)) {
-            image.buildDrawingCache();
-            Bitmap bitmap = image.getDrawingCache();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            //byte[] img = stream.toByteArray();
-            byte[] img = org.apache.commons.io.FileUtils.readFileToByteArray(addedImageFile);
-            img_str = Base64.encodeToString(img, 0);
-        } else {
-            img_str = "BRAK";
+        File addedImage;
+
+        protected Void doInBackground(String... params) {
+
+            try {
+                String imagePath = addedImage.getAbsolutePath();
+                Bitmap myBitmap  = BitmapFactory.decodeFile(imagePath);
+                int outWidth;
+                int outHeight;
+                int inWidth = myBitmap.getWidth();
+                int inHeight = myBitmap.getHeight();
+                outWidth = 1500;
+                outHeight = (inHeight * 1500) / inWidth;
+
+                Bitmap resized = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, true);
+                Bitmap orientedBitmap = ExifUtil.rotateBitmap(imagePath, resized);
+
+                //img = org.apache.commons.io.FileUtils.readFileToByteArray(addedImage);
+                img_str = encodeTobase64(orientedBitmap);
+                //img_str = Base64.encodeToString(img, 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(SessionManager.getAPIURL())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            UserService userService = retrofit.create(UserService.class);
+            Call<Receipt> call = userService.sendReceiptImagetoAPI(us.getId(), img_str);
+            try {
+                call.execute();
+                System.out.println("Zdjęcie poprawnie wysłane");
+            } catch (Exception e) {
+                System.out.println("Błąd wysyłania zdjęcia");
+            }
+
+            return null;
         }
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(SessionManager.getAPIURL())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        UserService userService = retrofit.create(UserService.class);
-        Call<Receipt> call = userService.sendReceiptImagetoAPI(user.getId(), img_str);
-        call.enqueue(new Callback<Receipt>() {
-            @Override
-            public void onResponse(Call<Receipt> call, Response<Receipt> response) {
-                Receipt resp = response.body();
-                if (resp != null) {
-                    //System.out.println(resp.toString());
-                    receiptId = resp.getId();
-                    //onAddSuccess();
-                    wyslij();
-                }
-            }
+        protected void onPreExecute() {
+            ImageView image = (ImageView) findViewById(R.id.image_camera1);
+            us = user;
+            addedImage = addedImageFile;
 
-            @Override
-            public void onFailure(Call<Receipt> call, Throwable t) {
-                System.out.println("Blad.");
-                //onAddFailed("Zmiana nie powiodła się");
-            }
-        });
+        }
 
-
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            super.onPostExecute(result);
+        };
     }
+
 
     /** Create a file Uri for saving an image or video */
     private Uri getOutputMediaFileUri(int type){

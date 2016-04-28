@@ -86,6 +86,7 @@ public class Receipt{
         for(pl.piotr.ReceiptsTemplates.Product product : tempReceipt.getProductList()) {
             Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
             owner,this);
+            if(prod != null) 
             productList.add(prod);
         }
     }
