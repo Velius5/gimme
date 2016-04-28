@@ -155,6 +155,7 @@ public class Camera_Activity extends AppCompatActivity {
             try {
                 call.execute();
                 System.out.println("Zdjęcie poprawnie wysłane");
+                wyslij();
             } catch (Exception e) {
                 System.out.println("Błąd wysyłania zdjęcia");
             }
