@@ -82,16 +82,12 @@ public class Camera_Activity extends AppCompatActivity {
         }
 
 
-    private void wyslij() {
+    private void wyslij(Receipt receipt) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(Camera_Activity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Pobieranie danych...");
-        progressDialog.show();
+
 
         Intent intent = new Intent(Camera_Activity.this, Produkty_Edycja_Activity.class);
-        intent.putExtra("receiptId", receiptId);
+        intent.putExtra("receiptId", receipt.getId());
         startActivity(intent);
 
 
@@ -119,13 +115,16 @@ public class Camera_Activity extends AppCompatActivity {
 
 
 
-    private class SendImageToReceiptAPITask extends AsyncTask<String, Integer, Void> {
+    private class SendImageToReceiptAPITask extends AsyncTask<Void, Integer, Void> {
         User us;
         byte[] img = new byte[0];
         String img_str;
         File addedImage;
+        ProgressDialog progressDialog;
 
-        protected Void doInBackground(String... params) {
+        protected Void doInBackground(Void... params) {
+
+
 
             try {
                 String imagePath = addedImage.getAbsolutePath();
@@ -153,9 +152,9 @@ public class Camera_Activity extends AppCompatActivity {
             UserService userService = retrofit.create(UserService.class);
             Call<Receipt> call = userService.sendReceiptImagetoAPI(us.getId(), img_str);
             try {
-                call.execute();
+                Receipt receipt = call.execute().body();
                 System.out.println("Zdjęcie poprawnie wysłane");
-                wyslij();
+                wyslij(receipt);
             } catch (Exception e) {
                 System.out.println("Błąd wysyłania zdjęcia");
             }
@@ -168,6 +167,11 @@ public class Camera_Activity extends AppCompatActivity {
             ImageView image = (ImageView) findViewById(R.id.image_camera1);
             us = user;
             addedImage = addedImageFile;
+            progressDialog = new ProgressDialog(Camera_Activity.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Wysyłanie zdjęcia...");
+            progressDialog.show();
 
         }
 
@@ -175,6 +179,7 @@ public class Camera_Activity extends AppCompatActivity {
         protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
+            progressDialog.hide();
         };
     }
 
@@ -211,8 +216,6 @@ public class Camera_Activity extends AppCompatActivity {
             this.addedImageFile = new File(mediaStorageDir.getPath()
                + File.separator + "photo_" + timeStamp + ".jpg");
 
-//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-//                    "IMG_"+ timeStamp + ".jpg");
         } else {
             return null;
         }

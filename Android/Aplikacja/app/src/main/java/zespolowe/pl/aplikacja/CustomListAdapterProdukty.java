@@ -6,6 +6,7 @@ package zespolowe.pl.aplikacja;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class CustomListAdapterProdukty extends ArrayAdapter implements MultiSpin
         TextView product;
     }
 
-    public CustomListAdapterProdukty(Activity context, List<Product> product) {
+    public CustomListAdapterProdukty(Activity context, List<Product> product, List<Friend> friendList) {
         super(context, R.layout.produkty_lista, product);
         // TODO Auto-generated constructor stub
         session = new SessionManager(context);
@@ -52,29 +53,13 @@ public class CustomListAdapterProdukty extends ArrayAdapter implements MultiSpin
 
         this.context = context;
         this.productList = product;
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(SessionManager.getAPIURL())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        UserService userService = retrofit.create(UserService.class);
-        Call<List<Friend>> call = userService.getFriendList(user.getId());
-        List<Friend> resp = null;
-        try {
-            resp = call.execute().body();
-            for (Friend friend : resp) {
-                friendList.add(friend);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.friendList = friendList;
 
 
     }
 
-    public View getView(int position, View view, ViewGroup parent) {
 
+    public View getView(int position, View view, ViewGroup parent) {
 
         View rowView = view;
         prodList = productList;

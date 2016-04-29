@@ -19,7 +19,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:hint="Nazwa" />
+                android:hint="Nazwa"
+                android:editable="true" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -31,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:hint="Ilość" />
+                android:hint="Ilość"
+                android:editable="true" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -43,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:hint="Cena" />
+                android:hint="Cena"
+                android:editable="true" />
         </android.support.design.widget.TextInputLayout>
 
 <!--        <EditText

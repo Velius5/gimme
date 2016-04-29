@@ -16,7 +16,7 @@
         android:layout_marginTop="24dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp" />
 
   <!--  <LinearLayout
         android:orientation="horizontal"
@@ -31,11 +31,26 @@
 -->
     <ListView
         android:id="@+id/lista_produktow"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:layout_weight="2">
     </ListView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="68dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button"
+            android:clickable="true"
+            android:enabled="true" />
+    </LinearLayout>
 
 </LinearLayout>
 
