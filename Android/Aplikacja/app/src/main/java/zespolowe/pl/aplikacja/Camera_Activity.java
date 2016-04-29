@@ -173,7 +173,6 @@ public class Camera_Activity extends AppCompatActivity {
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage("Wysyłanie zdjęcia...");
             progressDialog.show();
-
         }
 
         @Override

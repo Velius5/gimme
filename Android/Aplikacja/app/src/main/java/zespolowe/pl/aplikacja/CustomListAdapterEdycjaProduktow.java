@@ -5,12 +5,16 @@ package zespolowe.pl.aplikacja;
  */
 
 import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,7 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
     private Activity context;
     //    private Friend_Activity.MyAsyncTask context ;
     private List<Product> product = new ArrayList<>();
+    private List<Product> editedProductList = new ArrayList<>();
 
 
     public CustomListAdapterEdycjaProduktow(Activity context, List<Product> product) {
@@ -29,9 +34,10 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
 
         this.context=context;
         this.product = product;
+        this.editedProductList = product;
     }
 
-    public View getView(int position,View view,ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.produkty_edycja_lista, null, true);
 
@@ -40,9 +46,62 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
         EditText count = (EditText) rowView.findViewById(R.id.product_edit_count);
 
 
-        produkt.setText(product.get(position).getProductName());
-        price.setText((product.get(position).getPrice() + " zł"));
-        count.setText(product.get(position).getCount());
+        produkt.setText(editedProductList.get(position).getProductName());
+        price.setText(editedProductList.get(position).getPrice().toString());
+        count.setText(editedProductList.get(position).getCount());
+
+        produkt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                editedProductList.get(position).setProductName(s.toString());
+            }
+        });
+
+        price.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                editedProductList.get(position).setPrice(BigDecimal.valueOf(Double.valueOf(s.toString())));
+            }
+        });
+
+        count.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                editedProductList.get(position).setCount(Double.valueOf(s.toString()));
+            }
+        });
+
+//        view.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                System.out.println("działa!");
+//                return false;
+//            }
+//        });
 
         return rowView;
 
