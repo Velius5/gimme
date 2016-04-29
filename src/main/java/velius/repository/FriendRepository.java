@@ -1,8 +1,10 @@
 
 package velius.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import velius.model.Friend;
+import velius.model.User;
 
 /**
  *
@@ -10,4 +12,7 @@ import velius.model.Friend;
  */
 public interface FriendRepository extends JpaRepository<Friend, String>{
     //Friend find(Long id);
+    
+    List<Friend> findAllByUserId(User user);
+    List<Friend> findAllByFriendId(User user);
 }

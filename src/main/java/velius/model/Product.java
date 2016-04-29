@@ -29,7 +29,6 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "produkty")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

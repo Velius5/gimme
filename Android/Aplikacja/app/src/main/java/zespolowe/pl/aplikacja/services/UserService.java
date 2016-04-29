@@ -67,4 +67,7 @@ public interface UserService {
 
     @GET("/mydebts/{id}/{friendid}")
     Call<List<Product>> getMyDebtsToFriend(@Path("id") Long id,@Path("friendid") Long friendId);
+
+    @GET("/history/user/{id}")
+    Call<List<Product>> getHistory(@Path("id") Long id);
 }
