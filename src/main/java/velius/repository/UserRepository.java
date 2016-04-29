@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     
     User findByEmail(String email); 
     
-    List<User> findTop30BySurnameContainingAndNameContaining(String surname, String name);
+    List<User> findTop30BySurnameContainingAndNameContainingOrderByName(String surname, String name);
    
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM User u WHERE u.id = ?1")
     Boolean exists(Long id);

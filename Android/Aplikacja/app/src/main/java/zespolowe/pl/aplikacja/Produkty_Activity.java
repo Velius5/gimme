@@ -92,5 +92,4 @@ public class Produkty_Activity extends AppCompatActivity {
         }
     }
 
-
 }

@@ -2,6 +2,7 @@ package velius.controller.api;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class UserApiController {
             mf.setBilans(bilans);
             friendList.add(mf);
         }
-
+        Collections.sort(friendList);
         return friendList;
     }
 

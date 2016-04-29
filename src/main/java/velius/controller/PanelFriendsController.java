@@ -8,6 +8,7 @@ package velius.controller;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.websocket.server.PathParam;
 import org.apache.commons.codec.binary.Base64;
@@ -70,6 +71,7 @@ public class PanelFriendsController {
             mf.setBilans(bilans);
             friendList.add(mf);
         }
+        Collections.sort(friendList);
         model.addAttribute("znajomi", friendList);
         model.addAttribute("userId", user.getId());
         

@@ -48,4 +48,6 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
 
     };
 
+
+
 }

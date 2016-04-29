@@ -27,7 +27,7 @@
                 
                 <div class="outgoing add_friend" ng-controller="APIGetFriends">
                     <h1>Dodaj znajomego</h1>
-                    <input type="text" ng-change="searchFriend()" ng-model="searchFriends" id="searchFriendInput" placeholder="Nazwisko Imię"/>
+                    <input type="text" ng-change="searchFriend()" ng-model="searchFriends" id="searchFriendInput" placeholder="Imię Nazwisko"/>
                     <input type="hidden" id="userId" th:value="${userId}"/>
                     <div class="overflow">
                         <table>

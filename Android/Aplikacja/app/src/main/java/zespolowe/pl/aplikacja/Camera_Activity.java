@@ -127,21 +127,22 @@ public class Camera_Activity extends AppCompatActivity {
 
 
             try {
-                String imagePath = addedImage.getAbsolutePath();
-                Bitmap myBitmap  = BitmapFactory.decodeFile(imagePath);
-                int outWidth;
-                int outHeight;
-                int inWidth = myBitmap.getWidth();
-                int inHeight = myBitmap.getHeight();
-                outWidth = 1500;
-                outHeight = (inHeight * 1500) / inWidth;
+//                String imagePath = addedImage.getAbsolutePath();
+//                Bitmap myBitmap  = BitmapFactory.decodeFile(imagePath);
+//                int outWidth;
+//                int outHeight;
+//                int inWidth = myBitmap.getWidth();
+//                int inHeight = myBitmap.getHeight();
+//                outWidth = 1500;
+//                outHeight = (inHeight * 1500) / inWidth;
+//
+//                Bitmap resized = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, true);
+//                Bitmap orientedBitmap = ExifUtil.rotateBitmap(imagePath, resized);
 
-                Bitmap resized = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, true);
-                Bitmap orientedBitmap = ExifUtil.rotateBitmap(imagePath, resized);
+                img = org.apache.commons.io.FileUtils.readFileToByteArray(addedImage);
 
-                //img = org.apache.commons.io.FileUtils.readFileToByteArray(addedImage);
-                img_str = encodeTobase64(orientedBitmap);
-                //img_str = Base64.encodeToString(img, 0);
+                //img_str = encodeTobase64(orientedBitmap);
+                img_str = Base64.encodeToString(img, 0);
             } catch (Exception e) {
                 e.printStackTrace();
             }

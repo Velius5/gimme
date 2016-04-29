@@ -33,7 +33,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "uzytkownicy")
-public class User {
+public class User implements Comparable<User> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -203,6 +203,17 @@ public class User {
      */
     public void setProductsHistory(List<Product> productsHistory) {
         this.productsHistory = productsHistory;
+    }
+
+    @Override
+    public int compareTo(User o) {
+       int comparedNames = name.compareTo(o.name);
+       
+       if(comparedNames == 1) {
+            return surname.compareTo(o.surname);
+       } else {
+           return comparedNames;
+       }
     }
     
     

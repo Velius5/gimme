@@ -1,13 +1,14 @@
 
 package velius.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  *
  * @author Piotr Czarny
  */
-    public class ModelFriend{
+    public class ModelFriend implements Comparable<ModelFriend> {
         private Long id;
         private String name;
         private String surname;
@@ -77,5 +78,19 @@ import java.math.BigDecimal;
         public void setBilans(BigDecimal bilans) {
             this.bilans = bilans;
         }
+
+        @Override
+        public int compareTo(ModelFriend o) {
+            int comparedNames = name.compareTo(o.name);
+
+            if(comparedNames == 1) {
+                return surname.compareTo(o.surname);
+            } else {
+                return comparedNames;
+            }
+        }
+        
+        
+        
     }
 

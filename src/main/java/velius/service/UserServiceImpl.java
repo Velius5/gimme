@@ -88,11 +88,11 @@ public class UserServiceImpl implements UserService {
         List<User> usersList;
         String nameAndSurname[] = fullname.split(" ");
         if(nameAndSurname.length < 2)
-            usersList = repository.findTop30BySurnameContainingAndNameContaining(nameAndSurname[0], "");
+            usersList = repository.findTop30BySurnameContainingAndNameContainingOrderByName("", nameAndSurname[0]);
         else {
-            usersList = repository.findTop30BySurnameContainingAndNameContaining(nameAndSurname[0], nameAndSurname[1]);
+            usersList = repository.findTop30BySurnameContainingAndNameContainingOrderByName(nameAndSurname[1], nameAndSurname[0]);
             if(usersList.isEmpty())
-            usersList = repository.findTop30BySurnameContainingAndNameContaining(nameAndSurname[1], nameAndSurname[0]);
+            usersList = repository.findTop30BySurnameContainingAndNameContainingOrderByName(nameAndSurname[0], nameAndSurname[1]);
         }
         
         return usersList;
