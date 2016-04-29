@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import velius.model.Friend;
 import velius.model.User;
+import velius.repository.FriendRepository;
 import velius.repository.UserRepository;
 
 @Service
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository repository;
+    
+    @Autowired
+    FriendRepository friendRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository repository) {
@@ -65,6 +69,13 @@ public class UserServiceImpl implements UserService {
         for(Friend friend : friends) {
             if(friend.getStatus() == 1) {
                 User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
+        }
+        List<Friend> friendsInverse = friendRepository.findAllByFriendId(repository.findById(id));
+        for(Friend friend : friendsInverse) {
+            if(friend.getStatus() == 1) {
+                User user = repository.findById(friend.getUserId());
                 users.add(user);
             }
         }

@@ -28,7 +28,7 @@ public class Friend {
     
     @ManyToOne
     @JoinColumn(name ="userId")
-    User userId;
+    private User userId;
     
     @OneToOne
     private User friendId;
@@ -63,6 +63,13 @@ public class Friend {
 
     public void setStatus(long status) {
         this.status = status;
+    }
+
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId.getId();
     }
     
     
