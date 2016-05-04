@@ -8,22 +8,19 @@ package velius.controller.api;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pl.piotr.TessOCR;
 import velius.model.Product;
 import velius.model.Receipt;
 import velius.model.Response;
 import velius.model.User;
+import velius.service.ProductService;
 import velius.service.ReceiptService;
 import velius.service.UserService;
 
@@ -32,11 +29,13 @@ import velius.service.UserService;
 public class ReceiptApiController {
     private final ReceiptService receiptService;
     private final UserService userService;
+    private final ProductService productService;
 
     @Autowired
-    public ReceiptApiController(ReceiptService receiptService, UserService userService) {
+    public ReceiptApiController(ReceiptService receiptService, UserService userService, ProductService productService) {
         this.receiptService = receiptService;
         this.userService = userService;
+        this.productService = productService;
     }
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
@@ -50,7 +49,7 @@ public class ReceiptApiController {
 //        
 //        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
 //        try {
-//            tempReceipt = TessOCR.recognizeReceipt(image);
+//            tempReceipt = AbbyOCR.recognizeReceipt(image);
 //        } catch (Exception ex) {
 //            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -62,10 +61,35 @@ public class ReceiptApiController {
         return receipt;
     }
     
-    @RequestMapping(value = "/edit/{userid}",method = RequestMethod.POST)
-    public Response editProducts(@RequestParam Receipt receipt,HttpServletRequest request, HttpServletResponse response, @PathVariable("userid") Long id){
-        receiptService.save(receipt);
-        return new Response(true);
+    @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)
+    public Response editProducts(@PathVariable("id") Long id, @RequestParam List<String> productsUsersList){
+        Receipt rec = receiptService.findById(id);
+        if(rec != null) {
+            int i = 0;
+            for(Product p : rec.getProductList()) {
+                List<User> usersList = new ArrayList<>();
+                String s = productsUsersList.get(i);
+                if(s.contains(",")) {
+                    String[] parts = s.split(",");
+                    for (int j = 1; j < parts.length; j++) {
+                        Long userId = Long.valueOf(parts[j]);
+                        User user = userService.getUser(userId);
+                        p.getUsers().add(user);
+                        usersList.add(user);
+                    }
+                }
+                //productService.save(p);
+                for(User usr : usersList) {
+                    System.out.println(p.getId() + " " + usr.getName());
+                }
+                i++;
+            }
+            receiptService.save(rec);
+            return new Response(true);
+        } else {
+            return new Response(false);
+        }
+
     }
     
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)

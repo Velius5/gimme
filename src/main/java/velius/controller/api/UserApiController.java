@@ -4,10 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +15,7 @@ import velius.model.ModelFriend;
 import velius.model.Product;
 import velius.model.Response;
 import velius.model.User;
+import velius.service.FriendService;
 import velius.service.ProductService;
 import velius.service.UserService;
 
@@ -26,13 +24,14 @@ import velius.service.UserService;
 public class UserApiController {
 
     private final UserService userService;
+    private final ProductService productService;
+    private final FriendService friendService;
 
     @Autowired
-    ProductService productService;
-
-    @Autowired
-    public UserApiController(UserService userService) {
+    public UserApiController(UserService userService, ProductService productService, FriendService friendService) {
         this.userService = userService;
+        this.productService = productService;
+        this.friendService = friendService;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -50,12 +49,24 @@ public class UserApiController {
     @RequestMapping(value = "/user/search/{id}/{fullname}", method = RequestMethod.GET)
     public List<User> getUserByFullname(@PathVariable("id") Long id, @PathVariable("fullname") String fullname) {
         User user = userService.getUser(id);
-        List<Friend> userFriends = user.getFriends();
+        List<Friend> userFriendsByFriendId = friendService.getUserFriendsByFriendId(user);
+        List<Friend> userFriendsByUserId = friendService.getUserFriendsByUserId(user);
+        
+        List<User> userFriendsOne = new ArrayList<>();
+        List<User> userFriendsTwo = new ArrayList<>();
+        for(Friend f : userFriendsByFriendId) {
+            User us = userService.getUser(f.getUserId());
+            userFriendsOne.add(us);
+        }
+        for(Friend f : userFriendsByUserId) {
+            User usr = userService.getUser(f.getFriendId());
+            userFriendsTwo.add(usr);
+        }
+        
         List<User> usersList = userService.getUsersByFullnameLike(fullname);
         List<User> selectedUsers = new ArrayList<>();
-        //List<User> selectedUsers = userService.getUserFriends(1);
         for (User friend : usersList) {
-            if (friend.getId() != id && !userFriends.contains(new Friend(friend, 0)) && !userFriends.contains(new Friend(friend, 1))) {
+            if (friend.getId() != id && !userFriendsOne.contains(friend) && !userFriendsTwo.contains(friend)) {
                 selectedUsers.add(friend);
             }
         }
