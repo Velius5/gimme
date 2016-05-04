@@ -41,13 +41,26 @@
                 </div>
                 
                 <div class="outgoing add_friend">
-                    <h1>Zaproszenia do znajomych</h1>
+                    <h1>Zapraszają Cię do znajomych</h1>
                     <div class="overflow">
                         <table>
                             <tr th:each="invitation : ${invitations}">
                                 <td><div class="friend_img"><img th:src="'/userphoto/' + ${invitation.id}"/></div></td>
                                 <td th:text="${invitation.name} + ' ' + ${invitation.surname}"></td>
-                                <td><a class="tooltip" title="Zaakceptuj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
+                                <td th:if="${invitation}"><a class="tooltip" title="Zaakceptuj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a></td>
+                            </tr>                    
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="outgoing add_friend">
+                    <h1>Wysłane zaproszenia</h1>
+                    <div class="overflow">
+                        <table>
+                            <tr th:each="invitation : ${sendedInvitations}">
+                                <td><div class="friend_img"><img th:src="'/userphoto/' + ${invitation.id}"/></div></td>
+                                <td th:text="${invitation.name} + ' ' + ${invitation.surname}"></td>
+                                <td th:if="${invitation}"><a class="tooltip" title="Anuluj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-female fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>

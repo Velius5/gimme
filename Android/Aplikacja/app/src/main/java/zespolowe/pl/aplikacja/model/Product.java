@@ -13,6 +13,7 @@ public class Product implements Serializable {
     private User owner;
     private Receipt receipt;
     private List<User> users;
+    private List<User> usersHistory;
 
     public Product() {
     }
@@ -81,6 +82,14 @@ public class Product implements Serializable {
 
     public void setReceipt(Receipt receipt) {
         this.receipt = receipt;
+    }
+
+    public List<User> getUsersHistory() {
+        return usersHistory;
+    }
+
+    public void setUsersHistory(List<User> usersHistory) {
+        this.usersHistory = usersHistory;
     }
 
     @Override

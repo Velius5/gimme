@@ -3,6 +3,7 @@ package zespolowe.pl.aplikacja.services;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -50,6 +51,10 @@ public interface UserService {
     //pobieranie listy z paragonu
     @GET("receipt/show/{id}")
     Call<Receipt> getReceipt(@Path("id")Long id);
+
+    //edycja paragonu
+    @POST("receipt/edit/{id}")
+    Call<Respon> editReceipt(@Path("id") Long id, @Query("productsUsersList") List<String> productsUsersList);
 
     //pobieranie listy wyszukanych userów których mozemy dodac do znajomków
     @GET("user/search/{id}/{fullname}")

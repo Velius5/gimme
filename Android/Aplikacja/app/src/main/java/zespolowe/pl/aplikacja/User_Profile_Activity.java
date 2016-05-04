@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.image.SmartImageView;
 
@@ -64,8 +65,13 @@ SessionManager session;
 
 
     private void dodaj_znajomego_() {
-        Intent intent = new Intent(this, Add_Friend_Activity.class);
-        startActivity(intent);
+        if(user.getName() != null) {
+            Intent intent = new Intent(this, Add_Friend_Activity.class);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Zanim dodasz znajomych musisz uzupełnić swój profil", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void pobierz()throws UnsupportedEncodingException, NoSuchAlgorithmException {

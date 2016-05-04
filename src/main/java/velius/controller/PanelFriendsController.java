@@ -78,6 +78,9 @@ public class PanelFriendsController {
         List<User> invitations = userService.getUserInvitations(user.getId());
         model.addAttribute("invitations", invitations);
         
+        List<User> sendedInvitations = userService.getUserSendedInvitations(user.getId());
+        model.addAttribute("sendedInvitations", sendedInvitations);
+        
         return "panel_friends";
     }
     

@@ -46,8 +46,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button"
+            android:text="Podziel koszty"
+            android:id="@+id/podziel_koszty_button"
             android:clickable="true"
             android:enabled="true" />
     </LinearLayout>

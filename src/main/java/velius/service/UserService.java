@@ -28,6 +28,6 @@ public interface UserService {
 
     public List<User> getUserInvitations(long id);
     
-   
+    public List<User> getUserSendedInvitations(long id);
     
 }

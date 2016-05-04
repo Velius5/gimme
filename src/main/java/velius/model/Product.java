@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -53,7 +54,10 @@ public class Product {
     @JsonBackReference
     private Receipt receipt;
     
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany
+    @JoinTable(name = "user_product", 
+            joinColumns = @JoinColumn(name = "productID"), 
+            inverseJoinColumns = @JoinColumn(name = "userID"))
     @JsonBackReference
     private List<User> users;
     

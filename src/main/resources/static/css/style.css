@@ -588,6 +588,8 @@ body.registration_page {
 .add_friend {
     width: 30%;
     margin-bottom: 30px;
+    float: right;
+    clear: right;
 }
 
 .add_friend > .overflow {

@@ -70,10 +70,7 @@ public class User implements Comparable<User> {
     private List<Friend> friends;
     
  
-    @ManyToMany
-    @JoinTable(name = "user_product", 
-            joinColumns = @JoinColumn(name = "userID"), 
-            inverseJoinColumns = @JoinColumn(name = "productID"))
+    @ManyToMany(mappedBy = "users")
     @JsonIgnore
     private List<Product> products;
     

@@ -61,7 +61,11 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                editedProductList.get(position).setProductName(s.toString());
+                try {
+                    editedProductList.get(position).setProductName(s.toString());
+                } catch (Exception ex) {
+
+                }
             }
         });
 
@@ -76,7 +80,11 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                editedProductList.get(position).setPrice(BigDecimal.valueOf(Double.valueOf(s.toString())));
+                try {
+                    editedProductList.get(position).setPrice(BigDecimal.valueOf(Double.valueOf(s.toString())));
+                } catch (Exception ex) {
+
+                }
             }
         });
 
@@ -91,7 +99,11 @@ public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                editedProductList.get(position).setCount(Double.valueOf(s.toString()));
+                try {
+                    editedProductList.get(position).setCount(Double.valueOf(s.toString()));
+                } catch (Exception ex) {
+
+                }
             }
         });
 

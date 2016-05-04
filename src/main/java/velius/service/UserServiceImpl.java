@@ -114,13 +114,25 @@ public class UserServiceImpl implements UserService {
         List<Friend> friends = repository.findById(id).getFriends();
         List<User> users = new ArrayList<>();
         for(Friend friend : friends) {
-            if(friend.getStatus() == 0) {
+            if(friend.getStatus() == 0 && friend.getFriendId() == id) {
                 User user = repository.findById(friend.getFriendId());
                 users.add(user);
             }
         }
         return users;
     }
-
+    
+    @Override
+    public List<User> getUserSendedInvitations(long id) {
+        List<Friend> friends = repository.findById(id).getFriends();
+        List<User> users = new ArrayList<>();
+        for(Friend friend : friends) {
+            if(friend.getStatus() == 0 && friend.getUserId() == id) {
+                User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
+        }
+        return users;
+    }
 
 }

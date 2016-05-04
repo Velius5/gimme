@@ -13,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -82,7 +83,7 @@ public class Receipt{
         this.name = tempReceipt.getShopName();
         this.owner = owner;
         this.sum = BigDecimal.valueOf(tempReceipt.getSum());
-        
+        productList = new ArrayList<>();
         for(pl.piotr.ReceiptsTemplates.Product product : tempReceipt.getProductList()) {
             Product prod = new Product(product.getName(), BigDecimal.valueOf(product.getPrice()), (double)product.getCount(), 
             owner,this);
