@@ -62,7 +62,7 @@ public class ReceiptApiController {
         
         System.out.println("Dodano paragon."); 
        
-        return receipt;
+        return receiptService.findById(receipt.getId());
     }
     
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)

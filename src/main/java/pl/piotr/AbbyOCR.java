@@ -88,8 +88,8 @@ public class AbbyOCR extends ReceiptParser{
     private static Task waitForCompletion(Task task) throws Exception {
         	while (task.isTaskActive()) {
 
-			Thread.sleep(2000);
-			System.out.println("Waiting..");
+			//Thread.sleep(1000);
+			//System.out.println("Waiting..");
 			task = restClient.getTaskStatus(task.Id);
 		}
 		return task;

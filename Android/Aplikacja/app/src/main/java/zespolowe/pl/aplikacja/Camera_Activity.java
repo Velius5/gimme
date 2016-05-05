@@ -20,10 +20,12 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.Bind;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +37,7 @@ import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Receipt;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
+import java.util.concurrent.TimeUnit;
 
 
 //TODO: dodaj wysyłąnie w api
@@ -146,10 +149,21 @@ public class Camera_Activity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .readTimeout(30,TimeUnit.SECONDS)
+                    .connectTimeout(30,TimeUnit.SECONDS)
+                    .writeTimeout(30,TimeUnit.SECONDS)
+                    .build();
+
+
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(SessionManager.getAPIURL())
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
                     .build();
+
+
             UserService userService = retrofit.create(UserService.class);
             Call<Receipt> call = userService.sendReceiptImagetoAPI(us.getId(), img_str);
             try {
@@ -157,11 +171,13 @@ public class Camera_Activity extends AppCompatActivity {
                 System.out.println("Zdjęcie poprawnie wysłane");
                 wyslij(receipt);
             } catch (Exception e) {
-                System.out.println("Błąd wysyłania zdjęcia");
+                System.out.println("Błąd wysyłania zdjęcia\n");
+                e.printStackTrace();
             }
 
             return null;
         }
+
 
 
         protected void onPreExecute() {
