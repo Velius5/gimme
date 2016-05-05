@@ -56,7 +56,7 @@ public class User implements Comparable<User> {
     private String password;
     
     @JsonIgnore
-    @Column(name = "zdjecie", nullable = true, columnDefinition="longblob")
+    @Column(name = "zdjecie", nullable = true, columnDefinition="varbinary")
     private byte[] image;
     
     @Column(name = "aktywny")

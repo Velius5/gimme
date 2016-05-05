@@ -50,7 +50,7 @@ public class Receipt{
     @Column(name="nazwa_sklepu")
     private String name;
     
-    @Column(name="zdjecie", columnDefinition="longblob")
+    @Column(name="zdjecie", columnDefinition="varbinary")
     @JsonIgnore
     private byte[] image;
     
