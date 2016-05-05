@@ -20,3 +20,5 @@ target/
 src/main/resources/application.properties
 /Android/Aplikacja/app/build/
 *.class
+src/main/resources/application.properties
+Android/Aplikacja/build/intermediates/dex-cache/cache.xml

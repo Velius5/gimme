@@ -45,8 +45,6 @@ public class ReceiptParserTest {
 
     @Test
     public void testParseString() {
-        System.out.println("parseString");
-        System.out.println(System.getProperty("user.dir"));
         File plik = new File("./paragon.txt");
         String text = "";
         try {
@@ -57,7 +55,7 @@ public class ReceiptParserTest {
             System.out.println("Nie znaleziono pliku");
             fail("pliku nie ma");
         }
-        
+        System.out.println(text);
         Receipt expResult = null;
         ReceiptParser.init();
         Receipt result = ReceiptParser.parseString(text.toUpperCase());

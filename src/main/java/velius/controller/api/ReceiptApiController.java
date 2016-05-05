@@ -8,14 +8,18 @@ package velius.controller.api;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pl.piotr.AbbyOCR;
 import velius.model.Product;
 import velius.model.Receipt;
 import velius.model.Response;
@@ -40,24 +44,24 @@ public class ReceiptApiController {
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public Receipt addReceipt(@RequestParam String file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
-//        List<Product> productList = new ArrayList<Product>();
-//        User owner = userService.getUser(id);      
-//        //byte[] image=file.getBytes();
-//        byte[] image = Base64.decodeBase64(file);
-//        System.out.println(image.length/1024 + "kb");
-//        //byte[] image = Base64.decodeBase64(byteArr);
-//        
-//        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
-//        try {
-//            tempReceipt = AbbyOCR.recognizeReceipt(image);
-//        } catch (Exception ex) {
-//            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Receipt receipt = new Receipt(tempReceipt,image,owner);
-//        receiptService.save(receipt);
-//        
-//        System.out.println("Dodano paragon."); 
-        Receipt receipt = receiptService.findById(Long.valueOf("7"));
+        List<Product> productList = new ArrayList<>();
+        User owner = userService.getUser(id);      
+        //byte[] image=file.getBytes();
+        byte[] image = Base64.decodeBase64(file);
+        System.out.println(image.length/1024 + "kb");
+        //byte[] image = Base64.decodeBase64(byteArr);
+        
+        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
+        try {
+            tempReceipt = AbbyOCR.recognizeReceipt(image);
+        } catch (Exception ex) {
+            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Receipt receipt = new Receipt(tempReceipt,image,owner);
+        receiptService.save(receipt);
+        
+        System.out.println("Dodano paragon."); 
+       
         return receipt;
     }
     

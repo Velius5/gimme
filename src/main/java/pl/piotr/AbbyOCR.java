@@ -29,33 +29,25 @@ public class AbbyOCR extends ReceiptParser{
         if (!checkAppId()) {
             return null;
         }
-
-        //ClientSettings.setupProxy();
         restClient = new Client();
-
         restClient.serverUrl = "http://cloud.ocrsdk.com";
         restClient.applicationId = ClientSettings.APPLICATION_ID;
         restClient.password = ClientSettings.PASSWORD;
 
-        //Vector<String> argList = new Vector<String>(Arrays.asList(args));
         String language = "Polish";
         String imageSource = "photo";
 
         ProcessingSettings.OutputFormat outputFormat = ProcessingSettings.OutputFormat.txt;
-
         ProcessingSettings settings = new ProcessingSettings();
         settings.setLanguage(language);
         settings.setOutputFormat(outputFormat);
         settings.setImageSource(imageSource);
 
         Task task = null;
-
         task = restClient.processImage(img, settings);
-
         String text = waitAndDownloadResult(task);
-        System.out.println(text);
         
-        return parseString(text);
+        return parseString(text.toUpperCase());
     }
 
     /**

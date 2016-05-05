@@ -41,12 +41,14 @@ public class ReceiptParser {
      */
     protected static Receipt parseString(String text){
         System.out.println(text);
+        String trimmedText = new String();
 
         int minEditLength = 100;
         Receipt receipt = null;
 
         Scanner scaner = new Scanner(text);
-        String line = scaner.nextLine();
+        String line = scaner.nextLine().trim();
+        
         int tmp = 0;
         int LD;
         for (int i = 0; i < shopHeaderList.size(); i++) {
@@ -55,9 +57,7 @@ public class ReceiptParser {
                 minEditLength = LD;
                 tmp = i;
             }
-            //System.out.println(LD);
         }
-        //System.out.println(tmp);
         switch (tmp) {
             case 0:
                 receipt = new Biedronka();
@@ -73,6 +73,11 @@ public class ReceiptParser {
                 break;
         }
 
+        scaner = new Scanner(text);
+        while(scaner.hasNextLine())
+            trimmedText = trimmedText.concat(scaner.nextLine().trim() + "\n");
+        text = trimmedText;
+        System.out.println(text);
         receipt.setDate(text);
         receipt.setProductList(text);
         receipt.setSum(text);
