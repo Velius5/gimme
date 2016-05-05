@@ -57,7 +57,7 @@ public class ReceiptApiController {
 //        receiptService.save(receipt);
 //        
 //        System.out.println("Dodano paragon."); 
-        Receipt receipt = receiptService.findById(Long.valueOf("7"));
+        Receipt receipt = receiptService.findById(Long.valueOf("1"));
         return receipt;
     }
     
