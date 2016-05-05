@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+    <head>
+        <title>Panel - Paragon</title>
+        <link href="/static/css/perfect-scrollbar.min.css" th:href="@{/css/perfect-scrollbar.min.css}" rel="stylesheet" media="screen"/>
+        <script language="javascript" type="text/javascript" src="/static/js/perfect-scrollbar.jquery.min.js" th:src="@{/js/perfect-scrollbar.jquery.min.js}"></script>
+    </head>
+    <body class="panel_page show_receipt_page">
+        <div class="panel" th:fragment="content">
+            <div class="container">
+
+                <div class="receipt_img">
+                    <h1>Zdjęcie paragonu</h1>
+                    <img th:src="'/receiptphoto/'+${paragon.id}"/>
+                </div>
+                
+                <div class="outgoing receipt_costs">
+                    <h1>Podział kosztów</h1>
+                    <div class="overflow">
+                        <table>
+                            <tr th:each="product : ${paragon.productList}">
+                                <td th:text="${product.productName}"></td>
+                                <td>
+                                    <ul>
+                                        <li th:each="user : ${product.users}" class="receipt_costs_user">
+                                            <img class="tooltip" th:title="${user.name}+' '+${user.surname}" th:src="'/userphoto/'+${user.id}"/>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>                    
+                        </table>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </body>
+</html>

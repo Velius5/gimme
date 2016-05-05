@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+    <head>
+        <title>Panel - Znajomi - Dodawanie znajomego</title>
+        <script type="text/javascript">
+            window.setTimeout(function(){
+
+        window.location.href = "/panel/friends";
+
+    }, 3000);
+        </script>
+    </head>
+    <body class="panel_page friends_page adding_friend">
+        <div class="panel" th:fragment="content">
+            <div class="container">
+                <div th:text="${addingFriendMessage}"></div>
+                <div><img th:src='@{/images/icons/loading.gif}'/></div>
+                <div>Za chwilę nastąpi przekierowanie</div>
+                
+            </div>
+        </div>
+    </body>
+</html>

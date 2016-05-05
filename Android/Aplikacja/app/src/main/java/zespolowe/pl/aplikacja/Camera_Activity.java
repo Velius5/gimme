@@ -1,253 +1,246 @@
 package zespolowe.pl.aplikacja;
 
-import android.content.Context;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//TODO:po wyswietleniu zdjecia na imageCamera1 dodaj opcje(w formie przycisku) "czy wysłac na serwer?"
-//TODO: Nie zaomnij o zminie w pliku camera_okno.xml
+import butterknife.Bind;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.functions.ExifUtil;
+import zespolowe.pl.aplikacja.functions.ImageManager;
+import zespolowe.pl.aplikacja.functions.SessionManager;
+import zespolowe.pl.aplikacja.model.Receipt;
+import zespolowe.pl.aplikacja.model.User;
+import zespolowe.pl.aplikacja.services.UserService;
 
+
+//TODO: dodaj wysyłąnie w api
 
 
 public class Camera_Activity extends AppCompatActivity {
-
-    private ImageView imageHolder;
-    private final int requestCode = 20;
-    public final static String EXTRA_MESSAGE = "zespolowe.pl.aplikacja.MESSAGE";
+    @Bind(R.id.image_camera1) ImageView _imageprev;
 
 
+    public ImageView imageHolder;
+    private final int requestCode = 100;
+    private Uri fileUri;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    SessionManager session;
+    User user;
+    public File addedImageFile;
+    public Long receiptId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        session = new SessionManager(getApplicationContext());
+        user = session.getUserDetails();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_okno);
 
-        imageHolder = (ImageView)findViewById(R.id.image_camera1);
-        AppCompatButton fab = (AppCompatButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener(){
-
-//        Button capturedImageButton = (Button)findViewById(R.id.photo_button);
-//        capturedImageButton.setOnClickListener( new View.OnClickListener() {
+        imageHolder = (ImageView) findViewById(R.id.image_camera1);
+        AppCompatButton fab = (AppCompatButton) findViewById(R.id.btn_wyslij_paragon_na_serw);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent photoCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(photoCaptureIntent, requestCode);
+
+                try {
+                    SendImageToReceiptAPITask task = new SendImageToReceiptAPITask();
+                    task.execute();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
-    }
+        aparat();
 
-    @Override
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(this.requestCode == requestCode && resultCode == RESULT_OK){
-            Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-
-            String partFilename = currentDateFormat();
-            storeCameraPhotoInSDCard(bitmap, partFilename);
-
-
-
-
-            // display the image from SD Card to ImageView Control
-            String storeFilename = "photo_" + partFilename + ".jpg";
-            Bitmap mBitmap = getImageFileFromSDCard(storeFilename);
-            imageHolder.setImageBitmap(mBitmap);
         }
+
+
+    private void wyslij(Receipt receipt) {
+
+
+
+        Intent intent = new Intent(Camera_Activity.this, Produkty_Edycja_Activity.class);
+        intent.putExtra("receiptId", receipt.getId());
+        startActivity(intent);
+
+
     }
 
-    public void showGreetings(View view)
-    {
+    public void aparat(){
+        // create Intent to take a picture and return control to the calling application
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        String button_text;
-        button_text = ((Button) view) .getText().toString();
-        if(button_text.equals("Info"))
-        {
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
 
-            Intent intent = new Intent(this, Camera_Activity.class);
-            startActivity(intent);
-        }
-        else if (button_text.equals("Info"))
-        {
-            Intent intent = new Intent(this, Camera_Activity.class);
-            startActivity(intent);
-        }
-    }
-    public void saveImage(Context context, Bitmap b,String name,String extension){
-        name=name+"."+extension;
-        FileOutputStream out;
-        try {
-            out = context.openFileOutput(name, Context.MODE_PRIVATE);
-            b.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // start the image capture Intent
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
-    private String currentDateFormat(){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
-        String  currentTimeStamp = dateFormat.format(new Date());
-        return currentTimeStamp;
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immagex = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        return imageEncoded;
     }
 
 
-    private void storeCameraPhotoInSDCard(Bitmap bitmap, String currentDate){
-        //To change external into internal change
-        File outputFile = new File(Environment.getExternalStorageDirectory(), "photo_" + currentDate + ".jpg");
-//        into
-//        File outputFile = new File(context.getFilesDir(), "photo_" + currentDate + ".jpg");
+
+    private class SendImageToReceiptAPITask extends AsyncTask<Void, Integer, Void> {
+        User us;
+        byte[] img = new byte[0];
+        String img_str;
+        File addedImage;
+        ProgressDialog progressDialog;
+
+        protected Void doInBackground(Void... params) {
+
+
+
+            try {
+//                String imagePath = addedImage.getAbsolutePath();
+//                Bitmap myBitmap  = BitmapFactory.decodeFile(imagePath);
+//                int outWidth;
+//                int outHeight;
+//                int inWidth = myBitmap.getWidth();
+//                int inHeight = myBitmap.getHeight();
+//                outWidth = 1500;
+//                outHeight = (inHeight * 1500) / inWidth;
 //
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+//                Bitmap resized = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, true);
+//                Bitmap orientedBitmap = ExifUtil.rotateBitmap(imagePath, resized);
+
+                img = org.apache.commons.io.FileUtils.readFileToByteArray(addedImage);
+
+                //img_str = encodeTobase64(orientedBitmap);
+                img_str = Base64.encodeToString(img, 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(SessionManager.getAPIURL())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            UserService userService = retrofit.create(UserService.class);
+            Call<Receipt> call = userService.sendReceiptImagetoAPI(us.getId(), img_str);
+            try {
+                Receipt receipt = call.execute().body();
+                System.out.println("Zdjęcie poprawnie wysłane");
+                wyslij(receipt);
+            } catch (Exception e) {
+                System.out.println("Błąd wysyłania zdjęcia");
+            }
+
+            return null;
         }
+
+
+        protected void onPreExecute() {
+            ImageView image = (ImageView) findViewById(R.id.image_camera1);
+            us = user;
+            addedImage = addedImageFile;
+            progressDialog = new ProgressDialog(Camera_Activity.this,
+                    R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Wysyłanie zdjęcia...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            super.onPostExecute(result);
+            progressDialog.hide();
+        };
     }
 
-    private Bitmap getImageFileFromSDCard(String filename){
-        Bitmap bitmap = null;
-        File imageFile = new File(Environment.getExternalStorageDirectory() + filename);
-        try {
-            FileInputStream fis = new FileInputStream(imageFile);
-            bitmap = BitmapFactory.decodeStream(fis);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
+
+    /** Create a file Uri for saving an image or video */
+    private Uri getOutputMediaFileUri(int type){
+        return Uri.fromFile(getOutputMediaFile(type));
     }
 
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    /** Create a File for saving an image or video */
+    private File getOutputMediaFile(int type){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES), "GIMME");
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM), "GIMME");
+
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+        if (type == MEDIA_TYPE_IMAGE){
+
+            this.addedImageFile = new File(mediaStorageDir.getPath()
+               + File.separator + "photo_" + timeStamp + ".jpg");
+
+        } else {
+            return null;
+        }
+        return this.addedImageFile;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK) {
+            Uri selectedImage = fileUri;
+            getContentResolver().notifyChange(selectedImage, null);
+            ImageView imageView = (ImageView) findViewById(R.id.image_camera1);
+            ContentResolver cr = getContentResolver();
+            Bitmap bitmap;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
+                imageView.setImageBitmap(bitmap);
+                Toast.makeText(Camera_Activity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+            }
         }
+    }
 
-        return super.onOptionsItemSelected(item);
-    }*/
+
 }
-//
-//import android.content.ContentResolver;
-//import android.content.Context;
-//import android.content.Intent;
-//import android.graphics.Bitmap;
-//import android.net.Uri;
-//import android.os.Bundle;
-//import android.os.Environment;
-//import android.provider.MediaStore;
-//import android.support.v7.app.AppCompatActivity;
-//import android.support.v7.widget.AppCompatButton;
-//import android.util.Log;
-//import android.view.View;
-//import android.widget.ImageView;
-//import android.widget.Toast;
-//
-//import java.io.File;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//
-//
-//public class Camera_Activity extends AppCompatActivity {
-//    private static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-//    private Uri fileUri;
-//    private static final String TAG = "Camera_Activity";
-//    Context context;
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        System.out.println("Camera_Activity_onCreate");
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.camera_okno);
-//        context = getApplicationContext();
-//        AppCompatButton fab = (AppCompatButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(cameraListener);
-//    }
-//
-//    private View.OnClickListener cameraListener = new View.OnClickListener() {
-//        public void onClick(View view) {
-//            System.out.println("Camera_Activity_fab");
-//
-//            takePhoto(view);
-//
-//        }
-//    };
-//
-//    private void takePhoto(View view) {
-//        System.out.println("Camera_Activity_takePhoto");
-//        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-//                + File.separator + "IMG" + timeStamp + ".jpg");
-//        fileUri = Uri.fromFile(photo);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-//        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        System.out.println("Camera_Activity_onActivityResult");
-//
-//        super.onActivityResult(requestCode, resultCode, intent);
-//
-//        if (resultCode == RESULT_OK) {
-//            System.out.println("Camera_Activity_RESULT_OK");
-//
-//            Uri selectedImage = fileUri;
-//            getContentResolver().notifyChange(selectedImage, null);
-//            ImageView imageView = (ImageView) findViewById(R.id.image_camera1);
-//
-//            ContentResolver cr = getContentResolver();
-//            Bitmap bitmap;
-//            try {
-//                System.out.println("Camera_Activity_getBitmap");
-//
-//                bitmap = MediaStore.Images.Media.getBitmap(cr, selectedImage);
-//                imageView.setImageBitmap(bitmap);
-//                Toast.makeText(Camera_Activity.this, selectedImage.toString(), Toast.LENGTH_LONG).show();
-//            } catch (Exception e) {
-//                Log.e(TAG, e.toString());
-//                System.out.println("Camera_Activity_catch po bitmap");
-//
-//            }
-//        }
-//        System.out.println("Camera_Activity_KONIEC_onActivityResult");
-//
-//    }
-//
-//}
+
+

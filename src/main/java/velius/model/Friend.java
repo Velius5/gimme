@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,24 +26,34 @@ public class Friend {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(name = "id_znajomego")
-    private long friendId;
+    @ManyToOne
+    @JoinColumn(name ="userId")
+    private User userId;
+    
+    @OneToOne
+    private User friendId;
     
     @Column(name = "status")
     private long status;
 
     public Friend(){}
 
-    public Friend(long friendId, long status) {
+    public Friend(User friendId, long status) {
+        this.friendId = friendId;
+        this.status = status;
+    }
+    
+    public Friend(User user,User friendId, long status) {
+        this.userId = user;
         this.friendId = friendId;
         this.status = status;
     }
 
-    public long getFriendId() {
-        return friendId;
+    public Long getFriendId() {
+        return friendId.getId();
     }
 
-    public void setFriendId(long friendId) {
+    public void setFriendId(User friendId) {
         this.friendId = friendId;
     }
 
@@ -50,6 +63,13 @@ public class Friend {
 
     public void setStatus(long status) {
         this.status = status;
+    }
+
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId.getId();
     }
     
     

@@ -6,16 +6,19 @@
 package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,7 +30,6 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "produkty")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -42,19 +44,26 @@ public class Product {
     private double count;
     
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     @JsonBackReference
     private User owner;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="receiptID")
     @JsonBackReference
     private Receipt receipt;
     
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany
+    @JoinTable(name = "user_product", 
+            joinColumns = @JoinColumn(name = "productID"), 
+            inverseJoinColumns = @JoinColumn(name = "userID"))
     @JsonBackReference
     private List<User> users;
+    
+    @ManyToMany(mappedBy = "productsHistory")
+    @JsonBackReference
+    private List<User> usersHistory;
     
     
     public Product() {
@@ -111,6 +120,7 @@ public class Product {
     }
     
     @Transient
+    @JsonIgnore
     public BigDecimal getPricePerPerson(){
         return BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
     }

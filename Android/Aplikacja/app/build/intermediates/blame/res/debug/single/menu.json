@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Patryk\\Documents\\GitHub\\2016\\Android\\Aplikacja\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "C:\\Users\\Patryk\\Documents\\GitHub\\2016\\Android\\Aplikacja\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Patryk\\Documents\\GitHub\\2016\\Android\\Aplikacja\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_main_drawer.xml",
+        "source": "C:\\Users\\Patryk\\Documents\\GitHub\\2016\\Android\\Aplikacja\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Patryk\\Documents\\GitHub\\2016\\Android\\Aplikacja\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_detail.xml",
+        "source": "C:\\Users\\Patryk\\Documents\\GitHub\\2016\\Android\\Aplikacja\\app\\src\\main\\res\\menu\\menu_detail.xml"
+    }
+]

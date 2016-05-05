@@ -23,6 +23,11 @@ public interface UserService {
     List<User> getUserFriends(long id);
     
     Boolean exists(long id);
-   
+
+    public List<User> getUsersByFullnameLike(String fullname);
+
+    public List<User> getUserInvitations(long id);
+    
+    public List<User> getUserSendedInvitations(long id);
     
 }

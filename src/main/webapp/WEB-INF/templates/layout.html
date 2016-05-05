@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" ng-app="gimme">
     <head>
         <title layout:title-pattern="Gimme - $CONTENT_TITLE">Strona Główna</title>
         <link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin-ext,latin" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+        <link href="/static/css/tooltipster.css" th:href="@{/css/tooltipster.css}" rel="stylesheet" media="screen"/>
         <link href="/static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
         <script src="/static/js/jquery-1.12.1.min.js" th:src="@{/js/jquery-1.12.1.min.js}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="/static/js/jquery.parallax.min.js" th:src="@{/js/jquery.parallax.min.js}"></script>
         <script src="/static/js/jquery.waypoints.min.js" th:src="@{/js/jquery.waypoints.min.js}"></script>
+        <script src="/static/js/jquery.tooltipster.min.js" th:src="@{/js/jquery.tooltipster.min.js}"></script>
         <script src="/static/js/main.js" th:src="@{/js/main.js}"></script>
     </head>
     <body>

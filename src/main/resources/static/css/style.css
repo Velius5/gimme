@@ -273,6 +273,7 @@ body.login_page {
     width: 33.33%;
     float: left;
     text-align: center;
+    min-height: 200px;
 }
 
 .your_receipts > ul > li > div {
@@ -302,6 +303,8 @@ body.login_page {
     -ms-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    position: relative;
+    bottom: 15%;
 }
 
 .your_receipts li:hover .receipt_img > img {
@@ -533,6 +536,7 @@ body.registration_page {
     padding: 10px;
     border: 1px #7b4a43 solid;
     color: #7b4a43;
+    box-sizing: content-box;
 }
 
 .panel_settings form .login {
@@ -544,4 +548,106 @@ body.registration_page {
     height: 250px;
     border: 1px transparent solid;
     border-radius: 10px;
+}
+
+.panel_settings .btn {
+    background-color: white;
+    border-width: 3px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+}
+
+.panel_settings .btn:hover {
+    background-color: #fec223;
+    color: #7b4a43;
+    cursor: pointer;
+}
+
+.friends_page .your_friends {
+    float: left;
+}
+
+.friends_page .your_friends .overflow {
+    height: 800px;
+}
+
+.friends_page .your_friends .friend_img, .friends_page .add_friend .friend_img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.friends_page .your_friends .friend_img > img, .friends_page .add_friend .friend_img > img {
+    height: 100%;
+    width: auto;
+}
+
+.add_friend {
+    width: 30%;
+    margin-bottom: 30px;
+    float: right;
+    clear: right;
+}
+
+.add_friend > .overflow {
+    height: 350px;
+}
+
+.add_friend > input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.adding_friend .panel > .container > div {
+    margin: 20px auto;
+}
+
+.full_width {
+    width: 100% !important;
+}
+
+.panel_receipts .your_receipts > h1 {
+    margin-bottom: 50px;
+}
+
+.panel_receipts .your_receipts > ul > li {
+    width: 20%;
+    min-height: 250px;
+}
+
+.show_receipt_page .panel > .container > div {
+    width: 50%;
+    float: left;
+}
+
+.show_receipt_page .panel > .container > .receipt_img > img {
+    width: 100%;
+}
+
+.show_receipt_page .panel > .container > div > h1 {
+    margin-bottom: 30px;
+}
+
+.show_receipt_page .receipt_costs {
+    width: 40% !important;
+    float: right !important;
+}
+
+.receipt_costs_user > img {
+    width: 32px;
+    height: 32px;
+    border: 1px transparent solid;
+    border-radius: 100px;
+}
+
+.receipt_costs ul {
+    float: right;
+}
+
+.receipt_costs ul > li {
+    display: inline-block;
 }

@@ -29,6 +29,7 @@
                         <div class="right">
                             <div sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" method="post">
+                                <a href="/panel">Panel | </a>
                                 <input type="submit" value="Wyloguj się"/>
                             </form></div>
                             <div sec:authorize="isAnonymous()">

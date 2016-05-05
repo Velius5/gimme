@@ -32,4 +32,34 @@ jQuery(document).ready(function($){
          
          /* PERFECT SCROLLBAR  */
          $('.outgoing > .overflow').perfectScrollbar();
+         
+         /* TOOLTOPSTER */
+         $('.tooltip').tooltipster();
+         
+
 });
+
+function angularConfig ($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[').endSymbol(']]');
+}
+
+var app = angular.module('gimme', []).config(angularConfig);
+app.controller ("APIGetFriends", function ($scope, $http) {
+    $scope.friendsList = [];
+    $scope.searchFriend = function() {
+        var fullname = $("#searchFriendInput").val();
+        var userId = $("#userId").val();
+        if(fullname.length != 0) {
+            var response = $http.get('/api/user/search/'+ userId + '/' + fullname);
+
+            response.success(function(data, status, headers, config) {
+                $scope.friendsList = data;
+            });
+        } else {
+            $scope.friendsList = null;
+        }
+    };
+})
+
+
+            

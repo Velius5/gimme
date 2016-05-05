@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import jdk.nashorn.internal.objects.NativeArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import velius.model.Friend;
 import velius.model.User;
+import velius.repository.FriendRepository;
 import velius.repository.UserRepository;
 
 @Service
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository repository;
+    
+    @Autowired
+    FriendRepository friendRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository repository) {
@@ -62,8 +67,17 @@ public class UserServiceImpl implements UserService {
         List<Friend> friends = repository.findById(id).getFriends();
         List<User> users = new ArrayList<>();
         for(Friend friend : friends) {
-            User user = repository.findById(friend.getFriendId());
-            users.add(user);
+            if(friend.getStatus() == 1) {
+                User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
+        }
+        List<Friend> friendsInverse = friendRepository.findAllByFriendId(repository.findById(id));
+        for(Friend friend : friendsInverse) {
+            if(friend.getStatus() == 1) {
+                User user = repository.findById(friend.getUserId());
+                users.add(user);
+            }
         }
         return users;
     }
@@ -78,6 +92,47 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email) {
         User user = repository.findByEmail(email);
         return user;
+    }
+
+    @Override
+    public List<User> getUsersByFullnameLike(String fullname) {
+        List<User> usersList;
+        String nameAndSurname[] = fullname.split(" ");
+        if(nameAndSurname.length < 2)
+            usersList = repository.findTop30BySurnameContainingAndNameContainingOrderByName("", nameAndSurname[0]);
+        else {
+            usersList = repository.findTop30BySurnameContainingAndNameContainingOrderByName(nameAndSurname[1], nameAndSurname[0]);
+            if(usersList.isEmpty())
+            usersList = repository.findTop30BySurnameContainingAndNameContainingOrderByName(nameAndSurname[0], nameAndSurname[1]);
+        }
+        
+        return usersList;
+    }
+
+    @Override
+    public List<User> getUserInvitations(long id) {
+        List<Friend> friends = repository.findById(id).getFriends();
+        List<User> users = new ArrayList<>();
+        for(Friend friend : friends) {
+            if(friend.getStatus() == 0 && friend.getFriendId() == id) {
+                User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
+        }
+        return users;
+    }
+    
+    @Override
+    public List<User> getUserSendedInvitations(long id) {
+        List<Friend> friends = repository.findById(id).getFriends();
+        List<User> users = new ArrayList<>();
+        for(Friend friend : friends) {
+            if(friend.getStatus() == 0 && friend.getUserId() == id) {
+                User user = repository.findById(friend.getFriendId());
+                users.add(user);
+            }
+        }
+        return users;
     }
 
 }

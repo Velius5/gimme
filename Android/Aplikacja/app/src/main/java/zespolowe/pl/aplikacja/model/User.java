@@ -2,13 +2,14 @@ package zespolowe.pl.aplikacja.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
+import java.io.Serializable;
 
 /**
  * Created by Rafał on 2016-03-31.
  */
 
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("id")
     private long id;
@@ -22,8 +23,6 @@ public class User {
     @SerializedName("email")
     private String email;
 
-    @SerializedName("image")
-    private byte[] image;
 
     @SerializedName("active")
     private boolean active;
@@ -31,21 +30,38 @@ public class User {
     @SerializedName("role")
     private int role;
 
-
     public User() {
     }
 
-    public User(String name, String surname, String email, boolean active, int role) {
+    public User(long id, String name, String surname, int role, boolean active, String email) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
-        this.email = email;
-        this.active = active;
         this.role = role;
+        this.active = active;
+        this.email = email;
     }
+//pobieranie listy znajomych
+    public User(long id,String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+
+    }
+//przesyłąnie paragonu
+    public User( long id) {
+        this.id = id;
+
+    }
+
 
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -73,30 +89,21 @@ public class User {
     }
 
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
     public boolean isActive() {
-        return this.active;
+        return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
     }
 
-    public Integer getRole() {
+    public int getRole() {
         return role;
     }
 
     public void setRole(int role) {
         this.role = role;
     }
-
 
     @Override
     public String toString() {
@@ -105,7 +112,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", image=" + Arrays.toString(image) +
                 ", active=" + active +
                 ", role=" + role +
                 '}';

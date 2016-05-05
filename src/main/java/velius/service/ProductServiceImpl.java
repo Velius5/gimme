@@ -53,5 +53,20 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getFriendDebtsToMe(User user, User friend) {
         return repository.findIdDistinctByOwnerAndUsers(user, friend);
     }
+
+    @Override
+    public Product getProduct(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public List<Product> getUserDebitorsHistory(User user) {
+        return repository.findIdDistinctByOwnerAndUsersHistoryNotNull(user);
+    }
+
+    @Override
+    public List<Product> getMyDebtsHistory(User user) {
+        return repository.findAllByUsersHistory(user);
+    }
     
 }

@@ -1,0 +1,264 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:2:1-102:12
+	package
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:3:5-37
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+uses-feature#android.hardware.camera
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:9:5-60
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:9:19-57
+uses-feature#android.hardware.camera.flash
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:10:5-66
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:10:19-63
+uses-feature#android.hardware.camera.any
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:11:5-64
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:11:19-61
+uses-feature#android.hardware.camera.external
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:12:5-69
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:12:19-66
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:14:5-65
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:14:22-62
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:16:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:17:5-80
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:17:22-77
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:18:5-66
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:18:22-63
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:19:5-67
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:19:22-64
+uses-permission#android.permission.CHANGE_WIFI_MULTICAST_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:20:5-86
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:20:22-83
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:21:5-79
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:21:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:22:5-76
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:22:22-73
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:23:22-76
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:24:5-75
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:24:22-72
+uses-permission#android.permission.MANAGE_USERS
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:25:5-71
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:25:22-68
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:26:5-71
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:26:22-68
+uses-permission#android.permission.MANAGE_ACCOUNTS
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:27:5-74
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:27:22-71
+uses-permission#android.permission.INTERACT_ACROSS_USERS
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:28:5-80
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:28:22-77
+uses-permission#android.permission.INTERACT_ACROSS_USERS_FULL
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:29:5-85
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:29:22-82
+uses-permission#android.permission.MANAGE_DEVICE_ADMINS
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:30:5-79
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:30:22-76
+uses-permission#android.permission.CHANGE_CONFIGURATION
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:31:5-79
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:31:22-76
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:32:5-76
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:32:22-73
+uses-permission#android.permission.SET_TIME_ZONE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:33:5-72
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:33:22-69
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:34:5-81
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:34:22-78
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:35:5-73
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:35:22-70
+uses-permission#android.permission.ACCESS_PDB_STATE
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:36:5-75
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:36:22-72
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:37:5-68
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:37:22-65
+application
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:39:5-100:19
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:42:9-41
+	android:supportsRtl
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:44:9-35
+	android:allowBackup
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:40:9-35
+	android:icon
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:41:9-43
+	android:largeHeap
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:43:9-33
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:45:9-40
+activity#zespolowe.pl.aplikacja.MainActivity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:46:9-56:20
+	android:label
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:48:13-56
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:47:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:51:13-55:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:52:17-69
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:52:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:54:17-77
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:54:27-74
+activity#zespolowe.pl.aplikacja.Log_Rej_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:57:9-59:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:59:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:58:13-45
+activity#zespolowe.pl.aplikacja.LoginActivity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:60:9-62:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:62:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:61:13-42
+activity#zespolowe.pl.aplikacja.SignupActivity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:63:9-65:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:65:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:64:13-43
+activity#zespolowe.pl.aplikacja.Menu_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:66:9-68:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:68:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:67:13-42
+activity#zespolowe.pl.aplikacja.Camera_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:69:9-71:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:71:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:70:13-44
+activity#zespolowe.pl.aplikacja.Gallery_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:72:9-74:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:74:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:73:13-45
+activity#zespolowe.pl.aplikacja.DetailActivity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:75:9-77:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:77:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:76:13-43
+activity#zespolowe.pl.aplikacja.Produkty_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:78:9-80:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:80:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:79:13-46
+activity#zespolowe.pl.aplikacja.Friend_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:81:9-83:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:83:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:82:13-44
+activity#zespolowe.pl.aplikacja.User_Profile_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:84:9-86:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:86:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:85:13-50
+activity#zespolowe.pl.aplikacja.Ustawienia
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:87:9-89:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:89:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:88:13-39
+activity#zespolowe.pl.aplikacja.Add_Friend_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:90:9-92:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:92:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:91:13-48
+activity#zespolowe.pl.aplikacja.Splac_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:93:9-95:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:95:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:94:13-43
+activity#zespolowe.pl.aplikacja.Produkty_Edycja_Activity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:96:9-98:52
+	android:theme
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:98:13-49
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:97:13-53
+activity#zespolowe.pl.aplikacja.view.HistoryActivity
+ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:99:9-67
+	android:name
+		ADDED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml:99:19-55
+uses-sdk
+INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Patryk\Documents\GitHub\2016\Android\Aplikacja\app\src\main\AndroidManifest.xml

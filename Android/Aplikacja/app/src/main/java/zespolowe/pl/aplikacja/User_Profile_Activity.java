@@ -1,88 +1,97 @@
 package zespolowe.pl.aplikacja;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
+import com.loopj.android.image.SmartImageView;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import zespolowe.pl.aplikacja.functions.SessionManager;
+import zespolowe.pl.aplikacja.model.User;
 
 public class User_Profile_Activity extends AppCompatActivity {
+    @Bind(R.id.profil_foto) SmartImageView _profil_foto;
+    @Bind(R.id.profil_imie) TextView _profil_imie;
+    @Bind(R.id.profil_nazwisko) TextView _profil_nazwisko;
+    @Bind(R.id.profil_email) TextView _profil_email;
+    @Bind(R.id.dodaj_znajomego) Button _dodaj_znajomego;
 
-    TextView nazwisko_profil, telefon_profil;
-    final String textSource = "https://192.168.0.104/api/user/1";//user/id/getfriends
-//    final String textSource2 = "";
-
-
-    //pobieranie foto
-    ArrayList<ImageModel> data = new ArrayList<>();
-    public static String IMGS[] = {
-    };
-
+SessionManager session;
+    User user;
+    private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile_window);
         System.out.println("User_Profile_Activity");
+        ButterKnife.bind(this);
+        session = new SessionManager(getApplicationContext());
+        user = session.getUserDetails();
+        wczytajDaneDoFormularza();
 
-        //pobieranie danych
-        nazwisko_profil = (TextView) findViewById(R.id.profil_imie_nazw);
-        telefon_profil = (TextView) findViewById(R.id.profil_telefon);
-        new MyTask().execute();
-
-      /*  //pobieranie zdjecia
-        ImageModel imageModel = new ImageModel();
-        imageModel.setUrl(IMGS[i]);
-        data.add(imageModel);*/
-
-    }
-
-
-    private class MyTask extends AsyncTask<Void, Void, Void> {
-
-        String textResult;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            URL textUrl;
-
-            try {
-                textUrl = new URL(textSource);
-
-                BufferedReader bufferReader = new BufferedReader(
-                        new InputStreamReader(textUrl.openStream()));
-
-                String stringBuffer;
-                String stringText = "";
-                while ((stringBuffer = bufferReader.readLine()) != null) {
-                    stringText += stringBuffer;
-                }
-
-                bufferReader.close();
-                textResult = stringText;
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                textResult = e.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-                textResult = e.toString();
+        _dodaj_znajomego.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dodaj_znajomego_();
             }
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void result) {
+        });
 
-            nazwisko_profil.setText(textResult);
-//        telefon_profil.setText(textResult);
-            super.onPostExecute(result);
+        try {
+            pobierz();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
     }
+
+    private void wczytajDaneDoFormularza() {
+        _profil_imie.setText(user.getName());
+        _profil_nazwisko.setText(user.getSurname());
+        _profil_email.setText(user.getEmail());
+        System.out.println(user.toString());
+        _profil_foto.setImageUrl(SessionManager.getSERWERURL()+"userphoto/"+ user.getId());
+    }
+
+
+    private void dodaj_znajomego_() {
+        if(user.getName() != null) {
+            Intent intent = new Intent(this, Add_Friend_Activity.class);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Zanim dodasz znajomych musisz uzupełnić swój profil", Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+
+    public void pobierz()throws UnsupportedEncodingException, NoSuchAlgorithmException {
+
+        //TODO dodaj api(get)
+
+     /*   final ProgressDialog progressDialog = new ProgressDialog(User_Profile_Activity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Pobieranie danych...");
+        progressDialog.show();
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+
+                        progressDialog.dismiss();
+                    }
+                }, 3000);*/
+    }
+
 
 }

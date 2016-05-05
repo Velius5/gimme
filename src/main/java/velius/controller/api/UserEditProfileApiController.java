@@ -5,6 +5,7 @@
  */
 package velius.controller.api;
 
+import java.io.IOException;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,7 @@ public class UserEditProfileApiController {
     }
     
     @RequestMapping(value = "/user/{id}/editProfile", method = RequestMethod.POST)
-    public Response editUserProfile(@PathVariable("id") Long id, @RequestParam(value = "name", required = true) String name, @RequestParam(value = "surname", required = true) String surname, @RequestParam(value = "image", required = true) String image, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) {
+    public Response editUserProfile(@PathVariable("id") Long id, @RequestParam(value = "name", required = true) String name, @RequestParam(value = "surname", required = true) String surname, @RequestParam(value = "image", required = true) String image, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) throws IOException {
         
         User user = userService.getUser(id);
         if(!(user == null)) {
@@ -67,7 +68,7 @@ public class UserEditProfileApiController {
     }
     
     @RequestMapping(value = "/user/{id}/editPhoto", method = RequestMethod.POST)
-    public Response editUserPhoto(@PathVariable("id") Long id, @RequestParam(value = "image", required = true) byte[] image) {
+    public Response editUserPhoto(@PathVariable("id") Long id, @RequestParam(value = "image", required = true) byte[] image) throws IOException {
         
         User user = userService.getUser(id);
         if(!(user == null)) {

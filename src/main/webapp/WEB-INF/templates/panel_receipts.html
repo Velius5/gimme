@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+    <head>
+        <title>Panel - Paragony</title>
+        <link href="/static/css/perfect-scrollbar.min.css" th:href="@{/css/perfect-scrollbar.min.css}" rel="stylesheet" media="screen"/>
+        <script language="javascript" type="text/javascript" src="/static/js/perfect-scrollbar.jquery.min.js" th:src="@{/js/perfect-scrollbar.jquery.min.js}"></script>
+    </head>
+    <body class="panel_page panel_receipts">
+        <div class="panel" th:fragment="content">
+            <div class="container">
+                
+                <div class="your_receipts full_width">
+                    <h1>Twoje zakupy</h1>
+                    <ul>
+                        <li th:each="receipt : ${paragony}">
+                            <div class="receipt_img">
+                                <img th:src="@{'/receiptphoto/'+${receipt.id}}"/>
+                                <a class="receipt_price" th:href="'receipts/show/'+${receipt.id}" th:text="${receipt.sum} + 'zł'">21.59 zł</a>
+                            </div>
+                            <div class="receipt_shopname" th:text="${receipt.name}">Biedronka</div>
+                            <div class="receipt_date" th:text="${receipt.date}">10.04.2016</div>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

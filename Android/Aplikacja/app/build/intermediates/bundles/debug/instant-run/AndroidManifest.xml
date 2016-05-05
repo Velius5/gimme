@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="zespolowe.pl.aplikacja"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="23" />
+
+    <!--
+    <uses-feature android:name="android.hardware.camera.level.full" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-feature android:name="android.hardware.camera.external" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_USERS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <uses-permission android:name="android.permission.MANAGE_DEVICE_ADMINS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SET_TIME_ZONE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_PDB_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name="com.android.tools.fd.runtime.BootstrapApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="zespolowe.pl.aplikacja.MainActivity"
+            android:label="@string/title_activity_main" >
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            <!-- dodane niedawno -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="zespolowe.pl.aplikacja.Log_Rej_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.LoginActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.SignupActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Menu_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Camera_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Gallery_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.DetailActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Produkty_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Friend_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.User_Profile_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Ustawienia"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Add_Friend_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Splac_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name="zespolowe.pl.aplikacja.Produkty_Edycja_Activity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity android:name="zespolowe.pl.aplikacja.view.HistoryActivity" />
+    </application>
+
+</manifest>

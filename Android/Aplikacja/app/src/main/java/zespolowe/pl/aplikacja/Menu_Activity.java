@@ -26,8 +26,11 @@ public class Menu_Activity extends AppCompatActivity {
     @Bind(R.id.imageButton3)
     ImageButton znajomi;
 
+    @Bind(R.id.imageButton4)
+    ImageButton profil;
+
     @Bind(R.id.imageButton6)
-    ImageButton getapi;
+    ImageButton ustawienia;
 
 
     @Override
@@ -62,12 +65,20 @@ public class Menu_Activity extends AppCompatActivity {
             }
         });
 
-        getapi.setOnClickListener(new View.OnClickListener() {
+        ustawienia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getapi_();
+                ustawienia_();
             }
         });
+
+        profil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profil_();
+            }
+        });
+
     }
 
     private void camera_() {
@@ -84,32 +95,16 @@ public class Menu_Activity extends AppCompatActivity {
         Intent intent = new Intent(this, Friend_Activity.class);
         startActivity(intent);
     }
-    private void getapi_() {
-        Intent intent = new Intent(this, HttpClientExample.class);
+    private void ustawienia_() {
+        Intent intent = new Intent(this, Ustawienia.class);
         startActivity(intent);
     }
 
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }*/
+    private void profil_() {
+        Intent intent = new Intent(this, User_Profile_Activity.class);
+        startActivity(intent);
+    }
 
-   /* @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     private static long back_pressed_time;
     private static long PERIOD = 2000;
