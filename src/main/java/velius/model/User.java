@@ -70,6 +70,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "productID"))
     @JsonIgnore
     private List<Product> products;
+    
+    @ManyToMany
+    private List<Product> productsHistory;
 
     public User() {
     }
