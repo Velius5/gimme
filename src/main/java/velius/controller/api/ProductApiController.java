@@ -39,7 +39,7 @@ public class ProductApiController {
         return productService.getUserDebitors(user);
     }
     
-    @RequestMapping(value = "/friendsdebts/{id}/{friendid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/mydebts/{id}/{friendid}", method = RequestMethod.GET)
     List<Product> getMyDebtsToFriend(@PathVariable("id") Long id,@PathVariable("friendid") Long friendid){
         User user = userService.getUser(id);
         User friend = userService.getUser(friendid);
@@ -48,10 +48,12 @@ public class ProductApiController {
         return prods;
     }
     
-    @RequestMapping(value = "/mydebts/{id}/{friendid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/friendsdebts/{id}/{friendid}", method = RequestMethod.GET)
     List<Product> getFriendDebtsToMe(@PathVariable("id") Long id,@PathVariable("friendid") Long friendid){
         User user = userService.getUser(id);
         User friend = userService.getUser(friendid);
+        
+        
         
         List<Product> prods = productService.getFriendDebtsToMe(user, friend);
         for(Product prod : prods)

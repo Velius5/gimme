@@ -6,4 +6,4 @@
     android:layout_height="wrap_content"
     android:adjustViewBounds="true"
     android:scaleType="fitCenter"
-    tools:context=".DetailActivity$PlaceholderFragment" />
+    tools:context=".activities.DetailActivity$PlaceholderFragment" />

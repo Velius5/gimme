@@ -67,12 +67,12 @@ public interface UserService {
 /*    @GET("user/search/{id}/{fullname}")
     Call<FindFriend> FindFriendByText(@Path("fullname") String fullname);*/
 
-    @GET("/friendsdebts/{id}/{friendid}")
+    @GET("product/friendsdebts/{id}/{friendid}")
     Call<List<Product>> getFriendDebtsToMe(@Path("id") Long id,@Path("friendid") Long friendId);
 
-    @GET("/mydebts/{id}/{friendid}")
+    @GET("product/mydebts/{id}/{friendid}")
     Call<List<Product>> getMyDebtsToFriend(@Path("id") Long id,@Path("friendid") Long friendId);
 
-    @GET("/history/user/{id}")
+    @GET("product/history/user/{id}")
     Call<List<Product>> getHistory(@Path("id") Long id);
 }

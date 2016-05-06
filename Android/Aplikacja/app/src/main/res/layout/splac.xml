@@ -5,37 +5,52 @@ android:layout_height="fill_parent"
 xmlns:tools="http://schemas.android.com/tools"
 android:fitsSystemWindows="true"
 android:orientation="vertical"
-tools:context="{relativePackage}.${Splac_Activity}">
+tools:context="{relativePackage}.${Splac_Activity}"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:text="Lista nieopłaconych produktów"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginTop="24dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
-    android:layout_marginBottom="8dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Lista nieopłaconych produktów"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"/>
 
-<ListView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true" >
-</ListView>
+        <ListView
+            android:id="@+id/listOfFriendDebtsToMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_dlugi_splacone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom|center"
+            style="vertical"
+            android:text="Długi spłacone"
+            android:adjustViewBounds="false"
+            android:theme="@style/AppTheme.Dark" />
+    </LinearLayout>
+
 
 </LinearLayout>
 

@@ -44,7 +44,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main">
             android:theme="@style/Theme.AppCompat.NoActionBar"
             <!-- dodane niedawno -->
@@ -55,46 +55,46 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Log_Rej_Activity"
+            android:name=".activities.Log_Rej_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".activities.SignupActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Menu_Activity"
+            android:name=".activities.Menu_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Camera_Activity"
+            android:name=".activities.Camera_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Gallery_Activity"
+            android:name=".activities.Gallery_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".activities.DetailActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Produkty_Activity"
+            android:name=".activities.Produkty_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Friend_Activity"
+            android:name=".activities.Friend_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".User_Profile_Activity"
+            android:name=".activities.User_Profile_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Ustawienia"
+            android:name=".activities.Ustawienia"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Add_Friend_Activity"
+            android:name=".activities.Add_Friend_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Splac_Activity"
+            android:name=".activities.PayoffFriendDebts_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Produkty_Edycja_Activity"
+            android:name=".activities.Produkty_Edycja_Activity"
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".view.HistoryActivity"></activity>
     </application>
