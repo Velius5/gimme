@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/user_profile"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:src="@drawable/logo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="34dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription=""
+            android:id="@+id/profil_foto" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zespół numer VI:"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="
+            Piotr Czarny, Patryk Dobrzyński, Robert Zając, Rafał Ignaczak, Michał Majewski"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="
+            Projekt został stworzony na potrzebę przedmiotu 'programowanie zespołowe' dla Uniwersytetu Mikołaja Kopernika w Toruniu."
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="
+            Aplikacja ma na celu ułatwienie w nowoczesny sposób zarządzania swoimi wydatkami oraz drobnymi długami wśród znajomych."
+            />
+
+    </LinearLayout>
+
+
+</ScrollView>

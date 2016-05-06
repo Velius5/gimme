@@ -8,7 +8,7 @@ import java.util.List;
 public class Receipt implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
-    private String date;
+    private Date date;
     private String name;
     private byte[] image;
     private String description;
@@ -21,7 +21,7 @@ public class Receipt implements Serializable {
 
 
 
-    public Receipt(List<Product> productList, Long id, String date, String name, String description, User owner, BigDecimal sum) {
+    public Receipt(List<Product> productList, Long id, Date date, String name, String description, User owner, BigDecimal sum) {
         this.productList = productList;
         this.id = id;
         this.date = date;
@@ -47,11 +47,11 @@ public class Receipt implements Serializable {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -110,16 +110,20 @@ public class Produkty_Activity extends AppCompatActivity {
                     List<String> productsUsersList = new ArrayList<String>();
 
                     for(Product pr : receipt.getProductList()) {
-                        String users;
-                        users = String.valueOf(pr.getId()) + "," + pr.getProductName().replace(",",".") + "," + pr.getCount().replace(",",".") + "," + pr.getPrice().toString().replace(",",".");
+                        String users = null;
                         if(pr.getUsers() != null) {
                             for (User us : pr.getUsers()) {
+                                if (users == null) {
+                                    users = String.valueOf(pr.getId());
+                                }
                                 users += ',';
                                 users += us.getId();
                             }
+                            productsUsersList.add(users);
+                            System.out.println(users);
+                        } else {
+                            productsUsersList.add(String.valueOf(pr.getId()));
                         }
-                        productsUsersList.add(users);
-                        System.out.println(users);
                     }
 
                     UserService userService = retrofit.create(UserService.class);
