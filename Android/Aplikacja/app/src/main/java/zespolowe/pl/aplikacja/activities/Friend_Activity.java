@@ -1,7 +1,6 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,18 +8,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.adapters.CustomListAdapter;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
-import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
@@ -91,7 +89,7 @@ public class Friend_Activity extends Activity {
                                                 int position, long id) {
                             // TODO Auto-generated method stub
                             Friend Slecteditem = friends.get(position);
-                            Intent intent = new Intent(/*getApplicationContext()*/ Friend_Activity.this, Splac_Activity.class);
+                            Intent intent = new Intent(/*getApplicationContext()*/ Friend_Activity.this, PayoffFriendDebts_Activity.class);
                             intent.putExtra("saldo", Slecteditem.getBilans());
                             intent.putExtra("name", Slecteditem.getName());
                             intent.putExtra("surname", Slecteditem.getSurname());

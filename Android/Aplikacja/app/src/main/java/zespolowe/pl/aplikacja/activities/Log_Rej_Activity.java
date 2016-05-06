@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import zespolowe.pl.aplikacja.R;
 
 //import android.app.Activity;
 /*import org.apache.http.HttpResponse;

@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.User;

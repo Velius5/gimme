@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 /**
  * Created by Rafał on 2016-03-31.
@@ -20,6 +20,10 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+
+import zespolowe.pl.aplikacja.pageTransformers.DepthPageTransformer;
+import zespolowe.pl.aplikacja.model.ImageModel;
+import zespolowe.pl.aplikacja.R;
 
 public class DetailActivity extends AppCompatActivity {
 

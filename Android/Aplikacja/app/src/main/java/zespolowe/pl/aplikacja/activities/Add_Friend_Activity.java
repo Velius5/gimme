@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +19,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.adapters.SearchFriendsListAdapter;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.FindFriend;
 import zespolowe.pl.aplikacja.model.Respon;
@@ -44,7 +46,7 @@ public class Add_Friend_Activity extends AppCompatActivity {
         setContentView(R.layout.add_user);
         ButterKnife.bind(this);
 
-        CustomListAdapterWyszukiwarka adapter = new CustomListAdapterWyszukiwarka(this, findFriends);
+        SearchFriendsListAdapter adapter = new SearchFriendsListAdapter(this, findFriends);
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

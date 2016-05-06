@@ -1,34 +1,26 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import zespolowe.pl.aplikacja.functions.ExifUtil;
+import zespolowe.pl.aplikacja.adapters.AddingReceiptEditListAdapter;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.Receipt;
-import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
 
@@ -88,7 +80,7 @@ public class Produkty_Edycja_Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result)
         {
-            CustomListAdapterEdycjaProduktow adapter = new CustomListAdapterEdycjaProduktow(Produkty_Edycja_Activity.this, productList);
+            AddingReceiptEditListAdapter adapter = new AddingReceiptEditListAdapter(Produkty_Edycja_Activity.this, productList);
             list = (ListView) findViewById(R.id.lista_produktow_edycja);
             list.setAdapter(adapter);
 

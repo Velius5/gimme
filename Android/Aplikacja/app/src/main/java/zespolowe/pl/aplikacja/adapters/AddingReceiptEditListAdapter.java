@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.adapters;
 //do listy znajomych
 /**
  * Created by Rafał on 2016-04-02.
@@ -18,16 +18,17 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.model.Product;
 
-public class CustomListAdapterEdycjaProduktow extends ArrayAdapter {
+public class AddingReceiptEditListAdapter extends ArrayAdapter {
     private Activity context;
     //    private Friend_Activity.MyAsyncTask context ;
     private List<Product> product = new ArrayList<>();
     private List<Product> editedProductList = new ArrayList<>();
 
 
-    public CustomListAdapterEdycjaProduktow(Activity context, List<Product> product) {
+    public AddingReceiptEditListAdapter(Activity context, List<Product> product) {
         super(context, R.layout.produkty_edycja_lista, product);
         // TODO Auto-generated constructor stub
 

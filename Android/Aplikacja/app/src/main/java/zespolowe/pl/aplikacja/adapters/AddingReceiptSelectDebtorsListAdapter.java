@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.adapters;
 //do listy znajomych
 /**
  * Created by Rafał on 2016-04-02.
@@ -24,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
 import zespolowe.pl.aplikacja.model.Product;
@@ -31,7 +32,7 @@ import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 import zespolowe.pl.aplikacja.view.MultiSpinner;
 
-public class CustomListAdapterProdukty extends ArrayAdapter implements MultiSpinner.MultiSpinnerListener {
+public class AddingReceiptSelectDebtorsListAdapter extends ArrayAdapter implements MultiSpinner.MultiSpinnerListener {
     private Activity context;
     //    private Friend_Activity.MyAsyncTask context ;
     private List<Product> productList = new ArrayList<>();
@@ -45,7 +46,7 @@ public class CustomListAdapterProdukty extends ArrayAdapter implements MultiSpin
         TextView product;
     }
 
-    public CustomListAdapterProdukty(Activity context, List<Product> product, List<Friend> friendList) {
+    public AddingReceiptSelectDebtorsListAdapter(Activity context, List<Product> product, List<Friend> friendList) {
         super(context, R.layout.produkty_lista, product);
         // TODO Auto-generated constructor stub
         session = new SessionManager(context);

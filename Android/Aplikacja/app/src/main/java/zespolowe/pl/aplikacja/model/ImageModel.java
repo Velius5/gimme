@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.model;
 
 /**
  * Created by Rafał on 2016-03-31.

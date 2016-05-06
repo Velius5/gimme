@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.adapters;
 //do listy znajomych
 /**
  * Created by Rafał on 2016-04-02.
@@ -15,6 +15,7 @@ import com.loopj.android.image.SmartImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
 

@@ -9,14 +9,10 @@
         android:orientation="vertical">
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <EditText android:id="@+id/item"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:hint="Produkt" />
-        </android.support.design.widget.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/productName" />
     </LinearLayout>
 </LinearLayout>

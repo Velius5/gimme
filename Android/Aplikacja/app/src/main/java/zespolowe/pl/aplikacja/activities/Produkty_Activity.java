@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,7 +20,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import zespolowe.pl.aplikacja.adapters.AddingReceiptSelectDebtorsListAdapter;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
 import zespolowe.pl.aplikacja.model.Product;
@@ -96,7 +97,7 @@ public class Produkty_Activity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Friend> friends) {
-            final CustomListAdapterProdukty adapter = new CustomListAdapterProdukty(Produkty_Activity.this, produkty, friends);
+            final AddingReceiptSelectDebtorsListAdapter adapter = new AddingReceiptSelectDebtorsListAdapter(Produkty_Activity.this, produkty, friends);
             list = (ListView) findViewById(R.id.lista_produktow);
             list.setAdapter(adapter);
 

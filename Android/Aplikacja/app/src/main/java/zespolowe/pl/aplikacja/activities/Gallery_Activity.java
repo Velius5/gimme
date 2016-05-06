@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 
 import android.content.Intent;
@@ -9,6 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
+
+import zespolowe.pl.aplikacja.adapters.GalleryAdapter;
+import zespolowe.pl.aplikacja.model.ImageModel;
+import zespolowe.pl.aplikacja.R;
+import zespolowe.pl.aplikacja.listeners.RecyclerItemClickListener;
 
 public class Gallery_Activity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -32,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.HashGeneratorUtils;
 import zespolowe.pl.aplikacja.functions.ImageManager;
 import zespolowe.pl.aplikacja.functions.SessionManager;

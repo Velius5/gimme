@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.adapters;
 //do listy znajomych
 /**
  * Created by Rafał on 2016-04-02.
@@ -16,16 +16,17 @@ import com.loopj.android.image.SmartImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.FindFriend;
 
-public class CustomListAdapterWyszukiwarka extends ArrayAdapter {
+public class SearchFriendsListAdapter extends ArrayAdapter {
 
     private Activity context;
     //    private Friend_Activity.MyAsyncTask context ;
     private List<FindFriend> findFriends = new ArrayList<>();
 
-    public CustomListAdapterWyszukiwarka(Activity context, List<FindFriend> findFriends) {
+    public SearchFriendsListAdapter(Activity context, List<FindFriend> findFriends) {
         super(context, R.layout.wyszukiwarka_lista_znajomych, findFriends);
 
         this.context=context;

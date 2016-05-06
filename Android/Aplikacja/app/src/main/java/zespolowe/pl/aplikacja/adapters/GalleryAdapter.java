@@ -1,4 +1,4 @@
-package zespolowe.pl.aplikacja;
+package zespolowe.pl.aplikacja.adapters;
 
 /**
  * Created by Rafał on 2016-03-31.
@@ -15,6 +15,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import zespolowe.pl.aplikacja.model.ImageModel;
+import zespolowe.pl.aplikacja.R;
 
 
 public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
