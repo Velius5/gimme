@@ -6,6 +6,7 @@
 package velius.controller.api;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,42 +45,54 @@ public class ReceiptApiController {
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public Receipt addReceipt(@RequestParam String file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
-        List<Product> productList = new ArrayList<>();
-        User owner = userService.getUser(id);      
-        //byte[] image=file.getBytes();
-        byte[] image = Base64.decodeBase64(file);
-        System.out.println(image.length/1024 + "kb");
-        //byte[] image = Base64.decodeBase64(byteArr);
-        
-        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
-        try {
-            tempReceipt = AbbyOCR.recognizeReceipt(image);
-        } catch (Exception ex) {
-            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Receipt receipt = new Receipt(tempReceipt,image,owner);
-        receiptService.save(receipt);
-        
-        System.out.println("Dodano paragon."); 
-       
-        return receiptService.findById(receipt.getId());
+//        List<Product> productList = new ArrayList<>();
+//        User owner = userService.getUser(id);      
+//        //byte[] image=file.getBytes();
+//        byte[] image = Base64.decodeBase64(file);
+//        System.out.println(image.length/1024 + "kb");
+//        //byte[] image = Base64.decodeBase64(byteArr);
+//        
+//        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
+//        try {
+//            tempReceipt = AbbyOCR.recognizeReceipt(image);
+//        } catch (Exception ex) {
+//            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        Receipt receipt = new Receipt(tempReceipt,image,owner);
+//        receiptService.save(receipt);
+//        
+//        System.out.println("Dodano paragon."); 
+//       
+//        return receiptService.findById(receipt.getId());
+        Receipt rec = receiptService.findById(new Long("7"));
+        return rec;       
     }
     
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)
     public Response editProducts(@PathVariable("id") Long id, @RequestParam List<String> productsUsersList){
         Receipt rec = receiptService.findById(id);
+        System.out.println("Pobieranie paragonu");
         if(rec != null) {
             int i = 0;
             for(Product p : rec.getProductList()) {
                 List<User> usersList = new ArrayList<>();
                 String s = productsUsersList.get(i);
+                System.out.println(s);
                 if(s.contains(",")) {
                     String[] parts = s.split(",");
-                    for (int j = 1; j < parts.length; j++) {
+                    int j = 1;
+                    p.setProductName(parts[j]);
+                    j++;
+                    p.setCount(Double.valueOf(parts[j]));
+                    j++;
+                    p.setPrice(BigDecimal.valueOf(Double.valueOf(parts[j])));
+                    j++;
+                    while(j < parts.length) {
                         Long userId = Long.valueOf(parts[j]);
                         User user = userService.getUser(userId);
                         p.getUsers().add(user);
                         usersList.add(user);
+                        j++;
                     }
                 }
                 //productService.save(p);
