@@ -100,16 +100,14 @@ public class Ustawienia extends AppCompatActivity {
         _link_licencje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Ustawienia.this, Licencje.class);
-                startActivity(intent);
+                //TODO: dodaj link do licencii
             }
         });
 
         _link_o_nas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Ustawienia.this, Onas.class);
-                startActivity(intent);
+                //TODO: dodaj link do About as
             }
         });
     }

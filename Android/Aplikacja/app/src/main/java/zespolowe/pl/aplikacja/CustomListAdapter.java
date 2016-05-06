@@ -4,7 +4,6 @@ package zespolowe.pl.aplikacja;
  * Created by Rafał on 2016-04-02.
  */
 import android.app.Activity;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +41,6 @@ public class CustomListAdapter extends ArrayAdapter {
 
         txtTitle.setText(friends.get(position).getName() + " " + friends.get(position).getSurname());
         balanceTitle.setText(String.valueOf(friends.get(position).getBilans() + " zł"));
-
-
-        if (friends.get(position).getBilans().signum() > 0) {
-            balanceTitle.setTextColor(Color.GREEN);
-        }
-        if (friends.get(position).getBilans().signum() < 0) {
-            balanceTitle.setTextColor(Color.RED);
-        }
-
-
         imageView.setImageUrl(SessionManager.getSERWERURL() + "userphoto/"+ friends.get(position).getId());
 //        if(friends.get(position).getPhoto() !=null) {
 //            byte[] imageAsBytes = Base64.decode(friends.get(position).getPhoto(), Base64.DEFAULT);

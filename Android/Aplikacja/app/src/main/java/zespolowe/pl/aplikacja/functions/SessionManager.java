@@ -20,7 +20,7 @@ public class SessionManager {
     Context _context;
 
     //URL
-    public static String SERWERURL="http://192.168.0.104:8080/";
+    public static String SERWERURL="http://10.10.251.12:8080/";
 
     public static String APIURL=SERWERURL+"api/";
 

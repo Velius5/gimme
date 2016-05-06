@@ -96,16 +96,7 @@
         <activity
             android:name=".Produkty_Edycja_Activity"
             android:theme="@style/AppTheme.Dark" />
-        <activity
-        android:name=".Onas"
-        android:theme="@style/AppTheme.Dark" />
-        <activity
-            android:name=".Licencje"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
-        android:name=".HistoryActivity"
-        android:theme="@style/AppTheme.Dark" />
-
+        <activity android:name=".view.HistoryActivity"></activity>
     </application>
 
 </manifest>

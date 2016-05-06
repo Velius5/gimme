@@ -63,6 +63,21 @@
 
 
 
+
+        <!--  <android.support.v7.widget.AppCompatButton
+              android:id="@+id/profil_splac"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:layout_marginBottom="24dp"
+              style="vertical"
+              android:adjustViewBounds="false"
+              android:theme="@style/AppTheme.Dark"
+              android:layout_alignParentBottom="true"
+              android:layout_centerHorizontal="true"
+              android:layout_gravity="bottom|center"
+              android:orientation="horizontal" />-->
+
+
     </LinearLayout>
 
 
