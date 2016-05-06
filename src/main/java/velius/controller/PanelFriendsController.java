@@ -10,7 +10,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.websocket.server.PathParam;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +23,7 @@ import velius.model.Friend;
 import velius.model.ModelFriend;
 import velius.model.Product;
 import velius.model.User;
+import velius.service.FriendService;
 import velius.service.ProductService;
 import velius.service.UserService;
 
@@ -42,6 +42,9 @@ public class PanelFriendsController {
     
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    FriendService friendService;
     
     @RequestMapping("")
     public String friendsPage(Model model, Principal principal){
@@ -124,6 +127,13 @@ public class PanelFriendsController {
         
         List<Friend> friendsList = user.getFriends();
         
+        Friend friendEntity = friendService.getFriend(user, friend);
+        
+        friendsList.remove(friendEntity);
+        
+        user.setFriends(friendsList);
+        userService.save(user);
+        friendService.deleteFriend(friendEntity);
        // friendsList.remove();
         
         return "redirect:/panel/friends";

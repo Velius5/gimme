@@ -14,4 +14,6 @@ public interface FriendService {
     Friend save(Friend friend);
     List<Friend>  getUserFriendsByFriendId(User user);
     List<Friend>  getUserFriendsByUserId(User user);
+    Friend getFriend(User user,User friend);
+    void deleteFriend(Friend friend);
 }

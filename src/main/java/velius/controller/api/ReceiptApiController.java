@@ -45,27 +45,27 @@ public class ReceiptApiController {
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public Receipt addReceipt(@RequestParam String file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
-//        List<Product> productList = new ArrayList<>();
-//        User owner = userService.getUser(id);      
-//        //byte[] image=file.getBytes();
-//        byte[] image = Base64.decodeBase64(file);
-//        System.out.println(image.length/1024 + "kb");
-//        //byte[] image = Base64.decodeBase64(byteArr);
-//        
-//        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
-//        try {
-//            tempReceipt = AbbyOCR.recognizeReceipt(image);
-//        } catch (Exception ex) {
-//            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Receipt receipt = new Receipt(tempReceipt,image,owner);
-//        receiptService.save(receipt);
-//        
-//        System.out.println("Dodano paragon."); 
-//       
-//        return receiptService.findById(receipt.getId());
-        Receipt rec = receiptService.findById(new Long("7"));
-        return rec;       
+        List<Product> productList = new ArrayList<>();
+        User owner = userService.getUser(id);      
+        //byte[] image=file.getBytes();
+        byte[] image = Base64.decodeBase64(file);
+        System.out.println(image.length/1024 + "kb");
+        //byte[] image = Base64.decodeBase64(byteArr);
+        
+        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
+        try {
+            tempReceipt = AbbyOCR.recognizeReceipt(image);
+        } catch (Exception ex) {
+            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Receipt receipt = new Receipt(tempReceipt,image,owner);
+        receiptService.save(receipt);
+        
+        System.out.println("Dodano paragon."); 
+       
+        return receipt;
+        /*Receipt rec = receiptService.findById(new Long("7"));
+        return rec;       */
     }
     
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)

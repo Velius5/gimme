@@ -1,6 +1,7 @@
 
 package velius.controller.api;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +54,8 @@ public class ProductApiController {
         User friend = userService.getUser(friendid);
         
         List<Product> prods = productService.getFriendDebtsToMe(user, friend);
+        for(Product prod : prods)
+            prod.setPrice(prod.getPricePerPerson());
         return prods;
     }
 }
