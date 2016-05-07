@@ -10,6 +10,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zespolowe.pl.aplikacja.model.FindFriend;
 import zespolowe.pl.aplikacja.model.Friend;
+import zespolowe.pl.aplikacja.model.HistoryProduct;
 import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.Receipt;
 import zespolowe.pl.aplikacja.model.Respon;
@@ -73,6 +74,6 @@ public interface UserService {
     @GET("product/mydebts/{id}/{friendid}")
     Call<List<Product>> getMyDebtsToFriend(@Path("id") Long id,@Path("friendid") Long friendId);
 
-    @GET("product/history/user/{id}")
-    Call<List<Product>> getHistory(@Path("id") Long id);
+    @GET("history/user/{id}")
+    Call<List<HistoryProduct>> getHistory(@Path("id") Long id);
 }

@@ -79,6 +79,7 @@ public class User implements Comparable<User> {
     @JoinTable(name = "user_product_history", 
             joinColumns = @JoinColumn(name = "userID"), 
             inverseJoinColumns = @JoinColumn(name = "productHistoryID"))
+    @JsonIgnore
     private List<Product> productsHistory;
 
     public User() {

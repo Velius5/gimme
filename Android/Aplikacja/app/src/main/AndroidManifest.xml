@@ -45,8 +45,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main">
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <!-- dodane niedawno -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,7 +96,10 @@
         <activity
             android:name=".activities.Produkty_Edycja_Activity"
             android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".view.HistoryActivity"></activity>
+        <activity
+            android:name=".activities.HistoryActivity"
+            android:theme="@style/AppTheme.Dark" />
+
     </application>
 
 </manifest>

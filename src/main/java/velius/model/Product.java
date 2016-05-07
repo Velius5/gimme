@@ -7,6 +7,7 @@ package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -44,7 +45,7 @@ public class Product {
     private double count;
     
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="owner_id")
     @JsonBackReference
     private User owner;
@@ -156,6 +157,20 @@ public class Product {
      */
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    /**
+     * @return the usersHistory
+     */
+    public List<User> getUsersHistory() {
+        return usersHistory;
+    }
+
+    /**
+     * @param usersHistory the usersHistory to set
+     */
+    public void setUsersHistory(List<User> usersHistory) {
+        this.usersHistory = usersHistory;
     }
 
 

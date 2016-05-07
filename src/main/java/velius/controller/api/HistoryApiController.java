@@ -55,9 +55,16 @@ public class HistoryApiController {
         
         List<ModelProductHistory> productHistoryList = new ArrayList<ModelProductHistory>();
         for(Product prod : myDebts){
+            List<User> usersList = new ArrayList<>();
             ModelProductHistory temp = new ModelProductHistory();
             temp.setDate(prod.getReceipt().getDate());
             temp.setProduct(prod);
+            temp.setOwner(prod.getOwner());
+            
+            usersList.addAll(prod.getUsers());
+            usersList.addAll(prod.getUsersHistory());
+            temp.setUsers(usersList);
+            
             productHistoryList.add(temp);
         }
         return productHistoryList;
