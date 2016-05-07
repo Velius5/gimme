@@ -1,8 +1,12 @@
 package zespolowe.pl.aplikacja.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -67,6 +71,17 @@ public class HistoryActivity extends AppCompatActivity {
                 HistoryListAdapter adapter = new HistoryListAdapter(HistoryActivity.this,historyList);
                 historyProductListView = (ListView) findViewById(R.id.historyListView);
                 historyProductListView.setAdapter(adapter);
+
+                historyProductListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        HistoryProduct product = historyList.get(position);
+                        Intent intent = new Intent(HistoryActivity.this,ProductHistoryDetails.class);
+
+                        intent.putExtra("product",product);
+                        startActivity(intent);
+                    }
+                });
 
                 System.out.println("History act");
             }

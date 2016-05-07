@@ -1,7 +1,7 @@
 package zespolowe.pl.aplikacja.adapters;
 
 import android.app.Activity;
-import android.content.Context;
+
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.loopj.android.image.SmartImageView;
+
+import java.text.SimpleDateFormat;
 
 import java.util.List;
 
@@ -52,8 +53,10 @@ public class HistoryListAdapter extends ArrayAdapter{
 
         price.setText(product.getPrice().toString() + " zł");
         name.setText(product.getProductName());
-        date.setText(historyProduct.getDate().toString());
         user.setText(historyProduct.getOwner().getName() + " " + historyProduct.getOwner().getSurname());
+
+        String parsedDate = new SimpleDateFormat("dd-MM-yyyy").format(historyProduct.getDate());
+        date.setText(parsedDate);
 
 
         System.out.println("History row view");

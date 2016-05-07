@@ -12,7 +12,7 @@
     <uses-feature android:name="android.hardware.camera.external" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <!--     <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
+    <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -47,6 +47,7 @@
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+
             <!-- dodane niedawno -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -99,7 +100,9 @@
         <activity
             android:name=".activities.HistoryActivity"
             android:theme="@style/AppTheme.Dark" />
-
+        <activity
+            android:name=".activities.ProductHistoryDetails"
+            android:theme="@style/AppTheme.Dark" />
     </application>
 
 </manifest>

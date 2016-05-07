@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Bułka ciapata"
             android:id="@+id/name"
             android:layout_weight="0.67"
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="13.35"
             android:id="@+id/price"
             android:layout_weight="0.74" />
@@ -41,20 +41,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="2016-06-11"
             android:id="@+id/date"
             android:layout_weight="0.00"
-            android:layout_gravity="right" />
+            android:layout_gravity="left" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Adam Kowalski"
             android:id="@+id/user"
-            android:layout_weight="0.56"
-            android:layout_marginLeft="20dp" />
+            android:layout_weight="0.47"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="right" />
 
     </LinearLayout>
 

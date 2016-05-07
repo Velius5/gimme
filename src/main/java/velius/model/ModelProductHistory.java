@@ -12,61 +12,48 @@ public class ModelProductHistory {
     private Product product;
     private User owner;
     private List<User> users;
+    private List<User> paidUsers;
     private Date date;
 
-    /**
-     * @return the product
-     */
     public Product getProduct() {
         return product;
     }
 
-    /**
-     * @return the date
-     */
-    public Date getDate() {
-        return date;
-    }
-
-    /**
-     * @param product the product to set
-     */
     public void setProduct(Product product) {
         this.product = product;
     }
 
-    /**
-     * @param date the date to set
-     */
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    /**
-     * @return the owner
-     */
     public User getOwner() {
         return owner;
     }
 
-    /**
-     * @return the users
-     */
-    public List<User> getUsers() {
-        return users;
-    }
-
-    /**
-     * @param owner the owner to set
-     */
     public void setOwner(User owner) {
         this.owner = owner;
     }
 
-    /**
-     * @param users the users to set
-     */
+    public List<User> getUsers() {
+        return users;
+    }
+
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public List<User> getPaidUsers() {
+        return paidUsers;
+    }
+
+    public void setPaidUsers(List<User> paidUsers) {
+        this.paidUsers = paidUsers;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    
 }
