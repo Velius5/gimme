@@ -97,6 +97,18 @@
         <activity
             android:name=".activities.Produkty_Edycja_Activity"
             android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".activities.HistoryActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".activities.ProductHistoryDetails"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".activities.Onas"
+            android:theme="@style/AppTheme.Dark" />
+
+
+
         <service
             android:name=".services.NotificationsService"
             android:exported="true"
@@ -106,12 +118,7 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".activities.HistoryActivity"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
-            android:name=".activities.ProductHistoryDetails"
-            android:theme="@style/AppTheme.Dark" />
+
 
     </application>
 
