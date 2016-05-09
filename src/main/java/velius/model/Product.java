@@ -7,6 +7,7 @@ package velius.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -43,8 +44,10 @@ public class Product {
     @Column(name="ilosc")
     private double count;
     
+    @Column(name="cena_na_osobe")
+    private BigDecimal pricePerPerson;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="owner_id")
     @JsonBackReference
     private User owner;
@@ -67,12 +70,14 @@ public class Product {
     
     
     public Product() {
+        this.pricePerPerson = BigDecimal.ZERO;
     }
     
     public Product(String productName, BigDecimal price, double count) {
         this.productName = productName;
         this.price = price;
         this.count = count;
+        this.pricePerPerson = BigDecimal.ZERO;
     }
         
     public Product(String productName, BigDecimal price, double count, User owner, Receipt receipt) {
@@ -81,6 +86,7 @@ public class Product {
         this.count = count;
         this.owner = owner;
         this.receipt = receipt;
+        this.pricePerPerson = BigDecimal.ZERO;
     }
 
     public Long getId() {
@@ -119,10 +125,13 @@ public class Product {
         this.owner = owner;
     }
     
-    @Transient
-    @JsonIgnore
+    
     public BigDecimal getPricePerPerson(){
-        return BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
+        return this.pricePerPerson;
+    }
+    
+    public void setPricePerPerson(){
+        this.pricePerPerson = BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
     }
 
     @Override
@@ -156,6 +165,20 @@ public class Product {
      */
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    /**
+     * @return the usersHistory
+     */
+    public List<User> getUsersHistory() {
+        return usersHistory;
+    }
+
+    /**
+     * @param usersHistory the usersHistory to set
+     */
+    public void setUsersHistory(List<User> usersHistory) {
+        this.usersHistory = usersHistory;
     }
 
 

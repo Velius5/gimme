@@ -128,7 +128,8 @@ public class PanelFriendsController {
         List<Friend> friendsList = user.getFriends();
         
         Friend friendEntity = friendService.getFriend(user, friend);
-        
+        if(friendEntity == null)
+            friendEntity = friendService.getFriend(friend, user);
         friendsList.remove(friendEntity);
         
         user.setFriends(friendsList);

@@ -33,6 +33,9 @@ public class Menu_Activity extends AppCompatActivity {
     @Bind(R.id.imageButton6)
     ImageButton ustawienia;
 
+    @Bind(R.id.imageButton5)
+    ImageButton historyButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -80,6 +83,13 @@ public class Menu_Activity extends AppCompatActivity {
             }
         });
 
+        historyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                history();
+            }
+        });
+
     }
 
     private void camera_() {
@@ -103,6 +113,11 @@ public class Menu_Activity extends AppCompatActivity {
 
     private void profil_() {
         Intent intent = new Intent(this, User_Profile_Activity.class);
+        startActivity(intent);
+    }
+
+    private void history(){
+        Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
     }
 

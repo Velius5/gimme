@@ -30,6 +30,7 @@ public interface ProductService {
     
     public List<Product> getFriendDebtsToMe(User user, User friend);
     
+    public List<Product> getAll();
     
     
 }

@@ -45,7 +45,6 @@ public class PanelController {
     
     @RequestMapping("")
     public String panelPage(Model model, Principal principal) {
-        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User user = userService.getUserByEmail(email);

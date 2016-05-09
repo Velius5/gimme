@@ -10,6 +10,7 @@ public class Product implements Serializable {
     private String productName;
     private BigDecimal price;
     private double count;
+    private BigDecimal pricePerPerson;
     private User owner;
     private Receipt receipt;
     private List<User> users;
@@ -18,14 +19,16 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Long id, String productName, BigDecimal price, double count, User owner, Receipt receipt, List<User> users) {
-        this.id = id;
-        this.productName = productName;
-        this.price = price;
+    public Product(double count, Long id, User owner, BigDecimal price, BigDecimal pricePerPerson, String productName, Receipt receipt, List<User> users, List<User> usersHistory) {
         this.count = count;
+        this.id = id;
         this.owner = owner;
+        this.price = price;
+        this.setPricePerPerson(pricePerPerson);
+        this.productName = productName;
         this.receipt = receipt;
         this.users = users;
+        this.usersHistory = usersHistory;
     }
 
     public List<User> getUsers() {
@@ -68,6 +71,14 @@ public class Product implements Serializable {
         this.count = count;
     }
 
+
+    public BigDecimal getPricePerPerson() {
+        return pricePerPerson;
+    }
+
+    public void setPricePerPerson(BigDecimal pricePerPerson) {
+        this.pricePerPerson = pricePerPerson;
+    }
     public User getOwner() {
         return owner;
     }

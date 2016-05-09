@@ -58,6 +58,11 @@ public class HistoryApiController {
             ModelProductHistory temp = new ModelProductHistory();
             temp.setDate(prod.getReceipt().getDate());
             temp.setProduct(prod);
+            temp.setOwner(prod.getOwner());
+            
+            temp.setUsers(prod.getUsers());
+            temp.setPaidUsers(prod.getUsersHistory());
+            
             productHistoryList.add(temp);
         }
         return productHistoryList;

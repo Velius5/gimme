@@ -107,6 +107,7 @@ public class ReceiptApiController {
                 }
                 i++;
             }
+            rec.setProductPricePerPerson();
             receiptService.save(rec);
             notificationService.save(new Notification("receipt", rec.getDate(), "Dodano paragon ze sklepu " + rec.getName(), true, rec.getOwner().getId()));
             return new Response(true);
@@ -120,6 +121,17 @@ public class ReceiptApiController {
     public Receipt showReceipt(@PathVariable("id") Long id){
         Receipt receipt = receiptService.findById(id);
         return receipt;
+    }
+    
+    @RequestMapping(value = "/getall/{id}", method = RequestMethod.GET)
+    public List<Long> getAllReceipts(@PathVariable("id") Long id){
+        User user = userService.getUser(id);
+        List<Receipt> recList = receiptService.findAllByOwner(user);
+        
+        List<Long> idList = new ArrayList<>();
+        for(Receipt rec : recList)
+            idList.add(rec.getId());
+        return idList;
     }
     
     
