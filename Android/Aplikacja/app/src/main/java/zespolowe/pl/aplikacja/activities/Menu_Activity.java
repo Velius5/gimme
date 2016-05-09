@@ -117,8 +117,8 @@ public class Menu_Activity extends AppCompatActivity {
     }
 
     private void history(){
-//        Intent intent = new Intent(this, HistoryActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
     }
 
 

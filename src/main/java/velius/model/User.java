@@ -144,13 +144,13 @@ public class User implements Comparable<User> {
     }
 
     public void setImage(byte[] image) throws IOException {
-        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
-        BufferedImage img = Thumbnails.of(temp).size(250,250).asBufferedImage();
-        
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(img, "jpg", baos);
-        byte[] bytes = baos.toByteArray();
-        this.image = bytes;
+//        BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));
+//        BufferedImage img = Thumbnails.of(temp).size(250,250).asBufferedImage();
+//        
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        ImageIO.write(img, "jpg", baos);
+//        byte[] bytes = baos.toByteArray();
+        this.image = image;
     }
 
     public boolean isActive() {

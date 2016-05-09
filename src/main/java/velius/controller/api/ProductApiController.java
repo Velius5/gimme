@@ -2,6 +2,7 @@
 package velius.controller.api;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,12 +54,19 @@ public class ProductApiController {
     Response payoffAllDebts(@PathVariable("id") Long id,@PathVariable("friendid") Long friendid){
         User user = userService.getUser(id);
         User friend = userService.getUser(friendid);
+        for(Product p : friend.getProducts())
+            System.out.println(p.toString());
         
         List<Product> prods = productService.getFriendDebtsToMe(user, friend);
         if(prods != null) {
+            List<Product> friendProducts = friend.getProducts();
             for(Product prod : prods) {
-                user.getProductsHistory().add(prod);
+                friend.getProductsHistory().add(prod);
+                friendProducts.remove(prod);
+                System.out.println(prod.toString());
             }
+            friend.setProducts(friendProducts);
+            userService.save(friend);
             return new Response(true);
         } else {
             return new Response(false);
