@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.piotr.AbbyOCR;
+import velius.model.Notification;
 import velius.model.Product;
 import velius.model.Receipt;
 import velius.model.Response;
 import velius.model.User;
+import velius.service.NotificationService;
 import velius.service.ProductService;
 import velius.service.ReceiptService;
 import velius.service.UserService;
@@ -35,6 +37,9 @@ public class ReceiptApiController {
     private final ReceiptService receiptService;
     private final UserService userService;
     private final ProductService productService;
+    
+    @Autowired
+    NotificationService notificationService;
 
     @Autowired
     public ReceiptApiController(ReceiptService receiptService, UserService userService, ProductService productService) {
@@ -98,10 +103,12 @@ public class ReceiptApiController {
                 //productService.save(p);
                 for(User usr : usersList) {
                     System.out.println(p.getId() + " " + usr.getName());
+                    notificationService.save(new Notification("receipt", rec.getDate(), "Użytkownik " + rec.getOwner().getName() + " " + rec.getOwner().getSurname() + " oznaczył Cię w swoim paragonie. Musisz mu oddać za " + p.getProductName() + ".", false, usr.getId()));
                 }
                 i++;
             }
             receiptService.save(rec);
+            notificationService.save(new Notification("receipt", rec.getDate(), "Dodano paragon ze sklepu " + rec.getName(), true, rec.getOwner().getId()));
             return new Response(true);
         } else {
             return new Response(false);

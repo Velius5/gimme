@@ -68,12 +68,14 @@ public class User implements Comparable<User> {
     @OneToMany(mappedBy = "userId",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Friend> friends;
-    
  
     @ManyToMany(mappedBy = "users")
     @JsonIgnore
     private List<Product> products;
     
+    @OneToMany(mappedBy = "userid",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Notification> notifications;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_product_history", 
@@ -211,6 +213,14 @@ public class User implements Comparable<User> {
        } else {
            return comparedNames;
        }
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
     
     
