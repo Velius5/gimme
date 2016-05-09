@@ -48,7 +48,6 @@ public class Ustawienia extends AppCompatActivity {
     @Bind(R.id.dodaj_nazwisko_ust) EditText _dodaj_nazwisko_ust;
     @Bind(R.id.btn_Ustawiena_zapisz) Button _btn_Ustawiena_zapisz;
     @Bind(R.id.btn_Ustawiena_Wyloguj) Button _btn_Ustawiena_Wyloguj;
-    @Bind(R.id.link_licencje) TextView _link_licencje;
     @Bind(R.id.link_o_nas) TextView _link_o_nas;
     @Bind(R.id.input_password_ust) EditText _password_ust_Text;
     @Bind(R.id.input_password_ust_repeat) EditText _password_ust_repeat_Text;
@@ -98,20 +97,15 @@ public class Ustawienia extends AppCompatActivity {
             }
         });
 
-        _link_licencje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: dodaj link do licencii
-            }
-        });
 
         _link_o_nas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: dodaj link do About as
+                Intent intent = new Intent(Ustawienia.this, Onas.class);
+                startActivity(intent);
             }
         });
-    }
+}
 
 
 
