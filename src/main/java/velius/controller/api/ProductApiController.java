@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import velius.model.Product;
+import velius.model.Response;
 import velius.model.User;
 import velius.service.ProductService;
 import velius.service.UserService;
@@ -30,11 +31,6 @@ public class ProductApiController {
     @RequestMapping(value = "/debts/{id}", method = RequestMethod.GET)
     List<Product> getMyDebts(@PathVariable("id") Long id){
         User user = userService.getUser(id);
-        List<Product> prod = productService.getAll();
-        for(Product pr : prod){
-            pr.setPricePerPerson();
-            productService.save(pr);
-        }
         return productService.getMyDebts(user);
     }
     
@@ -51,6 +47,22 @@ public class ProductApiController {
         
         List<Product> prods = productService.getMyDebtsToFriend(user, friend);
         return prods;
+    }
+    
+    @RequestMapping(value = "/payoffalldebts/{id}/{friendid}", method = RequestMethod.GET)
+    Response payoffAllDebts(@PathVariable("id") Long id,@PathVariable("friendid") Long friendid){
+        User user = userService.getUser(id);
+        User friend = userService.getUser(friendid);
+        
+        List<Product> prods = productService.getFriendDebtsToMe(user, friend);
+        if(prods != null) {
+            for(Product prod : prods) {
+                user.getProductsHistory().add(prod);
+            }
+            return new Response(true);
+        } else {
+            return new Response(false);
+        }
     }
     
     @RequestMapping(value = "/friendsdebts/{id}/{friendid}", method = RequestMethod.GET)
