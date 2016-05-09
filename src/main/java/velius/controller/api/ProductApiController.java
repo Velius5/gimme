@@ -30,6 +30,11 @@ public class ProductApiController {
     @RequestMapping(value = "/debts/{id}", method = RequestMethod.GET)
     List<Product> getMyDebts(@PathVariable("id") Long id){
         User user = userService.getUser(id);
+        List<Product> prod = productService.getAll();
+        for(Product pr : prod){
+            pr.setPricePerPerson();
+            productService.save(pr);
+        }
         return productService.getMyDebts(user);
     }
     

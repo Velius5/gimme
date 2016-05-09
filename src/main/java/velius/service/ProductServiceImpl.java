@@ -68,5 +68,10 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getMyDebtsHistory(User user) {
         return repository.findAllByUsersHistory(user);
     }
+
+    @Override
+    public List<Product> getAll() {
+        return repository.findAll();
+    }
     
 }

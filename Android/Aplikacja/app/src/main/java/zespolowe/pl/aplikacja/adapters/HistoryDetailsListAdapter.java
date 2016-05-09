@@ -52,7 +52,7 @@ public class HistoryDetailsListAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         if(firstTypeDivider == -1) return 2;
-        return position > firstTypeDivider ? 1 : 0;
+        return position >= firstTypeDivider ? 1 : 0;
 
     }
 

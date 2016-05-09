@@ -32,7 +32,7 @@ public class ProductHistoryDetails extends AppCompatActivity {
         int divider;
         User activeUser = new SessionManager(this).getUserDetails();
         User owner = product.getOwner();
-        if(activeUser.equals(owner))
+        if(!activeUser.equals(owner))
             divider = -1;
         else divider = product.getPaidUsers().size();
 

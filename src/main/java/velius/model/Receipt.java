@@ -202,5 +202,10 @@ public class Receipt{
         this.sum = summary;
     }
     
+    public void setProductPricePerPerson(){
+        for(Product prod : this.productList)
+            prod.setPricePerPerson();
+    }
+    
     
 }

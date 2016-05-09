@@ -76,4 +76,7 @@ public interface UserService {
 
     @GET("history/user/{id}")
     Call<List<HistoryProduct>> getHistory(@Path("id") Long id);
+
+    @GET("receipt/getall/{id}")
+    Call<List<Long>> getAllReceiptsIdList(@Path("id") Long id);
 }

@@ -51,7 +51,7 @@ public class HistoryListAdapter extends ArrayAdapter{
         if(historyProduct.getOwner().equals(activeUser)) price.setTextColor(Color.GREEN);
         else  price.setTextColor(Color.RED);
 
-        price.setText(product.getPrice().toString() + " zł");
+        price.setText(product.getPricePerPerson().toString() + " zł");
         name.setText(product.getProductName());
         user.setText(historyProduct.getOwner().getName() + " " + historyProduct.getOwner().getSurname());
 

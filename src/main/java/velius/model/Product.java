@@ -44,6 +44,8 @@ public class Product {
     @Column(name="ilosc")
     private double count;
     
+    @Column(name="cena_na_osobe")
+    private BigDecimal pricePerPerson;
     
     @ManyToOne
     @JoinColumn(name="owner_id")
@@ -68,12 +70,14 @@ public class Product {
     
     
     public Product() {
+        this.pricePerPerson = BigDecimal.ZERO;
     }
     
     public Product(String productName, BigDecimal price, double count) {
         this.productName = productName;
         this.price = price;
         this.count = count;
+        this.pricePerPerson = BigDecimal.ZERO;
     }
         
     public Product(String productName, BigDecimal price, double count, User owner, Receipt receipt) {
@@ -82,6 +86,7 @@ public class Product {
         this.count = count;
         this.owner = owner;
         this.receipt = receipt;
+        this.pricePerPerson = BigDecimal.ZERO;
     }
 
     public Long getId() {
@@ -120,10 +125,13 @@ public class Product {
         this.owner = owner;
     }
     
-    @Transient
-    @JsonIgnore
+    
     public BigDecimal getPricePerPerson(){
-        return BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
+        return this.pricePerPerson;
+    }
+    
+    public void setPricePerPerson(){
+        this.pricePerPerson = BigDecimal.valueOf((price.doubleValue()*count)/((1.0)*(users.size()+1))).setScale(2, RoundingMode.FLOOR);
     }
 
     @Override
