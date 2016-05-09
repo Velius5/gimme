@@ -50,9 +50,10 @@ public class PayoffFriendDebtsListAdapter extends ArrayAdapter {
         rowView = inflater.inflate(R.layout.splac_lista, null);
 
         TextView productName = (TextView) rowView.findViewById(R.id.productName);
+        TextView productPrice = (TextView) rowView.findViewById(R.id.productPrice);
 
         productName.setText(productList.get(position).getProductName());
-
+        productPrice.setText(productList.get(position).getPrice().toString() + " zł");
 
 
         return rowView;

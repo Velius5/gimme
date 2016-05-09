@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println("MainActivity");
 
+
         startActivity(new Intent(MainActivity.this, Log_Rej_Activity.class));
         finish();
 
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
         //  android.net.wifi.IWifiManager
     }
+
 }
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {

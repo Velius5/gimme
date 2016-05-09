@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.gcm.GcmNetworkManager;
+import com.google.android.gms.gcm.PeriodicTask;
+
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
@@ -25,6 +28,7 @@ import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.HashGeneratorUtils;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.User;
+import zespolowe.pl.aplikacja.services.NotificationsService;
 import zespolowe.pl.aplikacja.services.UserService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     SessionManager session;
     User user;
+    GcmNetworkManager mGcmNetworkManager;
 
     @Bind(R.id.input_email)
     EditText _emailText;
@@ -44,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mGcmNetworkManager = GcmNetworkManager.getInstance(this);
         session = new SessionManager(getApplicationContext());
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
 
+        setNotificationsService();
         Intent intent = new Intent(this, Menu_Activity.class);
         startActivity(intent);
     }
@@ -173,6 +180,20 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Logowanie nie powiodło się", Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
+    }
+
+    public void setNotificationsService() {
+        String userId = String.valueOf(user.getId());
+        PeriodicTask task = new PeriodicTask.Builder()
+                .setService(NotificationsService.class)
+                .setTag(userId)
+                .setPeriod(30L)
+                .setFlex(15L)
+                .setPersisted(true)
+                .setRequiredNetwork(com.google.android.gms.gcm.Task.NETWORK_STATE_ANY)
+                .build();
+
+        mGcmNetworkManager.schedule(task);
     }
 
     public boolean validate() {

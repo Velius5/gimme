@@ -97,12 +97,22 @@
         <activity
             android:name=".activities.Produkty_Edycja_Activity"
             android:theme="@style/AppTheme.Dark" />
+        <service
+            android:name=".services.NotificationsService"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".activities.HistoryActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".activities.ProductHistoryDetails"
             android:theme="@style/AppTheme.Dark" />
+
     </application>
 
 </manifest>
