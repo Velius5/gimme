@@ -40,6 +40,7 @@ public class ProductHistoryDetails extends AppCompatActivity {
         users.addAll(product.getUsers());
 
 
+        //Taki se komentarz
         BaseAdapter listAdapter = new HistoryDetailsListAdapter(ProductHistoryDetails.this,users,divider);
         usersListView.setAdapter(listAdapter);
     }
