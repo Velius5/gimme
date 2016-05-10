@@ -54,19 +54,22 @@ public class ProductApiController {
     Response payoffAllDebts(@PathVariable("id") Long id,@PathVariable("friendid") Long friendid){
         User user = userService.getUser(id);
         User friend = userService.getUser(friendid);
-        for(Product p : friend.getProducts())
-            System.out.println(p.toString());
         
         List<Product> prods = productService.getFriendDebtsToMe(user, friend);
         if(prods != null) {
             List<Product> friendProducts = friend.getProducts();
-            for(Product prod : prods) {
-                friend.getProductsHistory().add(prod);
-                friendProducts.remove(prod);
-                System.out.println(prod.toString());
-            }
-            friend.setProducts(friendProducts);
+            List<Product> friendHistory = friend.getProductsHistory();
+            
+            for(Product prod : prods){
+                prod.getUsers().remove(friend);
+                productService.save(prod);
+            }     
+            
+            friendHistory.addAll(prods);
+            friend.setProductsHistory(friendHistory);
+            
             userService.save(friend);
+            
             return new Response(true);
         } else {
             return new Response(false);
