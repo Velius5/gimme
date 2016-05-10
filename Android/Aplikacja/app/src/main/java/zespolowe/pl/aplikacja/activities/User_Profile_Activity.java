@@ -61,7 +61,8 @@ SessionManager session;
         _profil_nazwisko.setText(user.getSurname());
         _profil_email.setText(user.getEmail());
         System.out.println(user.toString());
-        _profil_foto.setImageUrl(SessionManager.getSERWERURL()+"userphoto/"+ user.getId());
+        Long currentTime = System.currentTimeMillis();
+        _profil_foto.setImageUrl(SessionManager.getSERWERURL()+"userphoto/"+ user.getId() + "/" + currentTime.toString());
     }
 
 

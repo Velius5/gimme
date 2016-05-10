@@ -41,7 +41,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public List<Notification> getNotificationsHistoryByUserId(Long userid) {
-        return repository.findAllByUserid(userid);
+        return repository.findAllByUseridOrderByDateDesc(userid);
     }
 
     @Override

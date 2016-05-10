@@ -15,5 +15,5 @@ import velius.model.Notification;
  */
 public interface NotificationsRepository extends JpaRepository<Notification, String> {
     Notification findTop1ByUseridAndReadOrderById(Long userid, Boolean read);
-    List<Notification> findAllByUserid(Long userid);
+    List<Notification> findAllByUseridOrderByDateDesc(Long userid);
 }

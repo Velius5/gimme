@@ -24,6 +24,7 @@ import com.loopj.android.image.SmartImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -112,7 +113,10 @@ public class Ustawienia extends AppCompatActivity {
     private void wczytajDaneDoFormularza() {
         _dodaj_imie_ust.setText(user.getName());
         _dodaj_nazwisko_ust.setText(user.getSurname());
-        _imageprev.setImageUrl(SessionManager.getSERWERURL() + "userphoto/" + user.getId());
+
+        _imageprev.refreshDrawableState();
+        Long currentTime = System.currentTimeMillis();
+        _imageprev.setImageUrl(SessionManager.getSERWERURL() + "userphoto/" + user.getId() + "/" + currentTime.toString());
         System.out.println(user.toString());
     }
 

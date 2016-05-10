@@ -79,4 +79,7 @@ public interface UserService {
 
     @GET("receipt/getall/{id}")
     Call<List<Long>> getAllReceiptsIdList(@Path("id") Long id);
+
+    @GET("product/payoffallfrienddebts/{id}/{friendid}")
+    Call<Respon> payoffAllFriendDebts(@Path("id") Long id,@Path("friendid") Long friendId);
 }

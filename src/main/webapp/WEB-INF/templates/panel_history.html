@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+    <head>
+        <title>Panel - Historia</title>
+        <link href="/static/css/perfect-scrollbar.min.css" th:href="@{/css/perfect-scrollbar.min.css}" rel="stylesheet" media="screen"/>
+        <script language="javascript" type="text/javascript" src="/static/js/perfect-scrollbar.jquery.min.js" th:src="@{/js/perfect-scrollbar.jquery.min.js}"></script>
+    </head>
+    <body class="panel_page history_page">
+        <div class="panel" th:fragment="content">
+            <div class="container">
+
+                <div class="outgoing history">
+                    <h1>Historia Twoich Operacji</h1>
+                    <div class="overflow">
+                        <table>
+                            <tr><td>Data</td><td>Działanie</td></tr>
+                            <tr th:each="notification : ${userNotifications}">
+                                <td th:text="${notification.date}">Data</td>
+                                <td th:text="${notification.message}">Działanie</td>
+                            </tr>                    
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>

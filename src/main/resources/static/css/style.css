@@ -14,6 +14,7 @@ a {
 .all {
     width: 100%;
     height: auto;
+    min-height: 100vh;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
@@ -303,8 +304,8 @@ body.login_page {
     -ms-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    position: relative;
-    bottom: 15%;
+/*    position: relative;
+    bottom: 15%;*/
 }
 
 .your_receipts li:hover .receipt_img > img {
@@ -650,4 +651,19 @@ body.registration_page {
 
 .receipt_costs ul > li {
     display: inline-block;
+}
+
+.button_clear {
+    width: 100%;
+    float: left;
+}
+
+.history_page .history {
+    width: 100%;
+}
+
+@media screen and (max-width: 990px) {
+    .panel > .container > div { width: 100%; float: left; }
+    .in_this_month { display: none;}
+    .outgoing > .overflow { height: auto; max-height: 457px; margin-bottom: 30px; }
 }

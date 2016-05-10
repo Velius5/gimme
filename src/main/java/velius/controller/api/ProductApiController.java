@@ -2,16 +2,20 @@
 package velius.controller.api;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import velius.model.Notification;
 import velius.model.Product;
 import velius.model.Response;
 import velius.model.User;
+import velius.service.NotificationService;
 import velius.service.ProductService;
 import velius.service.UserService;
 
@@ -28,6 +32,9 @@ public class ProductApiController {
     
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    NotificationService notificationService;
     
     @RequestMapping(value = "/debts/{id}", method = RequestMethod.GET)
     List<Product> getMyDebts(@PathVariable("id") Long id){
@@ -50,7 +57,7 @@ public class ProductApiController {
         return prods;
     }
     
-    @RequestMapping(value = "/payoffalldebts/{id}/{friendid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/payoffallfrienddebts/{id}/{friendid}", method = RequestMethod.GET)
     Response payoffAllDebts(@PathVariable("id") Long id,@PathVariable("friendid") Long friendid){
         User user = userService.getUser(id);
         User friend = userService.getUser(friendid);
@@ -58,7 +65,7 @@ public class ProductApiController {
             System.out.println(p.toString());
         
         List<Product> prods = productService.getFriendDebtsToMe(user, friend);
-        if(prods != null) {
+        if(prods != null & prods.size() > 0) {
             List<Product> friendProducts = friend.getProducts();
             for(Product prod : prods) {
                 friend.getProductsHistory().add(prod);
@@ -67,6 +74,8 @@ public class ProductApiController {
             }
             friend.setProducts(friendProducts);
             userService.save(friend);
+            notificationService.save(new Notification("receipt", new Date(), "Użytkownik " + friend.getName() + " " + friend.getSurname() + " uregulował długi wobec Ciebie.", true, user.getId()));
+            notificationService.save(new Notification("receipt", new Date(), "Uregulowałeś długi wobec użytkownika " + user.getName() + " " + user.getSurname(), false, friend.getId()));
             return new Response(true);
         } else {
             return new Response(false);

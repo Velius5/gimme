@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import velius.model.ModelProductHistory;
+import velius.model.Notification;
 import velius.model.Product;
 import velius.model.User;
+import velius.service.NotificationService;
 import velius.service.ProductService;
 import velius.service.UserService;
 
@@ -23,40 +25,24 @@ import velius.service.UserService;
 
 @Controller
 @RequestMapping("/panel/history")
-public class HistoryController {
+public class PanelHistoryController {
     @Autowired
     UserService userService;
     
     @Autowired
-    ProductService productService;
+    NotificationService notificationService;
    
     
-    @RequestMapping("/")
+    @RequestMapping("")
     public String historyPage(Model model,Principal principal){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User user = userService.getUserByEmail(email);
-        
-        List<Product> myDebtsHistoryList = productService.getMyDebtsHistory(user);
-        List<Product> myProductsHistoryList = productService.getUserDebitorsHistory(user);
-        
-        List<ModelProductHistory> modelMyDebstList = new ArrayList();
-        for(Product prod : myDebtsHistoryList){
-            ModelProductHistory temp = new ModelProductHistory();
-            temp.setProduct(prod);
-            temp.setDate(prod.getReceipt().getDate());
-            modelMyDebstList.add(temp);
+
+        if(user != null) {
+            List<Notification> userNotifications = notificationService.getNotificationsHistoryByUserId(user.getId());
+            model.addAttribute("userNotifications", userNotifications);
         }
-        model.addAttribute("historiaMoje", modelMyDebstList);
-        
-        List<ModelProductHistory> modelMyProductList = new ArrayList();
-        for(Product prod : myProductsHistoryList){
-            ModelProductHistory temp = new ModelProductHistory();
-            temp.setProduct(prod);
-            temp.setDate(prod.getReceipt().getDate());
-            modelMyDebstList.add(temp);
-        }
-        model.addAttribute("historiaInni", modelMyProductList);
         
         return "panel_history";
     }

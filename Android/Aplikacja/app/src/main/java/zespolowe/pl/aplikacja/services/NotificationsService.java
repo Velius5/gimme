@@ -67,7 +67,7 @@ public class NotificationsService extends GcmTaskService {
         long[] pattern = {500,500};
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         android.app.Notification notification = new NotificationCompat.Builder(this)
-                .setTicker("Gimme: " + message)
+                .setTicker(message)
                 .setSmallIcon(smallIcon)
                 .setContentTitle("Gimme")
                 .setContentText(message)
