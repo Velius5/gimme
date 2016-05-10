@@ -142,6 +142,11 @@ public class PayoffFriendDebts_Activity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,Friend_Activity.class);
+        startActivity(intent);
+    }
 
 
 

@@ -96,9 +96,6 @@ public class Friend_Activity extends Activity {
                             intent.putExtra("id", Slecteditem.getId());
                             System.out.println(Slecteditem.getId());
                             startActivity(intent);
-                            //  Intent intent = new Intent(this, User_Profile_Activity.class)
-                            //    startActivity(intent);
-                            // Toast.makeText(getApplicationContext(), (CharSequence) Slecteditem, Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -107,4 +104,11 @@ public class Friend_Activity extends Activity {
                 }
             }.execute();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,Menu_Activity.class);
+        startActivity(intent);
+    }
+
 }

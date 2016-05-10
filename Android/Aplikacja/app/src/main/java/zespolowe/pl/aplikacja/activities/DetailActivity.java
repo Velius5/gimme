@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,9 +20,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import zespolowe.pl.aplikacja.pageTransformers.DepthPageTransformer;
-import zespolowe.pl.aplikacja.model.ImageModel;
 import zespolowe.pl.aplikacja.R;
+import zespolowe.pl.aplikacja.model.ImageModel;
+import zespolowe.pl.aplikacja.pageTransformers.DepthPageTransformer;
 
 /**
  *  Aktywność odpowiedzialna za obsługe fragmentów galerii
@@ -51,8 +50,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(toolbar);
+      /*  toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        setSupportActionBar(toolbar);*/
 
         data = getIntent().getParcelableArrayListExtra("data");
         pos = getIntent().getIntExtra("pos", 0);
@@ -96,16 +95,6 @@ public class DetailActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

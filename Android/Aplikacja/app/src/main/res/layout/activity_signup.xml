@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword|textNoSuggestions"
-                android:hint="Hasło"/>
+                android:hint="Haslo"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword|textNoSuggestions"
-                android:hint="Powtórz Hasło"/>
+                android:hint="Powtórz Haslo"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->

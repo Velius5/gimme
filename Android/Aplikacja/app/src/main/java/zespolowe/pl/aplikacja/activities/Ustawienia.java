@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.image.SmartImageView;
@@ -48,7 +47,7 @@ public class Ustawienia extends AppCompatActivity {
     @Bind(R.id.dodaj_nazwisko_ust) EditText _dodaj_nazwisko_ust;
     @Bind(R.id.btn_Ustawiena_zapisz) Button _btn_Ustawiena_zapisz;
     @Bind(R.id.btn_Ustawiena_Wyloguj) Button _btn_Ustawiena_Wyloguj;
-    @Bind(R.id.link_o_nas) TextView _link_o_nas;
+    @Bind(R.id.link_o_nas) Button _link_o_nas;
     @Bind(R.id.input_password_ust) EditText _password_ust_Text;
     @Bind(R.id.input_password_ust_repeat) EditText _password_ust_repeat_Text;
 
