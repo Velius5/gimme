@@ -21,7 +21,7 @@ import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.User;
 
 /**
- * Created by Piotr on 2016-05-03.
+ * Adapter odpowiedzialny za wygląd oraz działanie listy znajomych
  */
 public class HistoryListAdapter extends ArrayAdapter{
 

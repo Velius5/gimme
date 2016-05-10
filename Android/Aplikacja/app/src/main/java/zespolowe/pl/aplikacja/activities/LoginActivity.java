@@ -31,6 +31,9 @@ import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.NotificationsService;
 import zespolowe.pl.aplikacja.services.UserService;
 
+/**
+ *  Aktywność odpowiedzialna za obsługe logowania użytkownika
+ */
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
@@ -44,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
 
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +85,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    /**
+     *  Metoda odpowiedzialna za logowanie użytkownika
+     */
     public void login() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         Log.d(TAG, "Loginee");
 
@@ -97,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = HashGeneratorUtils.generateMD5(_passwordText.getText().toString());
 
-//TODO/////////////////////////////////////////////////////////////////
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SessionManager.getAPIURL())
@@ -126,11 +135,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        /////////////////////////////////////////////////////////////////////
-
-
-        //TUTAJ LOGOWANIE^^
-
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -140,6 +144,10 @@ public class LoginActivity extends AppCompatActivity {
                 }, 3000);
     }
 
+
+    /**
+     *  Metoda odpowiedzialna za uruchomienie nowej sesji
+     */
     private void runSessionManager() {
         new Thread() {
             @Override
@@ -147,8 +155,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 session.createLoginSession(String.valueOf(user.getId()),user.getName(),user.getSurname(),user.getEmail());
                 System.out.println(session.isLoggedIn());
-
-                System.out.println("Nowy wątek");
             }
         }.start();
     }
@@ -158,10 +164,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-
                 this.finish();
             }
         }
@@ -169,6 +171,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    /**
+     *  Metoda wykonująca się po poprawnym zalogowaniu użytkownika do systemu
+     *  Uruchamia aktywność głównego menu aplikacji
+     */
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
 
@@ -177,6 +183,10 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     *  Metoda wykonująca się po nie prawidłowym zalogowaniu użytkownika
+     *  Wyświetla kominukat o nie udanej próbie logowania
+     */
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Logowanie nie powiodło się", Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
@@ -220,7 +230,6 @@ public class LoginActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        // Disable going back to the MainActivity
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

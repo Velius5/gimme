@@ -1,8 +1,6 @@
 package zespolowe.pl.aplikacja.adapters;
 
-/**
- * Created by Rafał on 2016-03-31.
- */
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +17,9 @@ import java.util.List;
 import zespolowe.pl.aplikacja.model.ImageModel;
 import zespolowe.pl.aplikacja.R;
 
+/**
+ * Adapter odpowiedzialny za wygląd oraz działanie galerii paragonów
+ */
 
 public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

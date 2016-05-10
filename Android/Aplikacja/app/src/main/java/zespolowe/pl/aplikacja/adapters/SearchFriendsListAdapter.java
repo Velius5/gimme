@@ -1,8 +1,5 @@
 package zespolowe.pl.aplikacja.adapters;
-//do listy znajomych
-/**
- * Created by Rafał on 2016-04-02.
- */
+
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -20,10 +17,13 @@ import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.FindFriend;
 
+/**
+ * Adapter odpowiedzialny za wygląd oraz wyszukiwarki znajomych
+ */
+
 public class SearchFriendsListAdapter extends ArrayAdapter {
 
     private Activity context;
-    //    private Friend_Activity.MyAsyncTask context ;
     private List<FindFriend> findFriends = new ArrayList<>();
 
     public SearchFriendsListAdapter(Activity context, List<FindFriend> findFriends) {

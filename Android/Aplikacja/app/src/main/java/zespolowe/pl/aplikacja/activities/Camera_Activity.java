@@ -20,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import okhttp3.OkHttpClient;
@@ -31,15 +32,14 @@ import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Receipt;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
-import java.util.concurrent.TimeUnit;
 
-
-//TODO: dodaj wysyłąnie w api
-
+/**
+ *  Aktywność odpowiedzialna za robienie zdjecia, przesłanie go do serwera w celu zczytania
+ *  danych przez silnik OCR i przekazanie odebranych danych do następnej aktywności.
+ */
 
 public class Camera_Activity extends AppCompatActivity {
     @Bind(R.id.image_camera1) ImageView _imageprev;
-
 
     public ImageView imageHolder;
     private final int requestCode = 100;
@@ -50,6 +50,11 @@ public class Camera_Activity extends AppCompatActivity {
     User user;
     public File addedImageFile;
     public Long receiptId;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,9 +84,11 @@ public class Camera_Activity extends AppCompatActivity {
         }
 
 
+    /**
+     * Funkcja przekazuje dane pobrane z paragonu do następnej aktywności.
+     * @param receipt
+     */
     private void wyslij(Receipt receipt) {
-
-
 
         Intent intent = new Intent(Camera_Activity.this, Produkty_Edycja_Activity.class);
         intent.putExtra("receiptId", receipt.getId());
@@ -90,6 +97,9 @@ public class Camera_Activity extends AppCompatActivity {
 
     }
 
+    /**
+     *  Metoda odpowiedzialna za obsługe aparatu
+     */
     public void aparat(){
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -110,7 +120,9 @@ public class Camera_Activity extends AppCompatActivity {
         return imageEncoded;
     }
 
-
+    /**
+     *  Metoda wysyła zdjęcie do serwera i pobiera przetworzone dane
+     */
 
     private class SendImageToReceiptAPITask extends AsyncTask<Void, Integer, Void> {
         User us;
@@ -124,21 +136,9 @@ public class Camera_Activity extends AppCompatActivity {
 
 
             try {
-//                String imagePath = addedImage.getAbsolutePath();
-//                Bitmap myBitmap  = BitmapFactory.decodeFile(imagePath);
-//                int outWidth;
-//                int outHeight;
-//                int inWidth = myBitmap.getWidth();
-//                int inHeight = myBitmap.getHeight();
-//                outWidth = 1500;
-//                outHeight = (inHeight * 1500) / inWidth;
-//
-//                Bitmap resized = Bitmap.createScaledBitmap(myBitmap, outWidth, outHeight, true);
-//                Bitmap orientedBitmap = ExifUtil.rotateBitmap(imagePath, resized);
 
                 img = org.apache.commons.io.FileUtils.readFileToByteArray(addedImage);
 
-                //img_str = encodeTobase64(orientedBitmap);
                 img_str = Base64.encodeToString(img, 0);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -194,32 +194,22 @@ public class Camera_Activity extends AppCompatActivity {
     }
 
 
-    /** Create a file Uri for saving an image or video */
     private Uri getOutputMediaFileUri(int type){
         return Uri.fromFile(getOutputMediaFile(type));
     }
 
-    /** Create a File for saving an image or video */
     private File getOutputMediaFile(int type){
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
-//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-//                Environment.DIRECTORY_PICTURES), "GIMME");
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DCIM), "GIMME");
 
-        // This location works best if you want the created images to be shared
-        // between applications and persist after your app has been uninstalled.
 
-        // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){
             if (! mediaStorageDir.mkdirs()){
                 return null;
             }
         }
 
-        // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
         if (type == MEDIA_TYPE_IMAGE){
 
@@ -232,6 +222,9 @@ public class Camera_Activity extends AppCompatActivity {
         return this.addedImageFile;
     }
 
+    /**
+     *  Metoda pobiera zrobione zdjęcie z pliku i wyświetla na ekranie aktywności
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);

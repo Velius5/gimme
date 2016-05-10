@@ -24,7 +24,6 @@ import com.loopj.android.image.SmartImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,7 +41,7 @@ import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
 /**
- * Created by Rafał on 2016-04-17.
+ *  Aktywność odpowiedzialna za edycję profilu użytkownika
  */
 public class Ustawienia extends AppCompatActivity {
     @Bind(R.id.dodaj_imie_ust) EditText _dodaj_imie_ust;
@@ -60,7 +59,10 @@ public class Ustawienia extends AppCompatActivity {
     User user;
 
 
-
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,8 +110,9 @@ public class Ustawienia extends AppCompatActivity {
         });
 }
 
-
-
+    /**
+     * Metoda pobiera dane do formularza z aktywnej sesji
+     */
     private void wczytajDaneDoFormularza() {
         _dodaj_imie_ust.setText(user.getName());
         _dodaj_nazwisko_ust.setText(user.getSurname());
@@ -120,6 +123,9 @@ public class Ustawienia extends AppCompatActivity {
         System.out.println(user.toString());
     }
 
+    /**
+     * Metoda zapisuje zmiany w danych zalogowanego użytkownika
+     */
     public void zapisz() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         _btn_Ustawiena_zapisz.setEnabled(false);
 
@@ -167,7 +173,9 @@ public class Ustawienia extends AppCompatActivity {
                     }
                 }, 3000);
     }
-
+    /**
+     * Metoda wysyła dokonane zmiany do serwera
+     */
     public void sendRequest(String name, String surname, String image, String email, final String password){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SessionManager.getAPIURL())
@@ -194,16 +202,6 @@ public class Ustawienia extends AppCompatActivity {
     public void onAddSuccess() {
         _btn_Ustawiena_zapisz.setEnabled(true);
         setResult(RESULT_OK, null);
-        /*ImageView image = _imageprev;
-        String img_str = null;
-        if(ImageManager.hasImage(image)) {
-            image.buildDrawingCache();
-            Bitmap bitmap = image.getDrawingCache();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
-            byte[] img = stream.toByteArray();
-            img_str = Base64.encodeToString(img, 0);
-        }*/
         session.setUserDetails(
                 _dodaj_imie_ust.getText().toString(),
                 _dodaj_nazwisko_ust.getText().toString()
@@ -215,7 +213,9 @@ public class Ustawienia extends AppCompatActivity {
         Toast.makeText(getBaseContext(), text, Toast.LENGTH_LONG).show();
         _btn_Ustawiena_zapisz.setEnabled(true);
     }
-
+    /**
+     * Metoda wylogowywuje danego użytkownika
+     */
     public void wyloguj() {
         Intent intent = new Intent(this, Log_Rej_Activity.class);
         if(Build.VERSION.SDK_INT >= 11) {
@@ -225,7 +225,6 @@ public class Ustawienia extends AppCompatActivity {
         }
         startActivity(intent);
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static int RESULT_LOAD_IMAGE = 1;
     public void FromCard() {

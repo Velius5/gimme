@@ -14,7 +14,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import zespolowe.pl.aplikacja.R;
 
-
+/**
+ *  Aktywność odpowiedzialna za obsługe głównego menu aplikacji
+ */
 public class Menu_Activity extends AppCompatActivity {
     private static final String TAG = "Menu_Activity";
 
@@ -36,7 +38,10 @@ public class Menu_Activity extends AppCompatActivity {
     @Bind(R.id.imageButton5)
     ImageButton historyButton;
 
-
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {         System.out.println("Menu_Activity");
@@ -91,31 +96,44 @@ public class Menu_Activity extends AppCompatActivity {
         });
 
     }
-
+    /**
+     *  Metoda uruchamia nową aktywność
+     */
     private void camera_() {
         Intent intent = new Intent(this, Camera_Activity.class);
         startActivity(intent);
     }
-
+    /**
+     *  Metoda uruchamia nową aktywność
+     */
     private void gallery_() {
         Intent intent = new Intent(this, Gallery_Activity.class);
         startActivity(intent);
     }
-
+    /**
+     *  Metoda uruchamia nową aktywność
+     */
     private void znajomi_() {
         Intent intent = new Intent(this, Friend_Activity.class);
         startActivity(intent);
     }
+    /**
+     *  Metoda uruchamia nową aktywność
+     */
     private void ustawienia_() {
         Intent intent = new Intent(this, Ustawienia.class);
         startActivity(intent);
     }
-
+    /**
+     *  Metoda uruchamia nową aktywność
+     */
     private void profil_() {
         Intent intent = new Intent(this, User_Profile_Activity.class);
         startActivity(intent);
     }
-
+    /**
+     *  Metoda uruchamia nową aktywność
+     */
     private void history(){
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
@@ -129,11 +147,10 @@ public class Menu_Activity extends AppCompatActivity {
     public void onBackPressed()
     {
         if (back_pressed_time + PERIOD > System.currentTimeMillis())
-          //  super.onBackPressed();
         moveTaskToBack(true);
         else Toast.makeText(getBaseContext(), "Naciśnij dwa razy, aby wyjść.", Toast.LENGTH_SHORT).show();
         back_pressed_time = System.currentTimeMillis();
-        Vibrator vib = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);//Initiate the vibrate service
+        Vibrator vib = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
         vib.vibrate(100);
     }
 }
