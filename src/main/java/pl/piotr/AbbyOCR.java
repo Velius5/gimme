@@ -16,13 +16,20 @@ import pl.piotr.ocrsdk.ProcessingSettings;
 import pl.piotr.ocrsdk.Task;
 
 /**
- * 
+ * Główna klasa silnika OCR odpowiedzialnego za rozpoznawanie tekstu.
+ * Pozwala na użycie silnika Abbyy OCR.
  * @author Piotr Czarny
  */
 public class AbbyOCR extends ReceiptParser{
 
     private static Client restClient;
 
+    /**
+     * Funkcja przesyła zdjęcie do serwisu Abbyy OCR i pobiera przetworzone
+     * dane.
+     * @param img - zdjęcie paragonu do przetworzenia
+     * @return obiekt klasy Receipt zawierający przeczytane dane
+     */
     public static Receipt recognizeReceipt(byte[] img) throws Exception {
         System.out.println("Process documents using ABBYY Cloud OCR SDK.\n");
 
@@ -51,9 +58,9 @@ public class AbbyOCR extends ReceiptParser{
     }
 
     /**
-     * Check that user specified application id and password.
+     * Sprawdza czy podano ID i hasło dla serwisu Abbyy OCR
      *
-     * @return false if no application id or password
+     * @return false-jeśli nie podano ID lub hasła
      */
     private static boolean checkAppId() {
         String appId = ClientSettings.APPLICATION_ID;
@@ -67,6 +74,9 @@ public class AbbyOCR extends ReceiptParser{
         return true;
     }
 
+    /**
+     * Funckja wysyła zapytanie do serwisu Abbyy OCR i czeka na odpowiedź
+     */
     private static String waitAndDownloadResult(Task task)
             throws Exception {
         task = waitForCompletion(task);
@@ -84,7 +94,9 @@ public class AbbyOCR extends ReceiptParser{
         
         return ocrResult;
     }
-    
+    /**
+     * Funkcja oczekuje na przetworzenie zdjęcia przez Abbyy OCR
+     */
     private static Task waitForCompletion(Task task) throws Exception {
         	while (task.isTaskActive()) {
 

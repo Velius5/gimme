@@ -16,7 +16,7 @@ import net.sourceforge.tess4j.*;
 import pl.piotr.ReceiptsTemplates.Receipt;
 
 /**
- * Główna klasa modułu aplikacji odpowiedzialnego za rozpoznawanie tekstu.
+ * Główna klasa silnika OCR odpowiedzialnego za rozpoznawanie tekstu.
  * Pozwala na użycie silnika Tesseract OCR.
  * @author Piotr
  */
