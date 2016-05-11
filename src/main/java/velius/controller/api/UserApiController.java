@@ -130,6 +130,24 @@ public class UserApiController {
         }
 
     }
+    
+    @RequestMapping(value = "/user/{id}/removefriend/{friendid}", method = RequestMethod.GET)
+    public Response removeFriend(@PathVariable("id") Long id, @PathVariable("friendid") Long friendId){
+        User user = userService.getUser(id);
+        User friend = userService.getUser(friendId);
+        
+        List<Friend> friendsList = user.getFriends();
+        
+        Friend friendEntity = friendService.getFriend(user, friend);
+        if(friendEntity == null)
+            friendEntity = friendService.getFriend(friend, user);
+        friendsList.remove(friendEntity);
+        
+        user.setFriends(friendsList);
+        userService.save(user);
+        friendService.deleteFriend(friendEntity);
+        return new Response(true);
+    }
 
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public Response registerUser(@RequestParam(value = "email", required = true) String email, @RequestParam(value = "haslo", required = true) String password) {
