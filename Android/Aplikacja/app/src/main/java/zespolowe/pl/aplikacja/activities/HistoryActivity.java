@@ -1,10 +1,9 @@
 package zespolowe.pl.aplikacja.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,10 +20,12 @@ import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.adapters.HistoryListAdapter;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.HistoryProduct;
-import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
+/**
+ *  Aktywność odpowiedzialna za pobranie i wyświetlenie dokonanych spłat
+ */
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -33,7 +34,10 @@ public class HistoryActivity extends AppCompatActivity {
     private ListView historyProductListView;
     private List<HistoryProduct> historyList;
 
-
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         session = new SessionManager(getApplicationContext());

@@ -23,13 +23,9 @@ import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
 /**
- * Created by Rafał on 2016-04-02.
+ *  Aktywność odpowiedzialna za pobieranie i wyświetlanie listy znajomych (zdjęcie, imię, nazwisko, saldo) zalogowanego użytkownika
  */
 
-//TODO Dodaj: Po kliknięciu na zdjecie wyswietla sie jego profil a w min jest zdjęcie dane personalne oraz dwa okna z danymi (+,-)i do nich
-//TODO:oraz przy nich przycisk do spłaty długu(SPŁATA):Po kliknieciu na niego wyswietli sie opcja wysyłanie zapłaty (w formie okna liczbowego i i przycisku przeslij )
-//TODO: po tej akcj idzie zapytanie boolowskie do osoby ktora moze to potwierdzic jesli tak to zwaca na ok(1) i u nas wyswietla sie powiadomienie
-//TODO:po kliknięciu w dlugi(-) lub w plusy da na liste przedmiotów (przy minusach długi lub  prz plusach na nasząkorzyśc)
 public class Friend_Activity extends Activity {
 
     ListView list;
@@ -38,6 +34,10 @@ public class Friend_Activity extends Activity {
     User user;
     Activity act;
 
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -96,9 +96,6 @@ public class Friend_Activity extends Activity {
                             intent.putExtra("id", Slecteditem.getId());
                             System.out.println(Slecteditem.getId());
                             startActivity(intent);
-                            //  Intent intent = new Intent(this, User_Profile_Activity.class)
-                            //    startActivity(intent);
-                            // Toast.makeText(getApplicationContext(), (CharSequence) Slecteditem, Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -107,4 +104,11 @@ public class Friend_Activity extends Activity {
                 }
             }.execute();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,Menu_Activity.class);
+        startActivity(intent);
+    }
+
 }

@@ -97,21 +97,16 @@
             android:padding="12dp"
             android:text="Zapisz zmiany"/>
 
-        <TextView android:id="@+id/link_o_nas"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="O nas"
-            android:gravity="left"
-            android:textSize="20dip"/>
 
-        <!--<TextView android:id="@+id/link_licencje"
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/link_o_nas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:text="Licencje"
-            android:gravity="left"
-            android:textSize="20dip"/>-->
+            android:padding="12dp"
+            android:text="O nas" />
+
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_Ustawiena_Wyloguj"

@@ -30,6 +30,9 @@ import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
+/**
+ *  Aktywność odpowiedzialna za wyświetlenie listy produktów z paragonu gotowych do oznaczenia
+ */
 
 public class Produkty_Activity extends AppCompatActivity {
 
@@ -42,6 +45,11 @@ public class Produkty_Activity extends AppCompatActivity {
     User user;
     public Receipt receipt;
 
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         session = new SessionManager(getApplicationContext());
@@ -49,8 +57,6 @@ public class Produkty_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.produkty);
         ButterKnife.bind(this);
-        System.out.println("Produkty_Activity");
-
 
         Bundle bundle = getIntent().getExtras();
         receipt = (Receipt) bundle.getSerializable("paragon");
@@ -138,18 +144,15 @@ public class Produkty_Activity extends AppCompatActivity {
                                     toast.show();
                                 } else {
                                     receiptAddingFailure();
-                                    System.out.println("blad1");
                                 }
                             } else {
                                 receiptAddingFailure();
-                                System.out.println("blad2");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Respon> call, Throwable t) {
                             receiptAddingFailure();
-                            System.out.println("blad3");
                         }
                     });
 

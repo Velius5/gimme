@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -21,13 +20,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import zespolowe.pl.aplikacja.adapters.PayoffFriendDebtsListAdapter;
 import zespolowe.pl.aplikacja.R;
+import zespolowe.pl.aplikacja.adapters.PayoffFriendDebtsListAdapter;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
+
+/**
+ *  Aktywność pobiera i wyświetla listę nie opłaconych produktów danego znajomego
+ */
+
 
 public class PayoffFriendDebts_Activity extends AppCompatActivity {
     ListView list;
@@ -39,6 +43,10 @@ public class PayoffFriendDebts_Activity extends AppCompatActivity {
     List<Product> productList;
     SessionManager session;
     User user;
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -133,6 +141,11 @@ public class PayoffFriendDebts_Activity extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,Friend_Activity.class);
+        startActivity(intent);
     }
 
 

@@ -27,6 +27,9 @@ import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
 
+/**
+ *  Aktywność odpowiedzialna za obsługe wyszukiwania użytkowników oraz dodawanie ich do znajomych
+ */
 
 public class Add_Friend_Activity extends AppCompatActivity {
     @Bind(R.id.search_friend)
@@ -37,6 +40,11 @@ public class Add_Friend_Activity extends AppCompatActivity {
     List<FindFriend> findFriends = new ArrayList<>();
     SessionManager session;
     User user;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,10 @@ public class Add_Friend_Activity extends AppCompatActivity {
     }
 
 
+    /**
+     * Metoda wysyła zapytanie do serwer poprzez API o dodanie wybranego użytkownika do znajomych
+     * @param Slecteditem
+     */
     public void sendRequest(FindFriend Slecteditem) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SessionManager.getAPIURL())
@@ -95,39 +107,11 @@ public class Add_Friend_Activity extends AppCompatActivity {
         });
     }
 
-//
-//    public void pobierzListe() {
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(SessionManager.getAPIURL())
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        UserService userService = retrofit.create(UserService.class);
-//        Call<List<FindFriend>> call = userService.getFindFriendList(user.getId());
-//        call.enqueue(new Callback<List<FindFriend>>() {
-//            @Override
-//            public void onResponse(Call<List<FindFriend>> call, Response<List<FindFriend>> response) {
-//                List<FindFriend> resp = response.body();
-//                //friends = resp;
-//                for (FindFriend findFriend : resp) {
-//                    findFriends.add(new FindFriend(findFriend.getId(), findFriend.getName(), findFriend.getSurname()));
-//                    System.out.println(findFriend.toString());
-//                }
-//                //onAddSuccess();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<FindFriend>> call, Throwable t) {
-//                System.out.println("Blad.");
-//            }
-//        });
-//    }
-
-
-
-
-
+    /**
+     * Metoda odpowiedzialna za wyszukiwanie użytkowników.
+     * Wysyła zapytanie do serwera przez API z danymi szukanego użytkownika.
+     * Po otrzymaniu odpowiedzi przekazuje liste znalezionych użytkowników do widoku aplikacji
+     */
     public void wyszukiwanie() {
         final String fullname = _search_friend.getText().toString();
 

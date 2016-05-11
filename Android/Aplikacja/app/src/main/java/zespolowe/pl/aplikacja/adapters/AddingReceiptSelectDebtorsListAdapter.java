@@ -1,35 +1,21 @@
 package zespolowe.pl.aplikacja.adapters;
-//do listy znajomych
-/**
- * Created by Rafał on 2016-04-02.
- */
 
-import android.annotation.TargetApi;
+
 import android.app.Activity;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
 import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.User;
-import zespolowe.pl.aplikacja.services.UserService;
 import zespolowe.pl.aplikacja.view.MultiSpinner;
 
 public class AddingReceiptSelectDebtorsListAdapter extends ArrayAdapter implements MultiSpinner.MultiSpinnerListener {

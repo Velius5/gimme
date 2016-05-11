@@ -11,11 +11,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import zespolowe.pl.aplikacja.R;
-import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.User;
 
 /**
- * Created by Piotr on 2016-05-07.
+ * Adapter odpowiedzialny za wygląd oraz działanie listy dokonanych transakcji
  */
 public class HistoryDetailsListAdapter extends BaseAdapter {
 

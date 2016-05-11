@@ -12,17 +12,13 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
 import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.User;
-import zespolowe.pl.aplikacja.services.UserService;
 
+/**
+ *  Klasa odpowiedzialna za obsługę multi listy wyboru
+ */
 
 public final class MultiSpinner extends Spinner implements OnMultiChoiceClickListener, OnCancelListener {
 

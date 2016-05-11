@@ -3,7 +3,6 @@ package zespolowe.pl.aplikacja.services;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -17,8 +16,9 @@ import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.model.User;
 
 /**
- * Created by Rafał on 2016-04-11.
+ *  Klasa odpowiedzialna za obsługę API
  */
+
 public interface UserService {
 
     @POST("login")//logowanie
@@ -31,10 +31,6 @@ public interface UserService {
     @GET("user/{id_uzytkownika}")//pobieranie znajomych poszczególne
     Call<User> getUser(@Path("id_uzytkownika") Long id);
 
-
-    /*@POST("user/{id}/addfriend/{friendId}")//dodawanie znajomych
-    Call<Respon> addFriend(@Path("id") Long id, @Path("friendId") Long ids);*/
-///////////////////////////////////////////////////////////////////////
 
 
     //pobieranie znajomych listy
@@ -65,8 +61,6 @@ public interface UserService {
     @GET("user/{id}/addfriend/{friendId}")
     Call<Respon> AddFriend(@Path("id") Long id,@Path("friendId") Long friendId);
 
-/*    @GET("user/search/{id}/{fullname}")
-    Call<FindFriend> FindFriendByText(@Path("fullname") String fullname);*/
 
     @GET("product/friendsdebts/{id}/{friendid}")
     Call<List<Product>> getFriendDebtsToMe(@Path("id") Long id,@Path("friendid") Long friendId);

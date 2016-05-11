@@ -13,9 +13,6 @@ import java.util.List;
 import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.model.Friend;
 
-/**
- * Created by Rafał on 2016-04-27.
- */
 public class ListAdapterProductsFriends  extends ArrayAdapter {
 
 

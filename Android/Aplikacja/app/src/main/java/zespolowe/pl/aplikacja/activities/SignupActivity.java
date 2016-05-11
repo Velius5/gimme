@@ -26,9 +26,11 @@ import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Respon;
 import zespolowe.pl.aplikacja.services.UserService;
 
+/**
+ *  Aktywność odpowiedzialna za rejestrację nowych użytkowników
+ */
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
-   // private static final int REQUEST_SIGNUP = 0;
 
 
     @Bind(R.id.input_email_signup)
@@ -41,6 +43,11 @@ public class SignupActivity extends AppCompatActivity {
     TextView _loginLink;
     @Bind(R.id.input_password_signup_test)
     EditText _passwordText2;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,14 +71,14 @@ public class SignupActivity extends AppCompatActivity {
         _loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                startActivityForResult(intent, REQUEST_SIGNUP);
+
                 finish();
             }
         });
     }
-
+    /**
+     * Metoda dokonuje rejestracji nowych użytkowników
+     */
     public void signup()throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         if (!validate()) {
@@ -106,7 +113,6 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Respon> call, Response<Respon> response) {
                 Respon resp = response.body();
-//                System.out.println(resp.getValue());
 
                 onSignupSuccess();
             }
@@ -119,31 +125,30 @@ public class SignupActivity extends AppCompatActivity {
         });
         } else {
             onSignupFailed("Hasła różnią się od siebie");
-            //System.out.println(_passwordText.getText() + " " + _passwordText2.getText());
         }
-////////////////////////////////////////////////////////////////////////////////////////////
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        // onSignupSuccess();
-                        // onSignupFailed();
+
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
-
+    /**
+     * Metoda wykonuje się po poprawej rejestracji
+     * Uruchamia aktywność logowania
+     */
     public void onSignupSuccess() {
         Toast.makeText(getBaseContext(), "Zaloguj się na swoje konto.", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        //finish();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
     }
-
+    /**
+     * Metoda wykonuje się po nie poprawej rejestracji
+     */
     public void onSignupFailed(String text) {
         Toast.makeText(getBaseContext(), text, Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
@@ -174,7 +179,6 @@ public class SignupActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Disable going back to the MainActivity
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,20 +20,17 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import zespolowe.pl.aplikacja.pageTransformers.DepthPageTransformer;
-import zespolowe.pl.aplikacja.model.ImageModel;
 import zespolowe.pl.aplikacja.R;
+import zespolowe.pl.aplikacja.model.ImageModel;
+import zespolowe.pl.aplikacja.pageTransformers.DepthPageTransformer;
+
+/**
+ *  Aktywność odpowiedzialna za obsługe fragmentów galerii
+ */
 
 public class DetailActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     public ArrayList<ImageModel> data = new ArrayList<>();
@@ -42,28 +38,28 @@ public class DetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(toolbar);
+      /*  toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        setSupportActionBar(toolbar);*/
 
         data = getIntent().getParcelableArrayListExtra("data");
         pos = getIntent().getIntExtra("pos", 0);
 
         setTitle(data.get(pos).getName());
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), data);
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
 
@@ -79,7 +75,6 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-                //noinspection ConstantConditions
                 setTitle(data.get(position).getName());
 
             }
@@ -96,31 +91,12 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_detail, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public ArrayList<ImageModel> data = new ArrayList<>();
 
@@ -131,14 +107,11 @@ public class DetailActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position, data.get(position).getName(), data.get(position).getUrl());
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return data.size();
         }
 
@@ -148,15 +121,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-
         String name, url;
         int pos;
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -171,10 +136,6 @@ public class DetailActivity extends AppCompatActivity {
             this.url = args.getString(ARG_IMG_URL);
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber, String name, String url) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();

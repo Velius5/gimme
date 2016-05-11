@@ -19,6 +19,9 @@ import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.User;
 
+/**
+ *  Aktywność odpowiedzialna za wyswietlenie danych profilu zalogowanego użytkownika
+ */
 public class User_Profile_Activity extends AppCompatActivity {
     @Bind(R.id.profil_foto) SmartImageView _profil_foto;
     @Bind(R.id.profil_imie) TextView _profil_imie;
@@ -29,6 +32,11 @@ public class User_Profile_Activity extends AppCompatActivity {
 SessionManager session;
     User user;
     private static int RESULT_LOAD_IMAGE = 1;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +63,9 @@ SessionManager session;
             e.printStackTrace();
         }
     }
-
+    /**
+     * Metoda wczytuje dane zalogowanego użytkownika z aktywnej sesji
+     */
     private void wczytajDaneDoFormularza() {
         _profil_imie.setText(user.getName());
         _profil_nazwisko.setText(user.getSurname());
@@ -65,7 +75,9 @@ SessionManager session;
         _profil_foto.setImageUrl(SessionManager.getSERWERURL()+"userphoto/"+ user.getId() + "/" + currentTime.toString());
     }
 
-
+    /**
+     * Metoda uruchamia aktywność wyszukiwania i dodawania znajomych
+     */
     private void dodaj_znajomego_() {
         if(user.getName() != null) {
             Intent intent = new Intent(this, Add_Friend_Activity.class);
@@ -77,22 +89,6 @@ SessionManager session;
     }
 
     public void pobierz()throws UnsupportedEncodingException, NoSuchAlgorithmException {
-
-        //TODO dodaj api(get)
-
-     /*   final ProgressDialog progressDialog = new ProgressDialog(User_Profile_Activity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Pobieranie danych...");
-        progressDialog.show();
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-
-                        progressDialog.dismiss();
-                    }
-                }, 3000);*/
     }
 
 

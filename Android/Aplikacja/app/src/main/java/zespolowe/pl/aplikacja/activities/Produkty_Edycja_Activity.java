@@ -23,13 +23,20 @@ import zespolowe.pl.aplikacja.model.Product;
 import zespolowe.pl.aplikacja.model.Receipt;
 import zespolowe.pl.aplikacja.services.UserService;
 
-
+/**
+ *  Aktywność odpowiedzialna za ewentualną korektę błędów w produktach z paragonu
+ */
 public class Produkty_Edycja_Activity extends AppCompatActivity {
 
     @Bind(R.id.potwierdz_paragon)
     Button _potwierdz_paragon;
     Long receiptId;
     ListView list;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,9 @@ public class Produkty_Edycja_Activity extends AppCompatActivity {
 
 
     }
+    /**
+     *  Metoda wymienia dane z serwerem
+     */
 
     private class GetReceiptFromAPITask extends AsyncTask<Void, Integer, Void> {
         Retrofit retrofit;

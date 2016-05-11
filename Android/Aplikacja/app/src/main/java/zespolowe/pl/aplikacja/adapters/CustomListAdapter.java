@@ -1,8 +1,5 @@
 package zespolowe.pl.aplikacja.adapters;
-//do listy znajomych
-/**
- * Created by Rafał on 2016-04-02.
- */
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -20,9 +17,12 @@ import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Friend;
 
+/**
+ * Adapter odpowiedzialny za wygląd oraz działanie listy znajomych
+ */
+
 public class CustomListAdapter extends ArrayAdapter {
     private Activity context;
-//    private Friend_Activity.MyAsyncTask context ;
     private List<Friend> friends = new ArrayList<>();
 
     public CustomListAdapter(Activity context, List<Friend> friends) {
@@ -52,12 +52,6 @@ public class CustomListAdapter extends ArrayAdapter {
         }
 
         imageView.setImageUrl(SessionManager.getSERWERURL() + "userphoto/"+ friends.get(position).getId());
-//        if(friends.get(position).getPhoto() !=null) {
-//            byte[] imageAsBytes = Base64.decode(friends.get(position).getPhoto(), Base64.DEFAULT);
-//            imageView.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
-//        }
-
-        /*extratxt.setText("Description "+itemname[position]);*/
         return rowView;
 
     };

@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import zespolowe.pl.aplikacja.R;
+/**
+ *  Aktywność odpowiedzialna za obsługe aktywności o nas
+ */
 
 public class Onas extends AppCompatActivity {
 

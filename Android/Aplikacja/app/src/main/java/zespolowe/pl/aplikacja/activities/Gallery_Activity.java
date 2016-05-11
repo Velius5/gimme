@@ -17,14 +17,17 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.adapters.GalleryAdapter;
 import zespolowe.pl.aplikacja.functions.SessionManager;
-import zespolowe.pl.aplikacja.model.HistoryProduct;
-import zespolowe.pl.aplikacja.model.ImageModel;
-import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.listeners.RecyclerItemClickListener;
+import zespolowe.pl.aplikacja.model.ImageModel;
 import zespolowe.pl.aplikacja.model.User;
 import zespolowe.pl.aplikacja.services.UserService;
+
+/**
+ *  Aktywność pobiera i wyświetla zrobione zdjęcia paragonów
+ */
 
 public class Gallery_Activity extends AppCompatActivity {
 
@@ -33,6 +36,10 @@ public class Gallery_Activity extends AppCompatActivity {
 
     ArrayList<ImageModel> data;
     List<Long> recList;
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,5 +9,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/historyUser"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="left|center_horizontal"
+        android:paddingBottom="3dp" />
 </LinearLayout>

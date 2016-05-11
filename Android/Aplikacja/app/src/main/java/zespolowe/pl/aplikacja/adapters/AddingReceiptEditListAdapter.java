@@ -1,13 +1,8 @@
 package zespolowe.pl.aplikacja.adapters;
-//do listy znajomych
-/**
- * Created by Rafał on 2016-04-02.
- */
 
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +15,17 @@ import java.util.List;
 
 import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.model.Product;
-
+/**
+ * Adapter odpowiedzialny za wygląd oraz działanie listy edycji produktów
+ */
 public class AddingReceiptEditListAdapter extends ArrayAdapter {
     private Activity context;
-    //    private Friend_Activity.MyAsyncTask context ;
     private List<Product> product = new ArrayList<>();
     private List<Product> editedProductList = new ArrayList<>();
 
 
     public AddingReceiptEditListAdapter(Activity context, List<Product> product) {
         super(context, R.layout.produkty_edycja_lista, product);
-        // TODO Auto-generated constructor stub
-
 
         this.context=context;
         this.product = product;
@@ -107,14 +101,6 @@ public class AddingReceiptEditListAdapter extends ArrayAdapter {
                 }
             }
         });
-
-//        view.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                System.out.println("działa!");
-//                return false;
-//            }
-//        });
 
         return rowView;
 

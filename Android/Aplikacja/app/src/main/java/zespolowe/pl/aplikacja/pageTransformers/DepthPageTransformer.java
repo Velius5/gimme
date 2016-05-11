@@ -1,8 +1,6 @@
 package zespolowe.pl.aplikacja.pageTransformers;
 
-/**
- * Created by Rafał on 2016-03-31.
- */
+
 import android.support.v4.view.ViewPager;
 import android.view.View;
 

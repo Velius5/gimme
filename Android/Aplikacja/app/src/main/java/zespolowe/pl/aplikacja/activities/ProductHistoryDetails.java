@@ -1,9 +1,7 @@
 package zespolowe.pl.aplikacja.activities;
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -15,10 +13,19 @@ import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.HistoryProduct;
 import zespolowe.pl.aplikacja.model.User;
 
+/**
+ *  Aktywność wyświetla listę osób oznaczonych w danych produkcie
+ */
+
 public class ProductHistoryDetails extends AppCompatActivity {
 
     private ListView usersListView;
     private HistoryProduct product;
+
+    /**
+     *  Implementacja metody onCreate z klasy Activity. Wywoływana jest w momencie tworzenia aktywności.
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,6 @@ public class ProductHistoryDetails extends AppCompatActivity {
         users.addAll(product.getUsers());
 
 
-        //Taki se komentarz
         BaseAdapter listAdapter = new HistoryDetailsListAdapter(ProductHistoryDetails.this,users,divider);
         usersListView.setAdapter(listAdapter);
     }
