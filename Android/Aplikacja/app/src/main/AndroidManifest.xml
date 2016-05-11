@@ -118,6 +118,8 @@
             </intent-filter>
         </service>
 
+        <receiver android:name=".services.NotificationsReceiver"></receiver>
+
 
 
     </application>
