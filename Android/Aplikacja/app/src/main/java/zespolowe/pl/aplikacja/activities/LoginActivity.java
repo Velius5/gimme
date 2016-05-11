@@ -187,8 +187,8 @@ public class LoginActivity extends AppCompatActivity {
         PeriodicTask task = new PeriodicTask.Builder()
                 .setService(NotificationsService.class)
                 .setTag(userId)
-                .setPeriod(30L)
-                .setFlex(15L)
+                .setPeriod(5L)
+                .setFlex(3L)
                 .setPersisted(true)
                 .setRequiredNetwork(com.google.android.gms.gcm.Task.NETWORK_STATE_ANY)
                 .build();

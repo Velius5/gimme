@@ -91,6 +91,18 @@ public class Receipt{
             productList.add(prod);
         }
     }
+
+    public Receipt(Date date, String name, byte[] image, String description, List<Product> productList, User owner, BigDecimal sum) {
+        this.date = date;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.productList = productList;
+        this.owner = owner;
+        this.sum = sum;
+    }
+    
+    
     
     public Receipt(byte[] image) throws IOException {
         BufferedImage temp = ImageIO.read(new ByteArrayInputStream(image));

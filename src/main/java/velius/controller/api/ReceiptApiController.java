@@ -8,6 +8,7 @@ package velius.controller.api;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,27 +51,50 @@ public class ReceiptApiController {
     
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public Receipt addReceipt(@RequestParam String file, HttpServletRequest request, HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
-        List<Product> productList = new ArrayList<>();
-        User owner = userService.getUser(id);      
-        //byte[] image=file.getBytes();
-        byte[] image = Base64.decodeBase64(file);
-        System.out.println(image.length/1024 + "kb");
-        //byte[] image = Base64.decodeBase64(byteArr);
+//        List<Product> productList = new ArrayList<>();
+//        User owner = userService.getUser(id);      
+//        //byte[] image=file.getBytes();
+//        byte[] image = Base64.decodeBase64(file);
+//        System.out.println(image.length/1024 + "kb");
+//        //byte[] image = Base64.decodeBase64(byteArr);
+//        
+//        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
+//        try {
+//            tempReceipt = AbbyOCR.recognizeReceipt(image);
+//        } catch (Exception ex) {
+//            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        Receipt receipt = new Receipt(tempReceipt,image,owner);
+//        receiptService.save(receipt);
+//        
+//        System.out.println("Dodano paragon."); 
         
-        pl.piotr.ReceiptsTemplates.Receipt tempReceipt=null;
-        try {
-            tempReceipt = AbbyOCR.recognizeReceipt(image);
-        } catch (Exception ex) {
-            Logger.getLogger(ReceiptApiController.class.getName()).log(Level.SEVERE, null, ex);
+        User owner = userService.getUser(id);
+        if(owner != null) {
+            Receipt receipt = receiptService.findById(17L);
+                List<Product> prodList = new ArrayList<>();
+                
+                
+                Receipt rec = new Receipt(new Date(), "Biedronka", receipt.getImage(), "", prodList, owner, BigDecimal.valueOf(22.56));
+                
+                receiptService.save(rec);
+                Receipt newReceipt = receiptService.findLast6ByOwner(owner).get(0);
+                prodList.add(new Product("TORBAF-SHIRT WHITE", BigDecimal.valueOf(0.08), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("WODA NIEGAZ 1.5L", BigDecimal.valueOf(0.57), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("WODA POL PLUS 0.5L", BigDecimal.valueOf(0.54), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("MLEKO UHT 0.5 11", BigDecimal.valueOf(1.75), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("PAP TOAL NEO68", BigDecimal.valueOf(1.65), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("CHLEBWIELOPAN0400G", BigDecimal.valueOf(1.99), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("FILET 2 MINT 475G", BigDecimal.valueOf(8.99), Double.valueOf("1"), owner, rec));
+                prodList.add(new Product("FRANKFURTERKI 278G", BigDecimal.valueOf(6.99), Double.valueOf("1"), owner, rec));
+                newReceipt.setProductList(prodList);
+                receiptService.save(newReceipt);
+            
+
+            return newReceipt; 
+        } else {
+            return null;
         }
-        Receipt receipt = new Receipt(tempReceipt,image,owner);
-        receiptService.save(receipt);
-        
-        System.out.println("Dodano paragon."); 
-       
-        return receipt;
-        /*Receipt rec = receiptService.findById(new Long("7"));
-        return rec;       */
     }
     
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)

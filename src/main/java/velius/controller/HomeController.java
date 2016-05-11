@@ -21,7 +21,7 @@ public class HomeController {
     public String homePage() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         //String md5Hash = HashGeneratorUtils.generateMD5("123456");
         //System.out.println(md5Hash);
-        return "index";
+        return "redirect:panel";
     }
     
 }

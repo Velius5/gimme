@@ -67,23 +67,6 @@ public class UserEditProfileApiController {
         
     }
     
-    @RequestMapping(value = "/user/{id}/editPhoto", method = RequestMethod.POST)
-    public Response editUserPhoto(@PathVariable("id") Long id, @RequestParam(value = "image", required = true) byte[] image) throws IOException {
-        
-        User user = userService.getUser(id);
-        if(!(user == null)) {
-            user.setImage(image);
-
-            User save = userService.save(user);
-            Response response = new Response(true);
-            return response;
-        } else {
-            Response response = new Response(false);
-            return response;
-        }
-        
-    }
-    
     @RequestMapping(value = "/user/{id}/editEmail", method = RequestMethod.POST)
     public Response editUserEmail(@PathVariable("id") Long id, @RequestParam(value = "email", required = true) String email) {
         

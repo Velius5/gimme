@@ -659,7 +659,7 @@ body.registration_page {
 }
 
 .history_page .history {
-    width: 100%;
+    width: 100% !important;
 }
 
 @media screen and (max-width: 990px) {
