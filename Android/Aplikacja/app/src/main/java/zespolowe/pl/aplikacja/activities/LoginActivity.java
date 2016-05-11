@@ -1,9 +1,18 @@
 package zespolowe.pl.aplikacja.activities;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +26,10 @@ import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +41,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import zespolowe.pl.aplikacja.R;
 import zespolowe.pl.aplikacja.functions.HashGeneratorUtils;
 import zespolowe.pl.aplikacja.functions.SessionManager;
+import zespolowe.pl.aplikacja.model.Notification;
 import zespolowe.pl.aplikacja.model.User;
+import zespolowe.pl.aplikacja.services.MessageService;
+import zespolowe.pl.aplikacja.services.NotificationsReceiver;
 import zespolowe.pl.aplikacja.services.NotificationsService;
 import zespolowe.pl.aplikacja.services.UserService;
 
@@ -43,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
     SessionManager session;
     User user;
     GcmNetworkManager mGcmNetworkManager;
+    private PendingIntent pendingIntent;
+    private AlarmManager manager;
 
     @Bind(R.id.input_email)
     EditText _emailText;
@@ -60,7 +76,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mGcmNetworkManager = GcmNetworkManager.getInstance(this);
-        mGcmNetworkManager.cancelAllTasks(NotificationsService.class);
+        //mGcmNetworkManager.cancelAllTasks(NotificationsService.class);
+
+        Intent alarmIntent = new Intent(this, NotificationsReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+
+
+
         session = new SessionManager(getApplicationContext());
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +204,12 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         setNotificationsService();
+
+        NotificationsReceiver.setUser(user);
+        manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        int interval = 5000;
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+
         Intent intent = new Intent(this, Menu_Activity.class);
         startActivity(intent);
     }
@@ -195,22 +223,21 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
     }
 
+
+
     public void setNotificationsService() {
-        String userId = String.valueOf(user.getId());
+        NotificationsService.setUser(user);
         PeriodicTask task = new PeriodicTask.Builder()
                 .setService(NotificationsService.class)
                 .setTag("Gimme")
-                .setPeriod(1)
-                .setFlex(1)
+                .setPeriod(100L)
+                .setFlex(15L)
                 .setPersisted(true)
                 .setUpdateCurrent(true)
                 .setRequiredNetwork(Task.NETWORK_STATE_CONNECTED)
                 .build();
 
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (resultCode == ConnectionResult.SUCCESS) {
-            mGcmNetworkManager.schedule(task);
-        }
+        mGcmNetworkManager.schedule(task);
     }
 
     public boolean validate() {

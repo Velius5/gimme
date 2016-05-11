@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
@@ -19,6 +20,8 @@ import com.google.android.gms.gcm.TaskParams;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
+
+import javax.crypto.spec.GCMParameterSpec;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,37 +37,55 @@ import zespolowe.pl.aplikacja.model.User;
  * Created by Patryk on 2016-05-07.
  */
 public class NotificationsService extends GcmTaskService {
-    SessionManager session;
-    User user;
+    static User user;
 
 
 
     @Override
     public int onRunTask(TaskParams taskParams) {
-        session = new SessionManager(getApplicationContext());
-        user = session.getUserDetails();
+        System.out.println("NotificationsService!");
+        new AsyncTask<Void, Void, Void>() {
+            Retrofit retrofit;
+            MessageService messageService;
+            Call<Notification> call;
+            Notification notification;
 
-        System.out.println("Pobieramy powiadomienia...");
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(SessionManager.getAPIURL())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        MessageService messageService = retrofit.create(MessageService.class);
-        Call<Notification> call = messageService.getNotification(user.getId());
-        try {
-            Notification notification = call.execute().body();
-            if(notification != null) {
-                addAndroidNotification(notification.getDate(),notification.getMessage(), notification.getType());
-                return GcmNetworkManager.RESULT_SUCCESS;
-            } else {
-                System.out.println("Brak powiadomień.");
-                return GcmNetworkManager.RESULT_SUCCESS;
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                try {
+                    notification = call.execute().body();
+                    if(notification != null) {
+                        addAndroidNotification(notification.getDate(),notification.getMessage(), notification.getType());
+                    } else {
+                        System.out.println("Brak powiadomień.");
+                    }
+                } catch (IOException e) {
+                    System.out.println("Blad pobierania powiadomień.");
+                }
+
+                return null;
             }
-        } catch (IOException e) {
-            System.out.println("Blad pobierania powiadomień.");
-            return GcmNetworkManager.RESULT_FAILURE;
-        }
 
+            @Override
+            protected void onPreExecute() {
+                retrofit = new Retrofit.Builder()
+                        .baseUrl(SessionManager.getAPIURL())
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                messageService = retrofit.create(MessageService.class);
+                call = messageService.getNotification(user.getId());
+                System.out.println("Pobieramy powiadomienia...");
+
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                System.out.println("Koniec pobierania powiadomień.");
+            }
+        }.execute();
+
+        return GcmNetworkManager.RESULT_RESCHEDULE;
     }
 
     private void addAndroidNotification(String date, String message, String type) {
@@ -90,9 +111,13 @@ public class NotificationsService extends GcmTaskService {
         notificationManager.notify(notificationId, notification);
     }
 
-    @Override
-    public void onInitializeTasks() {
-        System.out.println("INICJALIZACJA");
-        super.onInitializeTasks();
+
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        NotificationsService.user = user;
     }
 }
