@@ -9,10 +9,14 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
+import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
+import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.TaskParams;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
 
@@ -24,40 +28,43 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import zespolowe.pl.aplikacja.activities.Menu_Activity;
 import zespolowe.pl.aplikacja.functions.SessionManager;
 import zespolowe.pl.aplikacja.model.Notification;
+import zespolowe.pl.aplikacja.model.User;
 
 /**
  * Created by Patryk on 2016-05-07.
  */
 public class NotificationsService extends GcmTaskService {
-    Long userId;
+    SessionManager session;
+    User user;
+
+
 
     @Override
     public int onRunTask(TaskParams taskParams) {
-        this.setUserId(Long.valueOf(taskParams.getTag()));
+        session = new SessionManager(getApplicationContext());
+        user = session.getUserDetails();
+
         System.out.println("Pobieramy powiadomienia...");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SessionManager.getAPIURL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         MessageService messageService = retrofit.create(MessageService.class);
-        Call<Notification> call = messageService.getNotification(getUserId());
-        call.enqueue(new Callback<Notification>() {
-            @Override
-            public void onResponse(Call<Notification> call, Response<Notification> response) {
-                Notification notification = response.body();
-                if(notification != null) {
-                    addAndroidNotification(notification.getDate(),notification.getMessage(), notification.getType());
-                } else {
-                    System.out.println("Brak powiadomień.");
-                }
+        Call<Notification> call = messageService.getNotification(user.getId());
+        try {
+            Notification notification = call.execute().body();
+            if(notification != null) {
+                addAndroidNotification(notification.getDate(),notification.getMessage(), notification.getType());
+                return GcmNetworkManager.RESULT_SUCCESS;
+            } else {
+                System.out.println("Brak powiadomień.");
+                return GcmNetworkManager.RESULT_SUCCESS;
             }
+        } catch (IOException e) {
+            System.out.println("Blad pobierania powiadomień.");
+            return GcmNetworkManager.RESULT_FAILURE;
+        }
 
-            @Override
-            public void onFailure(Call<Notification> call, Throwable t) {
-                System.out.println("Blad pobierania powiadomień.");
-            }
-        });
-        return 0;
     }
 
     private void addAndroidNotification(String date, String message, String type) {
@@ -83,11 +90,9 @@ public class NotificationsService extends GcmTaskService {
         notificationManager.notify(notificationId, notification);
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    @Override
+    public void onInitializeTasks() {
+        System.out.println("INICJALIZACJA");
+        super.onInitializeTasks();
     }
 }

@@ -68,6 +68,7 @@ public class ReceiptApiController {
 //        receiptService.save(receipt);
 //        
 //        System.out.println("Dodano paragon."); 
+//        return receipt;
         
         User owner = userService.getUser(id);
         if(owner != null) {

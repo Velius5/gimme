@@ -93,17 +93,17 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="10dp"
             android:padding="12dp"
             android:text="Zapisz zmiany"/>
 
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/link_o_nas"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="12dp"
             android:text="O nas" />
 
@@ -112,7 +112,7 @@
             android:id="@+id/btn_Ustawiena_Wyloguj"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="Wyloguj się."/>

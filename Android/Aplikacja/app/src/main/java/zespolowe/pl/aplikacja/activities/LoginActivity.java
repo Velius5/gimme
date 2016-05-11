@@ -11,8 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.PeriodicTask;
+import com.google.android.gms.gcm.Task;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -57,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mGcmNetworkManager = GcmNetworkManager.getInstance(this);
+        mGcmNetworkManager.cancelAllTasks(NotificationsService.class);
         session = new SessionManager(getApplicationContext());
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +181,6 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-
         setNotificationsService();
         Intent intent = new Intent(this, Menu_Activity.class);
         startActivity(intent);
@@ -196,14 +199,18 @@ public class LoginActivity extends AppCompatActivity {
         String userId = String.valueOf(user.getId());
         PeriodicTask task = new PeriodicTask.Builder()
                 .setService(NotificationsService.class)
-                .setTag(userId)
-                .setPeriod(5L)
-                .setFlex(3L)
+                .setTag("Gimme")
+                .setPeriod(1)
+                .setFlex(1)
                 .setPersisted(true)
-                .setRequiredNetwork(com.google.android.gms.gcm.Task.NETWORK_STATE_ANY)
+                .setUpdateCurrent(true)
+                .setRequiredNetwork(Task.NETWORK_STATE_CONNECTED)
                 .build();
 
-        mGcmNetworkManager.schedule(task);
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode == ConnectionResult.SUCCESS) {
+            mGcmNetworkManager.schedule(task);
+        }
     }
 
     public boolean validate() {

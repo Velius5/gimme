@@ -75,7 +75,8 @@ public class Biedronka extends Receipt {
             } catch (ParseException ex) {
                 Logger.getLogger(Biedronka.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        } else
+            this.date = new Date();
     }
     
     @Override

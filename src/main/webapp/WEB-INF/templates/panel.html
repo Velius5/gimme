@@ -12,7 +12,7 @@
         <script th:inline="javascript" type="text/javascript">
             $(function() {
                 var data = [
-			{ label: "Przychody",  data: '[[${przychody}]]'},
+			{ label: "Wpływy",  data: '[[${przychody}]]'},
 			{ label: "Wydatki",  data: '[[${wydatki}]]'}
 		];
 
@@ -102,7 +102,7 @@
                                 <td th:text="${dluznik.name} +' ' + ${dluznik.surname}"></td>
                                 <td th:text="${dlug.productName}">Piwo</td>
                                 <td th:text="${dlug.getPricePerPerson()}  + 'zł'">2.99zł</td>
-                                <td><a class="tooltip" title="Spłacono" th:href="'panel/receipts/payoff/' + ${dlug.id}"><i class="fa fa-money fa-2x" aria-hidden="true"></i></a></td>
+                                <td><a class="tooltip" title="Spłacono" th:href="'panel/product/paid/' + ${dlug.id} + '/{dluznik.id}'"><i class="fa fa-money fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             </span>
                         </table>
