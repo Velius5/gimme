@@ -75,8 +75,8 @@ public class Biedronka extends Receipt {
             } catch (ParseException ex) {
                 Logger.getLogger(Biedronka.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else
-            this.date = new Date();
+        } else this.date = new Date();
+            
     }
     
     @Override
@@ -100,7 +100,7 @@ public class Biedronka extends Receipt {
         temp = "SPRZEDAZ OPODATK";
         while (scaner.hasNextLine()) {
             try {
-                String name = scaner.findInLine(Pattern.compile("(\\p{Alnum}|[ĄĆĘŁŃÓŹŻ])(\\p{Alnum}|\\p{Space}|[-ĄĆĘŁŃÓŹŻ]){1,17}")).trim();
+                String name = scaner.findInLine(Pattern.compile("(\\p{Alnum}|.|,|[ĄĆĘŁŃÓŹŚŻ])(\\p{Alnum}|\\p{Space}|.|,|[ĄĆĘŁŃÓŹŚŻ]){1,17}")).trim();
                 int j = 0;
                 int i;
                 for (i = 0; i < temp.length() && i < name.length(); i++) {

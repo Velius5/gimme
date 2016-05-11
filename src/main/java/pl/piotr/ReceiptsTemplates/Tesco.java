@@ -74,90 +74,109 @@ public class Tesco extends Receipt {
             String line = scaner.nextLine().trim();
             int j = 0;
             int i;
-            for (i = 0; i < line.length() && i < temp.length(); i++)
-                if (line.charAt(i) == temp.charAt(i)) j++;
-            if ((float) j / i > 0.6) break;  
+            for (i = 0; i < line.length() && i < temp.length(); i++) {
+                if (line.charAt(i) == temp.charAt(i)) {
+                    j++;
+                }
+            }
+            if ((float) j / i > 0.6) {
+                break;
+            }            
         }
         temp = "SPRZEDAZ OPODATK";
         while (scaner.hasNextLine()) {
-            String name = scaner.findInLine(Pattern.compile("(\\p{Alnum}|\\p{Space}|[ĄĆĘŁŃÓŹŻ]){1,18}"));
-            int j = 0;
-            int i;
-            for (i = 0; i < temp.length() && i < name.length(); i++)
-                if (temp.charAt(i) == name.charAt(i)) j++;
-            if ((float) j / i > 0.75) break; 
-            
-            String count = scaner.findInLine("(\\d){1,2}(\\.|\\,)(\\d){3}");
-            if (count != null) {
-                char[] tab = count.toCharArray();
-                for (i = 0; i < count.length(); i++) {
-                    switch (tab[i]) {
-                        case 'O':
-                            tab[i] = '0';
-                        case 'I':
-                            tab[i] = '1';
-                            break;
-                        case 'L':
-                            tab[i] = '1';
-                            break;
-                        case 'J':
-                            tab[i] = '1';
-                            break;
-                        case 'Z':
-                            tab[i] = '2';
-                            break;
-                        case 'S':
-                            tab[i] = '5';
-                            break;
-                        case ',':
-                            tab[i] = '.';
-                            break;
+            try {
+                String name = scaner.findInLine(Pattern.compile("(\\p{Alnum}|.|,|[ĄĆĘŁŃÓŹŚŻ])(\\p{Alnum}|\\p{Space}|.|,|[ĄĆĘŁŃÓŹŚŻ]){1,17}")).trim();
+                int j = 0;
+                int i;
+                for (i = 0; i < temp.length() && i < name.length(); i++) {
+                    if (temp.charAt(i) == name.charAt(i)) {
+                        j++;
                     }
                 }
-                count = new String(tab);
-            }
-            String price = scaner.findInLine("(\\d){1,}(\\.|\\,)(\\d){2}");
-            if (price != null) {
-                char[] tab = price.toCharArray();
-                for (i = 0; i < price.length(); i++) {
-                    switch (tab[i]) {
-                        case 'O':
-                            tab[i] = '0';
-                        case 'I':
-                            tab[i] = '1';
-                            break;
-                        case 'L':
-                            tab[i] = '1';
-                            break;
-                        case 'J':
-                            tab[i] = '1';
-                            break;
-                        case 'Z':
-                            tab[i] = '2';
-                            break;
-                        case 'S':
-                            tab[i] = '5';
-                            break;
-                        case ',':
-                            tab[i] = '.';
-                            break;
+                if ((float) j / i > 0.75) {
+                    break;
+                }                
+                
+                if (name.length() > 1) {
+                    String count = scaner.findInLine("(\\s){1,2}(\\d)(\\s){1,2}");
+                    if (count != null) {
+                        char[] tab = count.toCharArray();
+                        for (i = 0; i < count.length(); i++) {
+                            switch (tab[i]) {
+                                case 'O':
+                                    tab[i] = '0';
+                                case 'I':
+                                    tab[i] = '1';
+                                    break;
+                                case 'L':
+                                    tab[i] = '1';
+                                    break;
+                                case 'J':
+                                    tab[i] = '1';
+                                    break;
+                                case 'Z':
+                                    tab[i] = '2';
+                                    break;
+                                case 'S':
+                                    tab[i] = '5';
+                                    break;
+                                case ',':
+                                    tab[i] = '.';
+                                    break;
+                            }
+                        }
+                        count = new String(tab);
+                    }
+                    String price = scaner.findInLine("(\\d){1,}(\\.|\\,)(\\d){2}");
+                    if (price != null) {
+                        char[] tab = price.toCharArray();
+                        for (i = 0; i < price.length(); i++) {
+                            switch (tab[i]) {
+                                case 'O':
+                                    tab[i] = '0';
+                                case 'I':
+                                    tab[i] = '1';
+                                    break;
+                                case 'L':
+                                    tab[i] = '1';
+                                    break;
+                                case 'J':
+                                    tab[i] = '1';
+                                    break;
+                                case 'Z':
+                                    tab[i] = '2';
+                                    break;
+                                case 'S':
+                                    tab[i] = '5';
+                                    break;
+                                case ',':
+                                    tab[i] = '.';
+                                    break;
+                            }
+                        }
+                        price = new String(tab);
+                    }
+                    try {
+                        productList.add(new Product(name, Float.parseFloat(price), Float.parseFloat(count)));
+                    } catch (NullPointerException ex) {
+                        if (name != null) {
+                            Product prod = new Product();
+                            prod.setName(name);
+                            if (price == null) {
+                                prod.setPrice(0);
+                            }
+                            if (count == null) {
+                                prod.setCount(1);
+                            }
+                            productList.add(prod);
+                            System.out.println(prod.toString());
+                        }
                     }
                 }
-                price = new String(tab);
+            } catch (NullPointerException e) {
+                System.out.println(e);
             }
-            try{
-                productList.add(new Product(name,Float.parseFloat(price),Float.parseFloat(count)));
-            }catch(NullPointerException ex){
-                if(name != null){
-                    Product prod = new Product();
-                    prod.setName(name);
-                    if(price == null) prod.setPrice(0);
-                    if(count == null) prod.setCount(1);
-                    productList.add(prod);
-                    System.out.println(name + "    " + prod.getPrice() + "   " + prod.getCount());
-                }
-            }
-            
             scaner.nextLine();
         }
     }

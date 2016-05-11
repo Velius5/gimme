@@ -1,19 +1,24 @@
-?                 “BIEDRONKA CODZIENNIE NISKIE CENY" B5381                        
-                 87-100 TORUÑ UL. KOŒCIUSZKI 41/47JER0NIM                        
-                 O HFLRTINS POLSKR S.FL.62-025 KOSTRZYN UL.                      
-                 ¯NIWNA 5                                                        
-                 NIP 779-10-11-327                                               
-                 2016-05-04 ŒR 211030                                            
-                                   PARAGON FISKALNY                              
-                 IHPSIZPEPSIHUZL            D 1,008 X 3,99                       
-                                                                                 
-     SPRZEDA¯ OPODATK. A                                                3,99     
-     KWOTA PTU A 23 X                                                   0,75     
-                                                                                 
- SUMA PLN                                                           3,99         
-                                                                                 
- 000531 #KASA 4 KASJER NR 14    18;07                                            
- E533207AFL88FLFD32O8D62C4DCEBDB5F3E872DLB6                                      
-                               7E BFB 13619375                                   
-GOTÓUKA                                                                 20,00    
-RESZTA                                                                  16,01    
+?                     TESCO /POLSKA/ $P. Z O.O.                        
+    UL               . KAPELANKA 56, 30-347 KRAKÓW                    
+                                                                      
+                 TESCO SUPERMARKET - TORUÑ                            
+                                                                      
+                 UL. REJA 15, 87-100 TORUÑ                            
+                 INFOLINIA 800 105 104                                
+                 NIP 526-10-37-737                                    
+ 2016-04-26                                                303930     
+                     PARAGON FISKALNY                                 
+ A WOD TVL I NIEG 1.5.A                             1 X0,59 0,59A     
+ D BULKA 1 SEREM 70 G.D                             1 X0,99 0,99D     
+ A REKLAMO ASCO TESCO.A                             1 X0,10 0,10A     
+ A NAP 0.5L ENER.B&E.A                              1 X2,50 2,50A     
+ D DANIE SOS BOLON ;D F                             1 X2,99 2,99D     
+ D ŒMIETANKA.10% 500LFFI^                           1 X2,89 2,89D     
+ A K.WA TC B/W 250G .A                            1 XLL,69 11,69A     
+                                                                      
+ SPRZEDA¯ OPODATKOWANA A                                    14,88     
+ PTU A 23,00 %                                               2,78     
+ SPRZEDA¯ OPODATKOWANA D                                     6,87     
+ PTU D 5,00 %                                                0,33     
+ SUMA PUK                                                    3,11     
+SUMA PLN                                             21,75

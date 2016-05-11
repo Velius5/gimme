@@ -48,6 +48,7 @@ public class ReceiptParser {
 
         Scanner scaner = new Scanner(text);
         String line = scaner.nextLine().trim();
+        if(line.startsWith("?")) line = line.substring(1).trim();
         
         int tmp = 0;
         int LD;

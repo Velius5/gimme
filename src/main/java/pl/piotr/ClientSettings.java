@@ -3,41 +3,12 @@ package pl.piotr;
 import java.net.*;
 
 /**
- * Authentication settings for Cloud OCR SDK client.
- * 
- * Please provide your application id and password here.
+ * Dane uwierzytelniające dla serwisu Abbyy OCR SDK
+ * Należy tu wprowadzić dane uwierzytalniejące
  */
 public class ClientSettings {
-	// Name of application you created
+	// ID aplikacji w serwisie Abbyy OCR SDK
 	public static final String APPLICATION_ID = "Gimme Application";
-	// Password should be sent to your e-mail after application was created
+	// Hasło do serwisu Abbyy OCR
 	public static final String PASSWORD = "hYhjyKTVA1qg6j67bBTWLOOS";
-	
-	public static void setupProxy()
-	{
-		// Uncomment this if you are behind a proxy
-		/*
-		String host = "";
-		String port = "";
-		final String user = "";
-		final String password = "";
-
-		Authenticator.setDefault(
-			new Authenticator() {
-		 		public PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication( user, password.toCharArray());
-				}
- 			}
-		);
-
-		System.getProperties().put("http.proxyHost", host );
-		System.getProperties().put("https.proxyHost", host );
-		System.getProperties().put("http.proxyPort", port);
-		System.getProperties().put("https.proxyPort", port);
-		System.getProperties().put("http.proxyUser", user);
-		System.getProperties().put("https.proxyUser", user);
-		System.getProperties().put("http.proxyPassword", password);
-		System.getProperties().put("https.proxyPassword", password);
-		*/
-	}
 }

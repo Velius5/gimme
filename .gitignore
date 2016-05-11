@@ -22,3 +22,5 @@ src/main/resources/application.properties
 *.class
 src/main/resources/application.properties
 Android/Aplikacja/build/intermediates/dex-cache/cache.xml
+src/main/resources/application.properties
+Android/Aplikacja/.idea/workspace.xml
