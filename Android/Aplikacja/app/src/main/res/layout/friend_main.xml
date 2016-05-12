@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
 
     tools:context="{relativePackage}.${Friend_Activity}"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true">
 <!--
     tools:context="{relativePackage}.${activityClass}" >
 -->

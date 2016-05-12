@@ -29,7 +29,7 @@
     <color name="primary_dark_material_dark">#252839</color>
     <color name="background_material_light">#ffffff</color>
     <color name="foreground_material_dark">#f2b632</color>
-    <color name="accent_material_dark">#f2b632</color>
+    <color name="accent_material_dark">#00f2b632</color>
     <color name="background_material_dark">#252839</color>
 </resources>
 <!--

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -100,6 +101,7 @@ public class Friend_Activity extends Activity {
                         }
 
                     });
+
                     System.out.println("koniec");
                 }
             }.execute();

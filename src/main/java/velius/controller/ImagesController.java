@@ -40,15 +40,19 @@ public class ImagesController {
     @ResponseBody
     @RequestMapping(value = "/userphoto/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] getUserPhoto(@PathVariable("id") Long id) throws IOException {
-        User user = userService.getUser(id);
-        byte[] img = null;
-        if(user == null || user.getImage() == null) {
-            ClassPathResource classPathResource = new ClassPathResource("static/images/icons/default-user.png");
-            InputStream is = classPathResource.getInputStream();
-            img = IOUtils.toByteArray(is);
-            return img;
-        } else {
-            return user.getImage();
+        try {
+            User user = userService.getUser(id);
+            byte[] img = null;
+            if (user == null || user.getImage() == null) {
+                ClassPathResource classPathResource = new ClassPathResource("static/images/icons/default-user.png");
+                InputStream is = classPathResource.getInputStream();
+                img = IOUtils.toByteArray(is);
+                return img;
+            } else {
+                return user.getImage();
+            }
+        } catch (IOException iOException) {
+            return null;
         }
     }
     

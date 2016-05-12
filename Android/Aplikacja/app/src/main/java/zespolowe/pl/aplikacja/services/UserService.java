@@ -76,4 +76,7 @@ public interface UserService {
 
     @GET("product/payoffallfrienddebts/{id}/{friendid}")
     Call<Respon> payoffAllFriendDebts(@Path("id") Long id,@Path("friendid") Long friendId);
+
+    @GET("user/{id}/removefriend/{friendid}")
+    Call<Respon> removeFriend(@Path("id") Long id,@Path("friendid") Long friendId);
 }
