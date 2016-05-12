@@ -47,7 +47,7 @@
                             <tr th:each="invitation : ${invitations}">
                                 <td><div class="friend_img"><img th:src="'/userphoto/' + ${invitation.id}"/></div></td>
                                 <td th:text="${invitation.name} + ' ' + ${invitation.surname}"></td>
-                                <td th:if="${invitation}"><a class="tooltip" title="Odrzuć zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a><a class="tooltip" title="Zaakceptuj zaproszenie" href="panel/friends/add/[[apiFriend.id]]"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></td>
+                                <td th:if="${invitation}"><a class="tooltip" title="Odrzuć zaproszenie" th:href="'/panel/friends/remove/' + ${invitation.id}"><i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a><a style="margin-left: 10px;" class="tooltip" title="Zaakceptuj zaproszenie" th:href="'/panel/friends/accept/' + ${userId} + '/' + ${invitation.id}"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>
@@ -60,7 +60,7 @@
                             <tr th:each="invitation : ${sendedInvitations}">
                                 <td><div class="friend_img"><img th:src="'/userphoto/' + ${invitation.id}"/></div></td>
                                 <td th:text="${invitation.name} + ' ' + ${invitation.surname}"></td>
-                                <td th:if="${invitation}"><a class="tooltip" title="Anuluj zaproszenie" th:href="'panel/friends/remove/' + ${invitation.id}"><i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></td>
+                                <td th:if="${invitation}"><a class="tooltip" title="Anuluj zaproszenie" th:href="'/panel/friends/remove/' + ${invitation.id}"><i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></td>
                             </tr>                    
                         </table>
                     </div>

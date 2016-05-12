@@ -139,4 +139,18 @@ public class PanelFriendsController {
         
         return "redirect:/panel/friends";
     }
+    
+    @RequestMapping(value = "/accept/{id}/{friendId}",method = RequestMethod.GET)
+    public String acceptFriendInvitation(@PathVariable Long id, @PathVariable Long friendId){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userService.getUserByEmail(email);
+        User friend = userService.getUser(friendId);
+        
+        if(user != null && friend != null) {
+            friendService.acceptFriend(user, friend);
+        }
+        
+        return "redirect:/panel/friends";
+    }
 }

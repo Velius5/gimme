@@ -53,5 +53,12 @@ public class FriendServiceImpl implements FriendService {
     public void deleteFriend(Friend friend) {
         repository.delete(friend);
     }
+
+    @Override
+    public void acceptFriend(User user, User fri) {
+        Friend friend = repository.findByUserIdAndFriendId(fri, user);
+        friend.setStatus(1L);
+        repository.save(friend);
+    }
     
 }
